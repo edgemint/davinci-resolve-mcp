@@ -1,0 +1,188 @@
+[
+  {
+    "filename": "slide_01_intro.png",
+    "start": 14.83,
+    "end": 18.41,
+    "duration": 3.58
+  },
+  {
+    "filename": "slide_02_beat.png",
+    "start": 18.41,
+    "end": 23.08,
+    "duration": 4.67
+  },
+  {
+    "filename": "slide_03_dont.png",
+    "start": 23.08,
+    "end": 23.66,
+    "duration": 0.58
+  },
+  {
+    "filename": "slide_04_friends.png",
+    "start": 23.66,
+    "end": 26.02,
+    "duration": 2.36
+  },
+  {
+    "filename": "slide_05_online.png",
+    "start": 26.56,
+    "end": 30.62,
+    "duration": 4.06
+  },
+  {
+    "filename": "slide_06_coworkers.png",
+    "start": 31.32,
+    "end": 35.1,
+    "duration": 3.78
+  },
+  {
+    "filename": "slide_07_strangers.png",
+    "start": 35.7,
+    "end": 38.16,
+    "duration": 2.46
+  },
+  {
+    "filename": "slide_08_gym.png",
+    "start": 38.78,
+    "end": 41.6,
+    "duration": 2.82
+  },
+  {
+    "filename": "slide_09_bars.png",
+    "start": 41.98,
+    "end": 45.0,
+    "duration": 3.02
+  },
+  {
+    "filename": "slide_10_dms.png",
+    "start": 45.38,
+    "end": 47.76,
+    "duration": 2.38
+  },
+  {
+    "filename": "slide_11_organic.png",
+    "start": 48.08,
+    "end": 55.82,
+    "duration": 7.74
+  },
+  {
+    "filename": "slide_12_alone.png",
+    "start": 58.6,
+    "end": 61.94,
+    "duration": 3.34
+  },
+  {
+    "filename": "slide_13_notdone.png",
+    "start": 62.36,
+    "end": 63.48,
+    "duration": 1.12
+  },
+  {
+    "filename": "slide_14_agegaps.png",
+    "start": 64.28,
+    "end": 69.54,
+    "duration": 5.26
+  },
+  {
+    "filename": "slide_15_power.png",
+    "start": 70.08,
+    "end": 78.14,
+    "duration": 8.06
+  },
+  {
+    "filename": "slide_16_success.png",
+    "start": 78.14,
+    "end": 81.62,
+    "duration": 3.48
+  },
+  {
+    "filename": "slide_17_youth.png",
+    "start": 82.0,
+    "end": 84.46,
+    "duration": 2.46
+  },
+  {
+    "filename": "slide_18_looks.png",
+    "start": 85.04,
+    "end": 87.36,
+    "duration": 2.32
+  },
+  {
+    "filename": "slide_19_mind.png",
+    "start": 88.22,
+    "end": 98.3,
+    "duration": 10.08
+  },
+  {
+    "filename": "slide_20_notdone2.png",
+    "start": 99.18,
+    "end": 102.84,
+    "duration": 3.66
+  },
+  {
+    "filename": "slide_21_sex.png",
+    "start": 102.84,
+    "end": 104.5,
+    "duration": 1.66
+  },
+  {
+    "filename": "slide_22_commitment.png",
+    "start": 105.02,
+    "end": 106.8,
+    "duration": 1.78
+  },
+  {
+    "filename": "slide_23_exclusivity.png",
+    "start": 106.8,
+    "end": 109.72,
+    "duration": 2.92
+  },
+  {
+    "filename": "slide_24_open.png",
+    "start": 110.34,
+    "end": 112.94,
+    "duration": 2.6
+  },
+  {
+    "filename": "slide_25_likemore.png",
+    "start": 113.18,
+    "end": 115.56,
+    "duration": 2.38
+  },
+  {
+    "filename": "slide_26_likeless.png",
+    "start": 116.26,
+    "end": 117.84,
+    "duration": 1.58
+  },
+  {
+    "filename": "slide_27_tryagain.png",
+    "start": 118.46,
+    "end": 120.88,
+    "duration": 2.42
+  },
+  {
+    "filename": "slide_28_walkaway.png",
+    "start": 121.8,
+    "end": 124.92,
+    "duration": 3.12
+  },
+  {
+    "filename": "slide_29_tooearly.png",
+    "start": 125.86,
+    "end": 128.42,
+    "duration": 2.56
+  },
+  {
+    "filename": "slide_30_toolate.png",
+    "start": 128.92,
+    "end": 132.04,
+    "duration": 3.12
+  },
+  {
+    "filename": "slide_31_finale.png",
+    "start": 135.34,
+    "end": 145.5,
+    "duration": 10.16
+  }
+]
