@@ -10,6 +10,11 @@ import os
 import sys
 import logging
 from typing import List, Dict, Any, Optional, Union
+import io
+import threading
+import traceback
+import builtins
+import json as _json
 
 # Add src directory to Python path
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -4624,6 +4629,165 @@ def get_project_info_endpoint() -> Dict[str, Any]:
         return {"error": "No project currently open"}
     
     return get_project_info(current_project)
+
+# -----------------------
+# Script Execution
+# -----------------------
+
+# Modules blocked from import inside execute_script.
+# This is a convenience guardrail, not a security boundary.
+_BLOCKED_MODULES = frozenset({
+    'os', 'subprocess', 'shutil', 'sys', 'pathlib',
+    'socket', 'http', 'urllib', 'ftplib', 'smtplib',
+    'ctypes', 'multiprocessing', 'signal', 'importlib',
+    'code', 'codeop', 'runpy',
+})
+
+_original_import = builtins.__import__
+
+
+def _restricted_import(name, *args, **kwargs):
+    """Import hook that blocks dangerous modules."""
+    top_level = name.split('.')[0]
+    if top_level in _BLOCKED_MODULES:
+        raise ImportError(
+            f"Import of '{name}' is blocked for security. "
+            f"Allowed: standard library data/math modules and DaVinci Resolve modules."
+        )
+    return _original_import(name, *args, **kwargs)
+
+
+_MAX_OUTPUT_BYTES = 102400  # 100 KB
+
+
+def _safe_result(value):
+    """Convert result to a JSON-safe type. Non-serializable values become their str()."""
+    if value is None:
+        return None
+    try:
+        _json.dumps(value)
+        return value
+    except (TypeError, ValueError, OverflowError):
+        return str(value)
+
+
+@mcp.tool()
+def execute_script(code: str, timeout: int = 30) -> Dict[str, Any]:
+    """Execute a Python script with access to DaVinci Resolve objects.
+
+    Runs arbitrary Python code in-process with pre-loaded Resolve context.
+    Set a 'result' variable in your script to return structured data.
+    Use print() for text output.
+
+    Pre-loaded variables: resolve, project_manager, project, media_pool, timeline.
+
+    Blocked imports (always enforced): os, subprocess, shutil, sys, pathlib,
+    socket, http, urllib, ftplib, smtplib, ctypes, multiprocessing, signal,
+    importlib, code, codeop, runpy.
+
+    Note: timeout returns an error but cannot guarantee the script thread stops.
+
+    Args:
+        code: Python source code to execute.
+        timeout: Maximum execution time in seconds (1-300). Default: 30.
+    """
+    # Validate timeout
+    if not isinstance(timeout, int) or not (1 <= timeout <= 300):
+        return {
+            "success": False,
+            "output": "",
+            "result": None,
+            "error": f"Timeout must be between 1 and 300 seconds, got {timeout}",
+        }
+
+    # Check connection
+    if resolve is None:
+        return {
+            "success": False,
+            "output": "",
+            "result": None,
+            "error": "Not connected to DaVinci Resolve",
+        }
+
+    # Refresh live context
+    project_manager = resolve.GetProjectManager()
+    project = project_manager.GetCurrentProject() if project_manager else None
+    media_pool = project.GetMediaPool() if project else None
+    timeline = project.GetCurrentTimeline() if project else None
+
+    # Build restricted builtins — remove exit/quit to prevent server shutdown
+    safe_builtins = {k: v for k, v in builtins.__dict__.items()
+                     if k not in ('exit', 'quit')}
+    safe_builtins['__import__'] = _restricted_import
+
+    # Build execution namespace (fresh dict each call)
+    stdout_buffer = io.StringIO()
+
+    def _capture_print(*args, sep=' ', end='\n', **_kwargs):
+        stdout_buffer.write(sep.join(str(a) for a in args) + end)
+
+    namespace = {
+        '__builtins__': safe_builtins,
+        'resolve': resolve,
+        'project_manager': project_manager,
+        'project': project,
+        'media_pool': media_pool,
+        'timeline': timeline,
+        'print': _capture_print,
+    }
+
+    # Check syntax before executing
+    try:
+        compiled = compile(code, '<execute_script>', 'exec')
+    except SyntaxError as e:
+        return {
+            "success": False,
+            "output": "",
+            "result": None,
+            "error": f"SyntaxError: {e}",
+        }
+
+    # Run in thread with timeout
+    exec_error = [None]
+
+    def run():
+        try:
+            exec(compiled, namespace)
+        except BaseException:
+            exec_error[0] = traceback.format_exc()
+
+    thread = threading.Thread(target=run, daemon=True)
+    thread.start()
+    thread.join(timeout=timeout)
+
+    # Collect output, truncate if too large
+    output = stdout_buffer.getvalue()
+    if len(output) > _MAX_OUTPUT_BYTES:
+        output = output[:_MAX_OUTPUT_BYTES] + "\n... (output truncated at 100KB)"
+
+    if thread.is_alive():
+        return {
+            "success": False,
+            "output": output,
+            "result": None,
+            "error": f"Script execution timed out after {timeout} seconds",
+        }
+
+    if exec_error[0] is not None:
+        return {
+            "success": False,
+            "output": output,
+            "result": None,
+            "error": exec_error[0],
+        }
+
+    return {
+        "success": True,
+        "output": output,
+        "result": _safe_result(namespace.get('result')),
+        "error": None,
+    }
+
 
 # Start the server
 if __name__ == "__main__":
