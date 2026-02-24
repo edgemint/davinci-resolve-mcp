@@ -38,6 +38,11 @@ echo User: %USERNAME% >> "%LOG_FILE%"
 echo System: %OS% Windows %PROCESSOR_ARCHITECTURE% >> "%LOG_FILE%"
 echo. >> "%LOG_FILE%"
 
+REM Jump to main - subroutines must not be in the linear execution path
+goto :main
+
+REM === Subroutines ===
+
 REM Function to log messages (call :log "Message")
 :log
 echo [%time%] %~1 >> "%LOG_FILE%"
@@ -301,6 +306,3 @@ if /i "%START_SERVER%" == "y" (
 )
 
 exit /b 0
-
-REM Call the main process
-call :main 
