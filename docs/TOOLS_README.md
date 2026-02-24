@@ -141,4 +141,60 @@ workflows = {
 - Check the MCP server logs if operations fail
 - Use the benchmark tool to identify slow operations
 - Consider adding delays between operations if reliability issues occur
-- Review logs after automation runs to identify any issues 
+- Review logs after automation runs to identify any issues
+
+## Execute Script Tool
+
+The `execute_script` MCP tool lets LLMs execute arbitrary Python code within DaVinci Resolve's scripting environment. Use this when the pre-defined MCP tools don't cover a specific operation.
+
+### Parameters
+
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `code` | string | Yes | — | Python source code to execute |
+| `timeout` | integer | No | 30 | Maximum execution time in seconds (1-300) |
+
+### Return Value
+
+```json
+{
+    "success": true,
+    "output": "captured stdout",
+    "result": "value of result variable",
+    "error": null
+}
+```
+
+### Pre-loaded Variables
+
+Scripts have access to these live DaVinci Resolve objects:
+
+| Variable | Description |
+|----------|-------------|
+| `resolve` | The Resolve application object |
+| `project_manager` | Project manager |
+| `project` | Current project |
+| `media_pool` | Current project's media pool |
+| `timeline` | Current timeline |
+
+### Blocked Imports
+
+These modules cannot be imported for safety: `os`, `subprocess`, `shutil`, `sys`, `pathlib`, `socket`, `http`, `urllib`, `ftplib`, `smtplib`, `ctypes`, `multiprocessing`, `signal`, `importlib`, `code`, `codeop`, `runpy`.
+
+The `open()` builtin is also removed. These restrictions are always enforced.
+
+### Example
+
+```python
+# Get all markers on the current timeline
+markers = timeline.GetMarkers()
+for frame, data in markers.items():
+    print(f"Frame {frame}: {data['name']} - {data['note']}")
+result = len(markers)
+```
+
+### Known Limitations
+
+- **Timeout is advisory**: The timeout returns an error but cannot guarantee the script thread stops executing.
+- **Thread safety**: DaVinci Resolve's scripting API may not be thread-safe. Keep scripts simple and quick if you encounter issues.
+- **Import restrictions are convenience guardrails**, not a security boundary. The tool runs locally with user permissions.

@@ -4,7 +4,7 @@ This document tracks the implementation status of features in the DaVinci Resolv
 
 ## Implementation Status
 
-The MCP server implements nearly all features from the DaVinci Resolve scripting API, but our testing has revealed that while we have implemented 202 features (100%), only a small percentage have been verified working on macOS (8%), with many features still needing verification (82%) or having known issues (10%).
+The MCP server implements nearly all features from the DaVinci Resolve scripting API, but our testing has revealed that while we have implemented 203 features (100%), only a small percentage have been verified working on macOS (8%), with many features still needing verification (82%) or having known issues (10%).
 
 Testing has primarily been conducted on macOS, with Windows support implemented but requiring thorough testing. Each feature in this document is marked with symbols indicating its current status:
 
@@ -62,7 +62,8 @@ The compatibility columns indicate whether a feature is known to work with speci
 | Proxy Media Management | 6 | 6 (100%) | 0 (0%) | 0 (0%) | 5 (83%) | 1 (17%) |
 | Transcription Services | 6 | 6 (100%) | 0 (0%) | 0 (0%) | 5 (83%) | 1 (17%) |
 | Object Methods | 84 | 84 (100%) | 1 (1%) | 0 (0%) | 79 (94%) | 4 (5%) |
-| **TOTAL** | **202** | **202 (100%)** | **17 (8%)** | **0 (0%)** | **166 (82%)** | **19 (10%)** |
+| Script Execution | 1 | 1 (100%) | 0 (0%) | 0 (0%) | 1 (100%) | 0 (0%) |
+| **TOTAL** | **203** | **203 (100%)** | **17 (8%)** | **0 (0%)** | **167 (82%)** | **19 (10%)** |
 
 **Status Key:**
 - ✅ - Implemented and verified working
@@ -278,6 +279,12 @@ The compatibility columns indicate whether a feature is known to work with speci
 | Export Transcription | 🟡 | - | - | - | - | Save transcription to file |
 | Transcribe Multiple Clips | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | Batch transcription processing - Not verified |
 | Edit Transcription | 🟡 | - | - | - | - | Modify generated text |
+
+### Script Execution
+
+| Feature | Implementation | Cursor (Mac) | Claude (Mac) | Cursor (Win) | Claude (Win) | Notes |
+|---------|---------------|--------------|--------------|--------------|--------------|-------|
+| Execute Script | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | Execute arbitrary Python code with live Resolve context - Not verified |
 
 ## Object-Specific Methods
 
