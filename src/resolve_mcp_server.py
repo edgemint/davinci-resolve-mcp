@@ -4657,7 +4657,7 @@ def _restricted_import(name, *args, **kwargs):
     return _original_import(name, *args, **kwargs)
 
 
-_MAX_OUTPUT_BYTES = 102400  # 100 KB
+_MAX_OUTPUT_CHARS = 102400  # ~100K characters
 
 
 def _safe_result(value):
@@ -4665,7 +4665,7 @@ def _safe_result(value):
     if value is None:
         return None
     try:
-        _json.dumps(value)
+        _json.dumps(value, allow_nan=False)
         return value
     except (TypeError, ValueError, OverflowError):
         return str(value)
@@ -4686,6 +4686,8 @@ def execute_script(code: str, timeout: int = 30) -> Dict[str, Any]:
     importlib, code, codeop, runpy.
 
     Note: timeout returns an error but cannot guarantee the script thread stops.
+    Note: DaVinci Resolve's scripting API may not be thread-safe. If you
+    encounter issues with API calls, try simpler scripts that complete quickly.
 
     Args:
         code: Python source code to execute.
@@ -4717,7 +4719,7 @@ def execute_script(code: str, timeout: int = 30) -> Dict[str, Any]:
 
     # Build restricted builtins — remove exit/quit to prevent server shutdown
     safe_builtins = {k: v for k, v in builtins.__dict__.items()
-                     if k not in ('exit', 'quit')}
+                     if k not in ('exit', 'quit', 'open')}
     safe_builtins['__import__'] = _restricted_import
 
     # Build execution namespace (fresh dict each call)
@@ -4762,8 +4764,8 @@ def execute_script(code: str, timeout: int = 30) -> Dict[str, Any]:
 
     # Collect output, truncate if too large
     output = stdout_buffer.getvalue()
-    if len(output) > _MAX_OUTPUT_BYTES:
-        output = output[:_MAX_OUTPUT_BYTES] + "\n... (output truncated at 100KB)"
+    if len(output) > _MAX_OUTPUT_CHARS:
+        output = output[:_MAX_OUTPUT_CHARS] + "\n... (output truncated at 100KB)"
 
     if thread.is_alive():
         return {
