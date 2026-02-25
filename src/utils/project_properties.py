@@ -172,8 +172,8 @@ def set_project_property(project_obj, property_name: str, property_value: Any) -
                     property_value = property_value.lower() in ("true", "yes", "1", "on")
                 property_value = bool(property_value)
         
-        # Set the property
-        return project_obj.SetSetting(property_name, property_value)
+        # DaVinci Resolve's SetSetting() requires string values
+        return project_obj.SetSetting(property_name, str(property_value))
         
     except Exception as e:
         logger.error(f"Error setting project property {property_name}: {str(e)}")
