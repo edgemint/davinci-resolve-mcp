@@ -1442,20 +1442,20 @@ def get_cache_settings() -> Dict[str, Any]:
         # Get all cache-related settings
         settings = {}
         cache_keys = [
-            "CacheMode", 
-            "CacheClipMode",
-            "OptimizedMediaMode",
-            "ProxyMode", 
-            "ProxyQuality",
-            "TimelineCacheMode",
-            "LocalCachePath",
-            "NetworkCachePath"
+            "perfRenderCacheMode",
+            "perfAutoRenderCacheEnable",
+            "perfAutoRenderCacheAfterTime",
+            "perfOptimisedMediaOn",
+            "perfOptimizedResolutionRatio",
+            "perfProxyMediaMode",
+            "perfProxyResolutionRatio",
+            "perfCacheClipsLocation",
         ]
-        
+
         for key in cache_keys:
             value = current_project.GetSetting(key)
             settings[key] = value
-            
+
         return settings
     except Exception as e:
         return {"error": f"Failed to get cache settings: {str(e)}"}
@@ -1485,14 +1485,15 @@ def set_cache_mode(mode: str) -> str:
         return f"Error: Invalid cache mode. Must be one of: {', '.join(valid_modes)}"
     
     # Convert mode to API value
+    # perfRenderCacheMode accepts: 'none' (off), 'smart' (auto), 'user' (on)
     mode_map = {
-        "auto": "0",
-        "on": "1",
-        "off": "2"
+        "auto": "smart",
+        "on": "user",
+        "off": "none",
     }
-    
+
     try:
-        result = current_project.SetSetting("CacheMode", mode_map[mode])
+        result = current_project.SetSetting("perfRenderCacheMode", mode_map[mode])
         if result:
             return f"Successfully set cache mode to '{mode}'"
         else:
@@ -1525,14 +1526,15 @@ def set_optimized_media_mode(mode: str) -> str:
         return f"Error: Invalid optimized media mode. Must be one of: {', '.join(valid_modes)}"
     
     # Convert mode to API value
+    # perfOptimisedMediaOn is a boolean string: '1' (on/auto) or '0' (off)
     mode_map = {
-        "auto": "0",
+        "auto": "1",
         "on": "1",
-        "off": "2"
+        "off": "0",
     }
-    
+
     try:
-        result = current_project.SetSetting("OptimizedMediaMode", mode_map[mode])
+        result = current_project.SetSetting("perfOptimisedMediaOn", mode_map[mode])
         if result:
             return f"Successfully set optimized media mode to '{mode}'"
         else:
@@ -1565,14 +1567,15 @@ def set_proxy_mode(mode: str) -> str:
         return f"Error: Invalid proxy mode. Must be one of: {', '.join(valid_modes)}"
     
     # Convert mode to API value
+    # perfProxyMediaMode: '0' = off, '1' = auto, '2' = on
     mode_map = {
-        "auto": "0",
-        "on": "1",
-        "off": "2"
+        "off": "0",
+        "auto": "1",
+        "on": "2",
     }
-    
+
     try:
-        result = current_project.SetSetting("ProxyMode", mode_map[mode])
+        result = current_project.SetSetting("perfProxyMediaMode", mode_map[mode])
         if result:
             return f"Successfully set proxy mode to '{mode}'"
         else:
@@ -1604,15 +1607,17 @@ def set_proxy_quality(quality: str) -> str:
         return f"Error: Invalid proxy quality. Must be one of: {', '.join(valid_qualities)}"
     
     # Convert quality to API value
+    # perfProxyResolutionRatio accepts named strings: 'quarter', 'half', 'original'
+    # Note: 'threeQuarter' is not supported by the API; 'original' maps to full resolution
     quality_map = {
-        "quarter": "0",
-        "half": "1",
-        "threeQuarter": "2",
-        "full": "3"
+        "quarter": "quarter",
+        "half": "half",
+        "threeQuarter": "half",  # API does not support threeQuarter; fall back to half
+        "full": "original",
     }
-    
+
     try:
-        result = current_project.SetSetting("ProxyQuality", quality_map[quality])
+        result = current_project.SetSetting("perfProxyResolutionRatio", quality_map[quality])
         if result:
             return f"Successfully set proxy quality to '{quality}'"
         else:
@@ -1649,8 +1654,9 @@ def set_cache_path(path_type: str, path: str) -> str:
     if not os.path.exists(path):
         return f"Error: Path '{path}' does not exist"
     
-    setting_key = "LocalCachePath" if path_type == "local" else "NetworkCachePath"
-    
+    # The API uses a single key for the cache clips location
+    setting_key = "perfCacheClipsLocation"
+
     try:
         result = current_project.SetSetting(setting_key, path)
         if result:
