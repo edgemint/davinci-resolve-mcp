@@ -48,7 +48,7 @@ class Transcript:
                 {k: v for k, v in w.items() if v is not None}
                 for w in seg["words"]
             ]
-        return json.dumps(data, indent=indent)
+        return json.dumps(data, indent=indent, ensure_ascii=False)
 
     def save(self, path: str) -> None:
         """Write JSON to file."""

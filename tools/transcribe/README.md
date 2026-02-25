@@ -60,8 +60,8 @@ transcript.save("output.json")
 
 | Flag | Default | Description |
 |------|---------|-------------|
-| `--local`, `-l` | — | Use CrisperWhisper instead of OpenAI API |
-| `--language` | `en` | Language code (e.g., `en`, `es`, `fr`) |
+| `--local` | — | Use CrisperWhisper instead of OpenAI API |
+| `--language`, `-l` | `en` | Language code (e.g., `en`, `es`, `fr`) |
 | `--output`, `-o` | `{input}.transcript.json` | Output JSON path |
 
 ---
@@ -101,7 +101,7 @@ Generates a JSON file with segment-level and word-level timestamps:
 
 ## Known Issues
 
-- **CrisperWhisper pipeline garbage output** — The model may produce corrupted output in rare cases ([issue #17](https://github.com/yourusername/repo/issues/17)). Verify results on long files.
+- **CrisperWhisper pipeline garbage output** — The model may produce corrupted output in rare cases ([CrisperWhisper issue #17](https://github.com/nyrahealth/CrisperWhisper/issues/17)). Verify results on long files.
 - **CPU mode is very slow** — Local transcription on CPU takes minutes per minute of audio. GPU is highly recommended.
 - **File size limits** — OpenAI API: 25 MB max. For larger files, use local mode or split the file.
 

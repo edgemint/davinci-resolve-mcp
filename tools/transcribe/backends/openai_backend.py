@@ -23,7 +23,13 @@ def transcribe(audio_path: str, language: str = "en") -> Transcript:
             f"Convert to a compressed format (mp3/ogg) or use --local."
         )
 
-    client = OpenAI()  # Uses OPENAI_API_KEY env var
+    if not os.environ.get("OPENAI_API_KEY"):
+        raise RuntimeError(
+            "OPENAI_API_KEY environment variable is not set. "
+            "Set it or use --local for CrisperWhisper."
+        )
+
+    client = OpenAI()
 
     with open(audio_path, "rb") as audio_file:
         response = client.audio.transcriptions.create(
@@ -96,6 +102,6 @@ def _assign_words_to_segments(segments, words):
                 break
         if not assigned:
             # Word doesn't fit any segment — assign to nearest
-            nearest = min(range(len(segments)), key=lambda i: abs(segments[i].start - w.start))
+            nearest = min(range(len(segments)), key=lambda j: abs(segments[j].start - w.start))
             result[nearest].append(w)
     return result
