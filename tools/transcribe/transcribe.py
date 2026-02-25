@@ -67,7 +67,11 @@ def main():
         print("Transcribing with OpenAI Whisper API...")
         from tools.transcribe.backends.openai_backend import transcribe
 
-    transcript = transcribe(str(audio_path), language=args.language)
+    # Pass output_path for incremental saves (local backend only)
+    kwargs = {"language": args.language}
+    if args.local:
+        kwargs["output_path"] = str(output_path)
+    transcript = transcribe(str(audio_path), **kwargs)
     transcript.save(str(output_path))
     print(f"Transcript saved to: {output_path}")
 
