@@ -1,9 +1,10 @@
 """CrisperWhisper local backend for transcription with precise timestamps and filler detection.
 
 Features:
-- Incremental saves: writes progress to a .partial.json after each chunk
+- Incremental saves: writes progress to a .partial.json after each segment
 - Resume support: resumes from partial file if interrupted
 - Progress bar with ETA
+- Uses HF pipeline for proper word-level timestamp extraction
 """
 
 from __future__ import annotations
@@ -15,6 +16,7 @@ import shutil
 import subprocess
 import sys
 import time
+import warnings
 from pathlib import Path
 
 from tools.transcribe.output import Transcript, TranscriptMetadata, Segment, Word
@@ -32,13 +34,14 @@ _MAX_SEGMENT_DURATION = 15.0  # seconds
 # Unicode sentence-ending characters
 _SENTENCE_ENDINGS = (".", "!", "?", "\u3002", "\uff01", "\uff1f")
 
-# Chunking parameters
-_CHUNK_LENGTH_S = 30.0
-_STRIDE_S = 5.0  # overlap on each side
+# Outer-level segment size for progress tracking (seconds)
+# The pipeline handles its own internal 30s chunking; we split the audio into
+# larger segments (~5 min each) to show progress and save incrementally.
+_SEGMENT_LENGTH_S = 300.0  # 5 minutes
 
 # Module-level caches
-_cached_model = None
-_cached_processor = None
+_cached_pipe = None
+_cached_pipe_fallback = None
 
 
 # ---------------------------------------------------------------------------
@@ -83,29 +86,22 @@ def _load_audio(audio_path: str) -> tuple:
 
 
 # ---------------------------------------------------------------------------
-# Model loading
+# Pipeline construction
 # ---------------------------------------------------------------------------
 
-def _load_model(device: str = None):
-    """Load CrisperWhisper model and processor. Cached after first call."""
-    global _cached_model, _cached_processor
-    if _cached_model is not None:
-        return _cached_model, _cached_processor
-
+def _build_pipeline(return_timestamps="word"):
+    """Build HF ASR pipeline for CrisperWhisper. Cached after first call."""
     import torch
-    from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
+    from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 
-    if device is None:
-        device = "cuda:0" if torch.cuda.is_available() else "cpu"
+    device = "cuda:0" if torch.cuda.is_available() else "cpu"
+    torch_dtype = torch.float16 if "cuda" in device else torch.float32
 
     if device == "cpu":
-        import warnings
         warnings.warn(
             "No CUDA GPU detected. CrisperWhisper on CPU will be very slow "
             "(10-50x realtime). Consider using the OpenAI API backend instead (remove --local)."
         )
-
-    torch_dtype = torch.float16 if "cuda" in device else torch.float32
 
     model_id = "nyrahealth/CrisperWhisper"
     print("  Loading CrisperWhisper model...")
@@ -121,90 +117,117 @@ def _load_model(device: str = None):
     processor = AutoProcessor.from_pretrained(model_id)
     print("  Model loaded.")
 
-    _cached_model, _cached_processor = model, processor
-    return model, processor
-
-
-# ---------------------------------------------------------------------------
-# Chunk-level transcription
-# ---------------------------------------------------------------------------
-
-def _transcribe_chunk(model, processor, audio_chunk, language: str, device: str) -> list[dict]:
-    """Transcribe a single audio chunk. Returns list of word dicts with timestamps.
-
-    Uses the model directly (not the pipeline) so we have full control over
-    error handling and can process one chunk at a time.
-    """
-    import torch
-
-    torch_dtype = torch.float16 if "cuda" in device else torch.float32
-
-    inputs = processor(
-        audio_chunk, sampling_rate=16000, return_tensors="pt"
+    pipe = pipeline(
+        "automatic-speech-recognition",
+        model=model,
+        tokenizer=processor.tokenizer,
+        feature_extractor=processor.feature_extractor,
+        chunk_length_s=30,
+        batch_size=1,
+        return_timestamps=return_timestamps,
+        torch_dtype=torch_dtype,
+        device=device,
     )
-    input_features = inputs.input_features.to(device, dtype=torch_dtype)
+    return pipe
 
-    with torch.no_grad():
-        try:
-            predicted_ids = model.generate(
-                input_features,
-                language=f"<|{language}|>",
-                return_timestamps=True,
-                task="transcribe",
+
+def _get_pipeline():
+    """Get or create word-level timestamp pipeline."""
+    global _cached_pipe
+    if _cached_pipe is None:
+        _cached_pipe = _build_pipeline(return_timestamps="word")
+    return _cached_pipe
+
+
+def _get_fallback_pipeline():
+    """Get or create segment-level timestamp pipeline (fallback for silent chunks)."""
+    global _cached_pipe_fallback
+    if _cached_pipe_fallback is None:
+        # Reuse the model from the primary pipeline to avoid loading twice
+        pipe = _get_pipeline()
+        from transformers import pipeline as make_pipeline
+        _cached_pipe_fallback = make_pipeline(
+            "automatic-speech-recognition",
+            model=pipe.model,
+            tokenizer=pipe.tokenizer,
+            feature_extractor=pipe.feature_extractor,
+            chunk_length_s=30,
+            batch_size=1,
+            return_timestamps=True,  # segment-level only
+            torch_dtype=pipe.torch_dtype,
+            device=pipe.device,
+        )
+    return _cached_pipe_fallback
+
+
+# ---------------------------------------------------------------------------
+# Segment-level transcription via pipeline
+# ---------------------------------------------------------------------------
+
+def _transcribe_segment(audio_segment, sr: int, language: str) -> list[dict]:
+    """Transcribe an audio segment using the HF pipeline.
+
+    Returns a list of word dicts: [{"text": str, "start": float, "end": float}, ...]
+
+    Falls back to segment-level timestamps if word-level extraction fails
+    (e.g., on silent audio chunks).
+    """
+    pipe = _get_pipeline()
+
+    try:
+        result = pipe(
+            {"array": audio_segment, "sampling_rate": sr},
+            generate_kwargs={"language": f"<|{language}|>"},
+        )
+    except RuntimeError as e:
+        err_msg = str(e).lower()
+        # Word-level timestamp extraction can fail in several ways:
+        # - "non-zero dimensions" (empty token output from silent chunks)
+        # - "must match the existing size" (tensor shape mismatch)
+        # - "_extract_token_timestamps" related errors
+        # Fall back to segment-level timestamps in all these cases.
+        if any(phrase in err_msg for phrase in (
+            "non-zero dimensions",
+            "must match the",
+            "extract_token_timestamps",
+            "expanded size",
+            "tensor",
+        )):
+            warnings.warn(
+                "Word-level timestamp extraction failed (likely silent/problematic audio). "
+                "Retrying with segment-level timestamps."
             )
-        except RuntimeError as e:
-            if "non-zero dimensions" in str(e) or "must match the size" in str(e):
-                # Silent chunk — no speech detected
-                return []
+            fallback = _get_fallback_pipeline()
+            result = fallback(
+                {"array": audio_segment, "sampling_rate": sr},
+                generate_kwargs={"language": f"<|{language}|>"},
+            )
+        else:
             raise
 
-    # Decode with timestamps
-    output = processor.batch_decode(predicted_ids, skip_special_tokens=False)[0]
-
-    # Parse timestamps from token output
-    words = _parse_whisper_tokens(output, processor)
-    return words
-
-
-def _parse_whisper_tokens(decoded: str, processor) -> list[dict]:
-    """Parse word-level timestamps from Whisper's decoded output with special tokens.
-
-    Whisper outputs text like: <|0.00|> hello <|0.50|><|0.50|> world <|1.20|>
-    After regex split with a capturing group, the parts array alternates:
-      [pre_text, timestamp, text, timestamp, text, timestamp, ...]
-    Words are bounded by consecutive timestamp pairs.
-    """
-    # Match timestamp tokens like <|0.00|> or <|12.34|>
-    timestamp_pattern = re.compile(r"<\|(\d+\.?\d*)\|>")
-
-    parts = timestamp_pattern.split(decoded)
-    # parts layout: [text_0, ts_1, text_2, ts_3, text_4, ts_5, ...]
-    # Timestamps are at odd indices, text at even indices.
-    # A word is: start=parts[i], text=parts[i+1], end=parts[i+2] where i is odd.
-
+    # Extract words from pipeline output
     words = []
-    # Special tokens to skip
-    skip_tokens = {"<|endoftext|>", "<|startoftranscript|>", "<|en|>",
-                   "<|transcribe|>", "<|notimestamps|>"}
-
-    # Iterate through timestamp pairs: i, i+2 are timestamps, i+1 is text between them
-    i = 1  # Start at first timestamp (odd index)
-    while i + 2 < len(parts):
-        try:
-            start = float(parts[i])
-            text = parts[i + 1].strip()
-            end = float(parts[i + 2])
-        except (ValueError, IndexError):
-            i += 2
-            continue
-
-        if text and text not in skip_tokens:
-            # Clean any remaining special tokens from the text
-            clean = re.sub(r"<\|[^|]*\|>", "", text).strip()
-            if clean:
-                words.append({"text": clean, "start": start, "end": end})
-
-        i += 2  # Advance to next timestamp (which becomes the start of the next word)
+    chunks = result.get("chunks", [])
+    for chunk in chunks:
+        text = chunk.get("text", "").strip()
+        ts = chunk.get("timestamp", (None, None))
+        if text and ts and ts[0] is not None:
+            start = ts[0]
+            end = ts[1] if ts[1] is not None else start + 0.5
+            # Pipeline with return_timestamps="word" gives one word per chunk.
+            # Pipeline with return_timestamps=True gives full segments —
+            # split them into individual words with interpolated timestamps.
+            if " " in text:
+                # Segment-level: split into words with interpolated timestamps
+                segment_words = text.split()
+                seg_duration = end - start
+                word_duration = seg_duration / len(segment_words) if segment_words else 0
+                for j, w in enumerate(segment_words):
+                    w_start = round(start + j * word_duration, 3)
+                    w_end = round(start + (j + 1) * word_duration, 3)
+                    words.append({"text": w, "start": w_start, "end": w_end})
+            else:
+                words.append({"text": text, "start": round(start, 3), "end": round(end, 3)})
 
     return words
 
@@ -219,25 +242,27 @@ def _partial_path(output_path: str) -> str:
     return str(p.parent / (p.stem + ".partial.json"))
 
 
-def _save_partial(path: str, completed_chunks: list[dict], metadata: dict) -> None:
+def _save_partial(path: str, completed_segments: list[dict], metadata: dict) -> None:
     """Save incremental progress to a partial file."""
     data = {
         "metadata": metadata,
-        "completed_chunks": completed_chunks,
+        "completed_segments": completed_segments,
     }
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
 def _load_partial(path: str) -> tuple[list[dict], dict] | None:
-    """Load partial progress. Returns (completed_chunks, metadata) or None."""
+    """Load partial progress. Returns (completed_segments, metadata) or None."""
     p = Path(path)
     if not p.exists():
         return None
     try:
         with open(p, "r", encoding="utf-8") as f:
             data = json.load(f)
-        return data["completed_chunks"], data["metadata"]
+        # Support both old "completed_chunks" and new "completed_segments" key
+        segments = data.get("completed_segments", data.get("completed_chunks", []))
+        return segments, data["metadata"]
     except (json.JSONDecodeError, KeyError):
         return None
 
@@ -260,18 +285,18 @@ def _format_duration(seconds: float) -> str:
     return f"{seconds // 3600}:{(seconds % 3600) // 60:02d}:{seconds % 60:02d}"
 
 
-def _print_progress(chunk_idx: int, total_chunks: int, start_time: float, resumed_from: int = 0):
+def _print_progress(seg_idx: int, total_segs: int, start_time: float, resumed_from: int = 0):
     elapsed = time.time() - start_time
-    chunks_processed = chunk_idx - resumed_from + 1
-    pct = min(100, ((chunk_idx + 1) / max(total_chunks, 1)) * 100)
+    segs_processed = seg_idx - resumed_from + 1
+    pct = min(100, ((seg_idx + 1) / max(total_segs, 1)) * 100)
 
     bar_width = 30
     filled = int(bar_width * pct / 100)
-    bar = "█" * filled + "░" * (bar_width - filled)
+    bar = "\u2588" * filled + "\u2591" * (bar_width - filled)
 
-    if chunks_processed > 0 and pct < 100:
-        rate = elapsed / chunks_processed
-        remaining = rate * (total_chunks - chunk_idx - 1)
+    if segs_processed > 0 and pct < 100:
+        rate = elapsed / segs_processed
+        remaining = rate * (total_segs - seg_idx - 1)
         eta_str = _format_duration(remaining)
     elif pct >= 100:
         eta_str = "done"
@@ -280,7 +305,7 @@ def _print_progress(chunk_idx: int, total_chunks: int, start_time: float, resume
 
     sys.stderr.write(
         f"\r  [{bar}] {pct:5.1f}%  "
-        f"chunk {chunk_idx + 1}/{total_chunks}  "
+        f"segment {seg_idx + 1}/{total_segs}  "
         f"elapsed {_format_duration(elapsed)}  "
         f"ETA {eta_str}   "
     )
@@ -314,7 +339,11 @@ def _adjust_pauses(words: list[dict], split_threshold: float = 0.12) -> list[dic
 # ---------------------------------------------------------------------------
 
 def transcribe(audio_path: str, language: str = "en", output_path: str = None) -> Transcript:
-    """Transcribe audio using CrisperWhisper with incremental saves and resume support."""
+    """Transcribe audio using CrisperWhisper with incremental saves and resume support.
+
+    Splits the audio into ~5-minute segments, runs the HF pipeline on each,
+    saves progress after each segment, and shows a progress bar.
+    """
     import torch
 
     if not shutil.which("ffmpeg"):
@@ -328,109 +357,99 @@ def transcribe(audio_path: str, language: str = "en", output_path: str = None) -
         output_path = str(Path(audio_path).parent / (Path(audio_path).stem + ".transcript.json"))
     partial = _partial_path(output_path)
 
-    # Get audio duration and calculate chunks
+    # Get audio duration
     duration = _get_audio_duration(audio_path)
     if duration <= 0:
         raise RuntimeError(f"Could not determine audio duration for {audio_path}")
 
-    step = _CHUNK_LENGTH_S - 2 * _STRIDE_S  # 20s effective step
-    total_chunks = max(1, math.ceil(duration / step))
+    total_segments = max(1, math.ceil(duration / _SEGMENT_LENGTH_S))
 
     mins, secs = divmod(int(duration), 60)
-    print(f"  Audio: {mins}:{secs:02d}  |  {total_chunks} chunks  |  chunk={_CHUNK_LENGTH_S}s stride={_STRIDE_S}s")
+    print(f"  Audio: {mins}:{secs:02d}  |  {total_segments} segments of ~{int(_SEGMENT_LENGTH_S)}s")
 
     # Check for resumable partial file
     resumed_from = 0
     all_words = []
     existing = _load_partial(partial)
     if existing is not None:
-        completed_chunks, partial_meta = existing
+        completed_segments, partial_meta = existing
         if partial_meta.get("file") == Path(audio_path).name:
-            resumed_from = len(completed_chunks)
-            # Reconstruct words from completed chunks
-            for chunk_data in completed_chunks:
-                all_words.extend(chunk_data.get("words", []))
-            print(f"  Resuming from chunk {resumed_from}/{total_chunks} ({len(all_words)} words so far)")
+            resumed_from = len(completed_segments)
+            for seg_data in completed_segments:
+                all_words.extend(seg_data.get("words", []))
+            print(f"  Resuming from segment {resumed_from}/{total_segments} ({len(all_words)} words so far)")
         else:
             print(f"  Partial file is for a different audio file, starting fresh.")
+            completed_segments = []
+    else:
+        completed_segments = []
 
-    # Load audio and model
+    # Load audio
     print("  Loading audio...")
     audio, sr = _load_audio(audio_path)
     audio_samples = len(audio)
 
-    device = "cuda:0" if torch.cuda.is_available() else "cpu"
-    model, processor = _load_model(device)
+    # Initialize pipeline (loads model)
+    _ = _get_pipeline()
 
     # Prepare partial metadata
     meta = {
         "file": Path(audio_path).name,
         "duration_seconds": round(duration, 2),
         "language": language,
-        "chunk_length_s": _CHUNK_LENGTH_S,
-        "stride_s": _STRIDE_S,
+        "segment_length_s": _SEGMENT_LENGTH_S,
     }
 
-    # Collect completed chunks for partial saves (load existing or start fresh)
-    if existing and partial_meta.get("file") == Path(audio_path).name:
-        completed_chunks = existing[0]
-    else:
-        completed_chunks = []
-
-    # Process each chunk
+    # Process each segment
     start_time = time.time()
-    chunk_samples = int(_CHUNK_LENGTH_S * sr)
-    step_samples = int(step * sr)
+    segment_samples = int(_SEGMENT_LENGTH_S * sr)
 
-    for chunk_idx in range(total_chunks):
-        if chunk_idx < resumed_from:
+    for seg_idx in range(total_segments):
+        if seg_idx < resumed_from:
             continue
 
-        # Calculate chunk boundaries with stride overlap
-        chunk_start_sample = chunk_idx * step_samples
-        chunk_end_sample = min(chunk_start_sample + chunk_samples, audio_samples)
-        chunk_start_time = chunk_start_sample / sr
+        seg_start_sample = seg_idx * segment_samples
+        seg_end_sample = min(seg_start_sample + segment_samples, audio_samples)
+        seg_start_time = seg_start_sample / sr
 
-        if chunk_start_sample >= audio_samples:
+        if seg_start_sample >= audio_samples:
             break
 
-        audio_chunk = audio[chunk_start_sample:chunk_end_sample]
+        audio_segment = audio[seg_start_sample:seg_end_sample]
 
-        # Transcribe this chunk
+        # Transcribe this segment using the pipeline
         try:
-            chunk_words = _transcribe_chunk(model, processor, audio_chunk, language, device)
-        except torch.cuda.OutOfMemoryError:
+            seg_words = _transcribe_segment(audio_segment, sr, language)
+        except (torch.cuda.OutOfMemoryError, RuntimeError) as e:
+            if isinstance(e, RuntimeError) and "out of memory" not in str(e).lower():
+                raise  # Not an OOM error, re-raise
             _clear_progress()
-            # Save what we have so far
-            _save_partial(partial, completed_chunks, meta)
+            _save_partial(partial, completed_segments, meta)
             raise RuntimeError(
-                f"GPU out of memory at chunk {chunk_idx + 1}/{total_chunks}. "
+                f"GPU out of memory at segment {seg_idx + 1}/{total_segments}. "
                 f"Progress saved to {partial} — re-run to resume."
-            )
+            ) from e
 
         # Offset timestamps to absolute position in the audio
-        for w in chunk_words:
-            w["start"] = round(w["start"] + chunk_start_time, 3)
-            w["end"] = round(w["end"] + chunk_start_time, 3)
+        for w in seg_words:
+            w["start"] = round(w["start"] + seg_start_time, 3)
+            w["end"] = round(w["end"] + seg_start_time, 3)
 
-        all_words.extend(chunk_words)
+        all_words.extend(seg_words)
 
         # Save progress incrementally
-        completed_chunks.append({
-            "chunk_idx": chunk_idx,
-            "start_time": round(chunk_start_time, 2),
-            "words": chunk_words,
+        completed_segments.append({
+            "segment_idx": seg_idx,
+            "start_time": round(seg_start_time, 2),
+            "words": seg_words,
         })
-        _save_partial(partial, completed_chunks, meta)
+        _save_partial(partial, completed_segments, meta)
 
-        _print_progress(chunk_idx, total_chunks, start_time, resumed_from)
+        _print_progress(seg_idx, total_segments, start_time, resumed_from)
 
     _clear_progress()
     elapsed = time.time() - start_time
     print(f"  Transcription complete in {_format_duration(elapsed)}")
-
-    # Deduplicate words from overlapping strides
-    all_words = _deduplicate_stride_words(all_words)
 
     # Adjust pauses
     all_words = _adjust_pauses(all_words)
@@ -458,38 +477,6 @@ def transcribe(audio_path: str, language: str = "en", output_path: str = None) -
     )
 
     return Transcript(metadata=metadata, segments=segments)
-
-
-# ---------------------------------------------------------------------------
-# Stride deduplication
-# ---------------------------------------------------------------------------
-
-def _deduplicate_stride_words(words: list[dict]) -> list[dict]:
-    """Remove duplicate words caused by overlapping stride regions.
-
-    When chunks overlap, the same words can appear in both chunks.
-    Keep the version with the earlier start time and skip near-duplicates.
-    """
-    if not words:
-        return []
-
-    # Sort by start time
-    words.sort(key=lambda w: w["start"])
-
-    deduped = [words[0]]
-    for w in words[1:]:
-        prev = deduped[-1]
-        # Skip if this word overlaps significantly with the previous one
-        # (same text within 0.3s is considered a duplicate)
-        if (w["text"].strip().lower() == prev["text"].strip().lower()
-                and abs(w["start"] - prev["start"]) < 0.3):
-            continue
-        # Skip if this word starts before the previous word ends (overlap)
-        if w["start"] < prev["end"] - 0.05:
-            continue
-        deduped.append(w)
-
-    return deduped
 
 
 # ---------------------------------------------------------------------------
