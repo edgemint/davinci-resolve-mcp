@@ -1,0 +1,4 @@
+torch>=2.0
+torchaudio
+soundfile
+git+https://github.com/nyrahealth/transformers.git@crisper_whisper
