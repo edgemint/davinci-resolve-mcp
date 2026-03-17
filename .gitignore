@@ -74,6 +74,11 @@ coverage.xml
 # Cursor
 .cursor/
 
+# Audio and media files
+AudioFiles/
+*.wav
+*.mkv
+
 # macOS specific files
 .AppleDouble
 .LSOverride
