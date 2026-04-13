@@ -21,19 +21,26 @@ Name = InstanceInput {
     ControlGroup = 4,                      -- collapse adjacent inputs into one widget
 
     -- NUMERIC DEFAULTS & RANGE
-    Default    = 0.5,                     -- scalar default
+    Default    = 0.5,                     -- scalar default (numeric params)
     DefaultX   = 0.5,                     -- 2-component default X (points/sizes)
     DefaultY   = 0.5,                     -- 2-component default Y
+    DefaultText = "",                     -- placeholder string for text/file-picker params (ClipName, ColorFile1, etc.)
     MinScale   = 0,                       -- slider soft min
     MaxScale   = 1,                       -- slider soft max
-    MinAllowed = -10,                     -- hard min (value can't go below)
-    MaxAllowed = 10,                      -- hard max
+    -- NOTE: MinAllowed / MaxAllowed are UserControls-only keys. They are NOT valid on InstanceInput.
+
+    -- LIVE FORMULA
+    Expression = "OtherNode.Param + offset",  -- binds value to a live Lua expression referencing other inputs
+                                              -- e.g. Expression = "Shape3D1_1.Transform3DOp.Translate.X+num1"
 
     -- LAYOUT
     Width      = 0.5,                     -- 0..1 fraction of row width (for side-by-side)
 
-    -- ADVANCED (rarely needed)
-    IconString = "FuID { \"icon-name\" }",
+    -- USERCONTROLS RE-EXPOSURE
+    -- When re-exposing a UserControls entry, ICS_ControlPage and INP_Default may appear
+    -- inside the InstanceInput block to mirror the original UserControls definition.
+    ICS_ControlPage = "Controls",
+    INP_Default     = 0,
 },
 ```
 
@@ -101,10 +108,52 @@ Once declared, the new control behaves like a real node input. You can read it f
 | `SliderControl` | Numeric slider (float or int) | `INP_MinScale`, `INP_MaxScale`, `INP_Default`, `INP_Integer`, `IC_Steps` |
 | `CheckboxControl` | On/off toggle | `INP_Default` (0 or 1), `CBC_TriState` |
 | `ButtonControl` | Clickable button | `BTNCS_Execute` — Lua snippet run when clicked |
-| `LabelControl` | Group label above a block of inputs (collapsible header) | `LBLC_DropDownButton = true`, `LBLC_NumInputs = N` — N is how many inputs below this label get grouped |
-| `MultiButtonControl` | Radio group / tab bar | `MBTNC_StretchToFit`, `MBTNC_ShowName`, plus `[1]`, `[2]`, ... entries for each button's text |
+| `LabelControl` | Section header (collapsible) | `LBLC_DropDownButton = true`, `LBLC_NumInputs = N` — see "Collapsible LabelControl Section Headers" below |
+| `MultiButtonControl` | Radio group / tab bar | `MBTNC_StretchToFit`, `MBTNC_ShowName`, options as `{ MBTNC_AddButton = "Label" }` anonymous entries |
 | `ColorControl` | Color picker (single value) | `CLRC_ShowWheel`, `CLRC_ShowSliders` |
-| `DropDownControl` / `ComboControl` | Dropdown menu | `CC_LabelPosition`, entries via `[1] = "...", [2] = "..."` |
+| `ComboControl` | Dropdown menu | `CC_LabelPosition`, `LINKID_DataType = "Number"`, options as anonymous table entries `{ CCS_AddString = "Label" }` (see syntax note below) |
+| `ScrewControl` | Rotary/dial for angle inputs | `INP_MinScale = -180`, `INP_MaxScale = 180`, `IC_Steps = 3601` |
+| `TextEditControl` | Multi-line text input | `TEC_Lines` (line count), `TEC_Wrap` (bool), `TEC_ReadOnly` (bool), `LINKID_DataType = "Text"` or `"StyledText"` |
+| `OffsetControl` | 2D crosshair/offset picker | `INPID_PreviewControl = "CrosshairControl"`, `CHC_Style`, `LINKID_DataType = "Point"` |
+| `RangeControl` | Dual-handle range slider | Two sibling `RangeControl` entries sharing `IC_ControlGroup`; set `IC_ControlID = 1` on the first and `IC_ControlID = 0` on the second |
+
+**`ComboControl` option syntax** — options are a table of anonymous entries, NOT numbered keys:
+
+```lua
+-- CORRECT
+BrushLoader = {
+    INPID_InputControl = "ComboControl",
+    LINKID_DataType    = "Number",
+    LINKS_Name         = "Brush",
+    ICS_ControlPage    = "Controls",
+    INP_Integer        = true,
+    { CCS_AddString = "Round" },
+    { CCS_AddString = "Square" },
+    { CCS_AddString = "Streaky" },
+},
+-- WRONG — [1] = "...", [2] = "..." does not work
+```
+
+**`RangeControl` pair example:**
+
+```lua
+RangeMin = {
+    INPID_InputControl = "RangeControl",
+    LINKID_DataType    = "Number",
+    LINKS_Name         = "Range",
+    IC_ControlGroup    = 3,
+    IC_ControlID       = 1,
+    INP_Default        = 0,
+},
+RangeMax = {
+    INPID_InputControl = "RangeControl",
+    LINKID_DataType    = "Number",
+    LINKS_Name         = "Range",
+    IC_ControlGroup    = 3,
+    IC_ControlID       = 0,
+    INP_Default        = 1,
+},
+```
 
 **Always include:**
 
@@ -117,6 +166,18 @@ Once declared, the new control behaves like a real node input. You can read it f
 
 - **`ICD_Width`** — fraction 0..1 of the inspector row width. Two controls with `ICD_Width = 0.5` will sit side-by-side.
 - **`Width`** (on `InstanceInput`) — same idea when layout is driven at the Group level.
+
+### Additional UserControls Attribute Catalog
+
+- **`INP_External = false`** (134 stock occurrences) — marks a control as not exposed externally (not animatable/scriptable from the outside). Common on `LabelControl` entries.
+
+- **`INP_Passive = true`** (6 occurrences) — marks a control as passive (not keyframeable). Often paired with `INP_External = false` on label/header controls.
+
+- **`INP_SplineType = "Default"`** (4 occurrences) — sets the animation curve type for the input. Pass `"Default"` or a specific spline type string.
+
+- **`IC_ControlPage`** (12 occurrences, integer) — numeric alternative to `ICS_ControlPage` (string). Used on Fusion-native nodes. `IC_ControlPage = 0` is the first page. Prefer `ICS_ControlPage` for named tabs in custom effects; use `IC_ControlPage` only when matching native node conventions.
+
+- **`INPID_PreviewControl = "CrosshairControl"`** (2 occurrences) — names a viewport overlay widget. Used alongside `OffsetControl` to show a draggable crosshair in the Fusion viewer.
 
 ### `ButtonControl` + `BTNCS_Execute`
 
@@ -140,23 +201,38 @@ Buttons run Lua snippets in Fusion's context. Common uses:
 
 `tool` in the snippet refers to the node the button lives on. Use `tool:SetInput("Name", value)` and `tool:GetInput("Name")`. For colors and points, pass a table: `{r, g, b, a}` or `{x, y}`.
 
-### `LabelControl` Group Headers
+### Page Name Conventions
+
+The `Page` field on `InstanceInput` (and `ICS_ControlPage` in `UserControls`) is a free-form string — Resolve creates a new inspector tab for any new value. The stock library uses these values (most common first):
+
+- `"Controls"` — default convention; use this unless you have a reason to separate
+- `"Color"`, `"Gradient"`, `"Image"`, `"Animate"`, `"Noise"`
+- `"Common Controls"`, `"BG"`, `"3D Controls"`, `"Materials"`, `"Transform"`
+
+Keep tab names short and consistent within an effect. Mismatched capitalisation creates duplicate tabs.
+
+### Collapsible LabelControl Section Headers
+
+121 stock files use `LabelControl` with `LBLC_DropDownButton` to create collapsible inspector sections:
 
 ```lua
 UserControls = ordered() {
-    ColorSection = {
-        INPID_InputControl = "LabelControl",
-        LINKID_DataType    = "Number",
-        LINKS_Name         = "Color",
-        LBLC_DropDownButton = true,      -- collapsible
-        LBLC_NumInputs      = 4,         -- how many following inputs belong to this section
-        INP_Integer         = false,
+    SectionHeader = {
+        LINKS_Name          = "My Section",
+        LINKID_DataType     = "Number",
+        INPID_InputControl  = "LabelControl",
+        LBLC_DropDownButton = true,    -- shows a collapse/expand arrow
+        LBLC_NumInputs      = 5,       -- number of following controls that collapse under this header
         INP_External        = false,
+        INP_Passive         = true,
     },
+    -- next 5 controls belong to this section...
 },
 ```
 
-Then expose the label and the next four `InstanceInput`s up to the Group — Resolve renders them as a collapsible section.
+- **`LBLC_DropDownButton = true`** — enables the collapse/expand arrow on the header.
+- **`LBLC_NumInputs = N`** — how many of the immediately following controls fold under this header when collapsed.
+- Set `INP_External = false` and `INP_Passive = true` on the label itself so it doesn't appear as an animatable input.
 
 ## 3. Exposing a `UserControls` Entry on the Group
 
