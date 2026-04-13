@@ -1,0 +1,419 @@
+{
+	Tools = ordered() {
+		Disc = GroupOperator {
+			Inputs = ordered() {
+				Input1 = Input {
+					Value = -0.0093,
+					Default = -0.0093,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Extrude3D1",
+					Source = "BevelDepth",
+					Default = 0,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Extrude3D1",
+					Source = "BevelWidth",
+					Default = 0,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Replicate3D1_1",
+					Source = "RandomSeed",
+					MaxScale = 20,
+					Width = 1,
+					Default = 0,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Calculation1",
+					Source = "SecondOperand",
+					Name = "Animation",
+					Page = "Controls",
+					Default = 0,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Background2",
+					Source = "TopLeftRed",
+					Name = "Color",
+					ControlGroup = 6,
+					Default = 0.835,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Background2",
+					Source = "TopLeftGreen",
+					ControlGroup = 6,
+					Default = 0.5333949329738,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Background2",
+					Source = "TopLeftBlue",
+					ControlGroup = 6,
+					Default = 0,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "Merge1",
+					Source = "BlendClone",
+					Name = "Tone Blend",
+					Default = 1,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 577.368, 322.947 },
+				Flags = {
+					AllowPan = false,
+					ConnectedSnap = true,
+					AutoSnap = true,
+					RemoveRouters = true
+				},
+				Size = { 1169.56, 253.374, 584.782, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				Extrude3D1 = Extrude3D {
+					Inputs = {
+						["Transform3DOp.Scale.X"] = Input { Value = 1.33, },
+						ShapeInput = Input {
+							SourceOp = "sEllipse1",
+							Source = "Output",
+						},
+						ExtrusionProfile = Input {
+							SourceOp = "Extrude3D1ExtrusionProfile",
+							Source = "Value",
+						},
+						ExtrusionDepth = Input { Value = 0.0441, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 2, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -229.447, 42.765 } },
+				},
+				Extrude3D1ExtrusionProfile = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Replicate3D1_1 = Replicate3D {
+					Inputs = {
+						RandomSeed = Input { Value = 1, },
+						JitterScaleLock = Input { Value = 0, },
+						["JitterScale.Z"] = Input {
+							SourceOp = "AnimCurves1",
+							Source = "Value",
+						},
+						Destination = Input {
+							SourceOp = "Camera3D1",
+							Source = "Output",
+						},
+						Input1 = Input {
+							SourceOp = "Extrude3D1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -8.72705, 116.699 } },
+				},
+				AnimCurves1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Lookup = Input {
+							SourceOp = "AnimCurves1Lookup",
+							Source = "Value",
+						},
+						Scale = Input {
+							SourceOp = "Calculation1",
+							Source = "Result",
+						},
+						Offset = Input { Value = 1.5, }
+					},
+				},
+				AnimCurves1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Calculation1 = Calculation {
+					CtrlWZoom = false,
+					Inputs = {
+						FirstOperand = Input { Value = 1.5, },
+						Operator = Input { Value = 2, }
+					},
+					UserControls = ordered() {
+						SecondOperand = {
+							INP_MaxAllowed = 5,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 0,
+							INP_MaxScale = 2,
+							INP_Default = 0,
+							INP_MinScale = -1.5,
+							INP_MinAllowed = -1.5,
+							LINKID_DataType = "Number",
+							ICD_Center = 0,
+							LINKS_Name = "Second Operand",
+						}
+					}
+				},
+				Background2 = Background {
+					CtrlWShown = false,
+					CustomData = {
+						Settings = {
+							[2] = {
+								Tools = ordered() {
+									Background2 = Background {
+										Inputs = {
+											Height = Input { Value = 1080 },
+											["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" } },
+											TopLeftRed = Input { Value = 0.134 },
+											GlobalOut = Input { Value = 124 },
+											TopLeftBlue = Input { Value = 0.134 },
+											TopLeftGreen = Input { Value = 0.134 },
+											UseFrameFormatSettings = Input { Value = 1 },
+											Width = Input { Value = 1920 }
+										},
+										CtrlWZoom = false,
+										ViewInfo = OperatorInfo { Pos = { 1052.88, -65.92 } },
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						GlobalOut = Input { Value = 119, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftRed = Input { Value = 0.16632, },
+						TopLeftGreen = Input { Value = 0.17865792, },
+						TopLeftBlue = Input { Value = 0.189, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 521, 57.2125 } },
+				},
+				Merge1 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Background2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Renderer3D1",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Overlay" }, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 521, 116.699 } },
+				},
+				sTransform1 = sTransform {
+					Inputs = {
+						XOffset = Input { Value = 0.1878393051031, },
+						YOffset = Input { Value = 0.1080347448426, },
+						Input = Input {
+							SourceOp = "sEllipse1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -370.185, 116.699 } },
+				},
+				Extrude3D1_1 = Extrude3D {
+					Inputs = {
+						["Transform3DOp.Scale.X"] = Input { Value = 1.33, },
+						ShapeInput = Input {
+							SourceOp = "sTransform1",
+							Source = "Output",
+						},
+						ExtrusionProfile = Input {
+							SourceOp = "Extrude3D1ExtrusionProfile_1",
+							Source = "Value",
+						},
+						ExtrusionDepth = Input { Value = 0.0441, },
+						BevelDepth = Input { Expression = "Extrude3D1.BevelDepth", },
+						BevelWidth = Input { Expression = "Extrude3D1.BevelWidth", },
+						["MtlStdInputs.MaterialID"] = Input { Value = 2, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -234.744, 116.699 } },
+				},
+				Extrude3D1ExtrusionProfile_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Background1 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						GlobalOut = Input { Value = 119, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftAlpha = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 223.11, 8.25248 } },
+				},
+				Replicate3D1 = Replicate3D {
+					CtrlWShown = false,
+					Inputs = {
+						Destination = Input {
+							SourceOp = "Camera3D1",
+							Source = "Output",
+						},
+						Input1 = Input {
+							SourceOp = "Extrude3D1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -6.96106, 42.765 } },
+				},
+				Camera3D1 = Camera3D {
+					CtrlWShown = false,
+					Inputs = {
+						AoV = Input { Value = 19.26427, },
+						FLength = Input { Value = 34.9999968656308, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" }, },
+						ApertureW = Input { Value = 0.831496062992126, },
+						ApertureH = Input { Value = 0.467716535433071, },
+						IDepth = Input { Value = 8.26, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 2, },
+						ImageInput = Input {
+							SourceOp = "Background1",
+							Source = "Output",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 3, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 223.11, 42.765 } },
+				},
+				Merge3D1 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput1 = Input {
+							SourceOp = "SpotLight1_1",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "Camera3D1",
+							Source = "Output",
+						},
+						SceneInput3 = Input {
+							SourceOp = "Replicate3D1_1",
+							Source = "Data3D",
+						},
+						SceneInput5 = Input {
+							SourceOp = "Replicate3D1",
+							Source = "Data3D",
+						},
+						SceneInput4 = Input {
+							SourceOp = "SpotLight1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 223.11, 116.699 } },
+				},
+				Renderer3D1 = Renderer3D {
+					CustomData = {
+						ToolVersion = 2,
+					},
+					Inputs = {
+						GlobalOut = Input { Value = 119, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						SceneInput = Input {
+							SourceOp = "Merge3D1",
+							Source = "Output",
+						},
+						RendererType = Input { Value = FuID { "RendererOpenGL" }, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.HighQuality.Enable"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Nest"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.Rate"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.HighQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.Rate"] = Input { Value = 3, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.HighQuality.SampleCount"] = Input { Value = 3, },
+						["RendererOpenGL.AccumulationEffects"] = Input { Value = 1, },
+						["RendererOpenGL.AccumQuality"] = Input { Value = 32, },
+						["RendererOpenGL.LightingEnabled"] = Input { Value = 1, },
+						["RendererOpenGL.ShadowsEnabled"] = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 369.13, 116.699 } },
+					SubInputsData = {
+						RendererOpenGL = {
+							Version = 1
+						}
+					}
+				},
+				SpotLight1 = LightSpot {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input { Value = 1.777164, },
+						["Transform3DOp.Translate.Y"] = Input { Value = 2.815, },
+						["Transform3DOp.Translate.Z"] = Input { Value = -6.72, },
+						["Transform3DOp.UseTarget"] = Input { Value = 1, },
+						["Transform3DOp.Target.Z"] = Input { Value = -9, },
+						ConeAngle = Input { Value = 90, },
+						PenumbraAngle = Input { Value = 3.46, },
+						["ShadowLightInputs3D.Nest"] = Input { Value = 1, },
+						["ShadowLightInputs3D.ShadowsEnabled"] = Input { Value = 1, },
+						["ShadowLightInputs3D.ShadowDensity"] = Input { Value = 0.866, },
+						["ShadowLightInputs3D.ShadowMapSize"] = Input { Value = 2048, },
+						["ShadowLightInputs3D.SoftnessType"] = Input { Value = FuID { "Constant" }, },
+						["ShadowLightInputs3D.ConstantSoftness"] = Input { Value = 0.0094, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 114.876, 168.776 } },
+				},
+				SpotLight1_1 = LightSpot {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input { Value = -1.502421, },
+						["Transform3DOp.Translate.Y"] = Input { Value = 0.8677323506084, },
+						["Transform3DOp.Translate.Z"] = Input { Value = -2.14585, },
+						["Transform3DOp.UseTarget"] = Input { Value = 1, },
+						["Transform3DOp.Target.Z"] = Input { Value = -9, },
+						Intensity = Input { Value = 0.228, },
+						ConeAngle = Input { Value = 90, },
+						PenumbraAngle = Input { Value = 3.46, },
+						["ShadowLightInputs3D.Nest"] = Input { Value = 1, },
+						["ShadowLightInputs3D.ShadowMapSize"] = Input { Value = 2048, },
+						["ShadowLightInputs3D.SoftnessType"] = Input { Value = FuID { "Constant" }, },
+						["ShadowLightInputs3D.ConstantSoftness"] = Input { Value = 0.0094, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 113.993, 195.263 } },
+				},
+				sEllipse1 = sEllipse {
+					Inputs = {
+						BorderWidth = Input { Value = -0.0093, },
+						Width = Input { Value = 0.210930764227864, },
+						Height = Input { Value = 0.210930764227864, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -493.822, 42.765 } },
+				}
+			},
+		}
+	}
+}

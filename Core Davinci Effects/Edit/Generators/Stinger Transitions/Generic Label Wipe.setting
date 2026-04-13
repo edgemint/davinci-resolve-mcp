@@ -1,0 +1,966 @@
+{
+	Tools = ordered() {
+		StingerGenericLabelWipe = GroupOperator {
+			Inputs = ordered() {
+				Logo = InstanceInput {
+					SourceOp = "Loader1",
+					Source = "CustomLogo",
+					Page = "Controls",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Dissolve1",
+					Source = "SWITCH",
+					Name = "Use Custom Logo",
+					Page = "Controls",
+					Default = 0,
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Loader1",
+					Source = "Clip",
+					Name = "Filename",
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Transform2",
+					Source = "Size",
+					Name = "Logo Size",
+					Default = 0.69,
+				},
+				Text = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "Text",
+					Page = "Controls",
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "StyledText",
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "Font",
+					ControlGroup = 5,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "Style",
+					ControlGroup = 5,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "Red1Clone",
+					Name = "Color",
+					ControlGroup = 6,
+					Default = 1,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "Green1Clone",
+					ControlGroup = 6,
+					Default = 1,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "Blue1Clone",
+					ControlGroup = 6,
+					Default = 1,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "Alpha1Clone",
+					ControlGroup = 6,
+					Default = 1,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "Size",
+					Default = 0.1984,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "CharacterSpacingClone",
+					Name = "Tracking",
+					Default = 1,
+				},
+				Input13 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "LineSpacingClone",
+					Default = 0.63,
+				},
+				Input14 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "VerticalJustificationTop",
+					Name = "V Anchor",
+					ControlGroup = 10,
+				},
+				Input15 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "VerticalJustificationCenter",
+					ControlGroup = 10,
+				},
+				Input16 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "VerticalJustificationBottom",
+					ControlGroup = 10,
+				},
+				Input17 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "VerticalTopCenterBottom",
+					Default = 0,
+				},
+				Input18 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "CenterOnBaseOfFirstLine",
+					Default = 0,
+				},
+				Input19 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "HorizontalJustificationLeft",
+					Name = "H Anchor",
+					ControlGroup = 13,
+				},
+				Input20 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "HorizontalJustificationCenter",
+					ControlGroup = 13,
+				},
+				Input21 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "HorizontalJustificationRight",
+					ControlGroup = 13,
+				},
+				Input22 = InstanceInput {
+					SourceOp = "Main_Text",
+					Source = "HorizontalLeftCenterRight",
+					Default = 0,
+				},
+				Input23 = InstanceInput {
+					SourceOp = "Shadow2",
+					Source = "ShadowOffset",
+				},
+				Input24 = InstanceInput {
+					SourceOp = "Shadow2",
+					Source = "Softness",
+					Name = "Shadow Softness",
+					Default = 0.00669,
+				},
+				Input25 = InstanceInput {
+					SourceOp = "Shadow2",
+					Source = "Blend",
+					Name = "Shadow Blend",
+					Default = 1,
+				},
+				Input26 = InstanceInput {
+					SourceOp = "Transform3",
+					Source = "MotionBlur",
+					Default = 0,
+				},
+				Input27 = InstanceInput {
+					SourceOp = "Transform3",
+					Source = "Quality",
+					Default = 2,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "MultiMerge2",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Loader1 = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "Setting:/Images/DRAG LOGO HERE.png",
+							FormatID = "PNGFormat",
+							StartFrame = -1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						["Clip1.PNGFormat.PostMultiply"] = Input { Value = 1, },
+						CustomLogo = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1985.95, 142.647 } },
+					UserControls = ordered() {
+						CustomLogo = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 3,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Custom Logo",
+						}
+					}
+				},
+				Main_Text = TextPlus {
+					NameSet = true,
+					Inputs = {
+						Softness3 = Input { Value = 1, },
+						Position3 = Input { Value = 1, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						LayoutRotation = Input { Value = 1, },
+						LineSpacing = Input { Value = 0.63, },
+						TransformRotation = Input { Value = 1, },
+						SelectElement = Input { Value = 2, },
+						Select = Input { Value = 2, },
+						Softness1 = Input { Value = 1, },
+						StyledText = Input { Value = "SAMPLE\nTEXT", },
+						Font = Input { Value = "Open Sans", },
+						Style = Input { Value = "Extrabold", },
+						Size = Input { Value = 0.1984, },
+						VerticalJustificationNew = Input { Value = 3, },
+						HorizontalJustificationNew = Input { Value = 3, },
+						Text = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 2185.92, 141.514 } },
+					UserControls = ordered() {
+						Text = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 19,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Text",
+						}
+					}
+				},
+				Transform2 = Transform {
+					Inputs = {
+						Size = Input { Value = 0.69, },
+						Input = Input {
+							SourceOp = "Loader1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1985.95, 177.305 } },
+				},
+				Letterbox2 = Letterbox {
+					CtrlWZoom = false,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						Mode = Input { Value = 1, },
+						HiQOnly = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "Transform2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1985.95, 212.872 } },
+				},
+				MultiMerge2 = MultiMerge {
+					Inputs = {
+						LayerOrder = Input { Value = ScriptVal { {
+									1
+								} }, },
+						Background = Input {
+							SourceOp = "MultiMerge1",
+							Source = "Output",
+						},
+						["Layer1.Foreground"] = Input {
+							SourceOp = "Shadow2",
+							Source = "Output",
+						},
+						LayerName1 = Input { Value = "Text1", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 2185.92, 358.232 } },
+				},
+				Shadow2 = Shadow {
+					Inputs = {
+						ShadowOffset = Input { Value = { 0.502, 0.496 }, },
+						Softness = Input { Value = 0.00669, },
+						Alpha = Input { Value = 0.659, },
+						Input = Input {
+							SourceOp = "Transform3",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 2185.92, 290.466 } },
+				},
+				Transform3 = Transform {
+					Inputs = {
+						MotionBlur = Input {
+							SourceOp = "Publish1_1",
+							Source = "Value",
+						},
+						Quality = Input {
+							SourceOp = "Publish2_1",
+							Source = "Value",
+						},
+						Size = Input {
+							SourceOp = "AnimCurves2_1",
+							Source = "Value",
+						},
+						Input = Input {
+							SourceOp = "Dissolve1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 2185.92, 257.52 } },
+				},
+				Publish1_1 = PublishNumber {
+					CtrlWZoom = false,
+				},
+				Publish2_1 = PublishNumber {
+					CtrlWZoom = false,
+					Inputs = {
+						Value = Input { Value = 7, },
+					},
+				},
+				AnimCurves2_1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Custom" }, },
+						EaseOut = Input { Value = FuID { "Back" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves2Lookup1",
+							Source = "Value",
+						},
+						TimeScale = Input { Value = 1.03, },
+					},
+				},
+				AnimCurves2Lookup1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.0913239536658163, 0 }, Flags = { Linear = true } },
+							[0.173987593582888] = { 0.897361301148542, LH = { 0.0920060026291008, 0.712545104649642 }, RH = { 0.29011504753175, 1.15915463911914 } },
+							[0.741609406417112] = { 0.933333333333333, LH = { 0.407466824335973, 0.933333333333333 }, RH = { 0.870904285906884, 0.933333333333333 } },
+							[1] = { 0, LH = { 0.804810792891509, 0 } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				Dissolve1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					Inputs = {
+						Mix = Input {
+							Value = 0,
+							Expression = "SWITCH",
+						},
+						Background = Input {
+							SourceOp = "Main_Text",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Letterbox2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 2185.92, 212.872 } },
+					UserControls = ordered() {
+						SWITCH = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "SWITCH",
+						}
+					}
+				},
+				Graphics = Underlay {
+					NameSet = true,
+					ViewInfo = UnderlayInfo {
+						Pos = { 1440.71, 65.9114 },
+						Size = { 793.879, 329.992 }
+					},
+					Colors = { TileColor = { R = 0.474509803921569, G = 0.658823529411765, B = 0.815686274509804 }, }
+				},
+				MultiMerge1 = MultiMerge {
+					Inputs = {
+						LayerOrder = Input { Value = ScriptVal { {
+									[0] = 6,
+									5,
+									1,
+									2,
+									3,
+									4
+								} }, },
+						Background = Input {
+							SourceOp = "Merge2",
+							Source = "Output",
+						},
+						["Layer1.Foreground"] = Input {
+							SourceOp = "Transform1",
+							Source = "Output",
+						},
+						LayerName1 = Input { Value = "background_right", },
+						["Layer2.Foreground"] = Input {
+							SourceOp = "Transform1_1",
+							Source = "Output",
+						},
+						LayerName2 = Input { Value = "lower_right", },
+						["Layer3.Foreground"] = Input {
+							SourceOp = "Instance_Transform1",
+							Source = "Output",
+						},
+						["Layer3.Operator"] = Input { Value = FuID { "Disjoint" }, },
+						LayerName3 = Input { Value = "border_shape", },
+						["Layer4.Foreground"] = Input {
+							SourceOp = "Merge2_2",
+							Source = "Output",
+						},
+						LayerName4 = Input { Value = "bottom_left", },
+						["Layer5.Foreground"] = Input {
+							SourceOp = "Merge2_1",
+							Source = "Output",
+						},
+						LayerName5 = Input { Value = "low_shade", },
+						["Layer6.Foreground"] = Input {
+							SourceOp = "Merge2_1_1",
+							Source = "Output",
+						},
+						LayerName6 = Input { Value = "top_shade", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1623.62, 358.232 } },
+				},
+				Transform1_1 = Transform {
+					Inputs = {
+						Center = Input {
+							SourceOp = "Vector1_1",
+							Source = "Position",
+						},
+						Input = Input {
+							SourceOp = "Shadow1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1663.8, 279.378 } },
+				},
+				Vector1_1 = Vector {
+					CtrlWZoom = false,
+					Inputs = {
+						Distance = Input {
+							SourceOp = "AnimCurves3_1",
+							Source = "Value",
+						},
+						Angle = Input { Value = 180, },
+						ImageAspect = Input { Value = 1, },
+					},
+				},
+				AnimCurves3_1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Custom" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves3Lookup1_1",
+							Source = "Value",
+						},
+						Offset = Input {
+							Value = -1,
+							Expression = "Scale*-1",
+						},
+					},
+				},
+				AnimCurves3Lookup1_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.0773635008196574, 0.116085642534804 }, Flags = { Linear = true } },
+							[0.196] = { 1, LH = { -0.0565583352041396, 1 }, RH = { 1.23200459951086, 1 } },
+							[1] = { 0, LH = { 0.731999999999994, 0.536000063896185 } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				Rectangle3 = RectangleMask {
+					Inputs = {
+						MotionBlur = Input {
+							SourceOp = "Publish1",
+							Source = "Value",
+						},
+						Quality = Input {
+							SourceOp = "Publish2",
+							Source = "Value",
+						},
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Center = Input { Value = { 1.03230485232068, -0.0174746355787658 }, },
+						Width = Input {
+							SourceOp = "AnimCurves4",
+							Source = "Value",
+						},
+						Height = Input { Value = 2, },
+						Angle = Input { Value = -30, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1398.58, 326.066 } },
+				},
+				Publish1 = PublishNumber {
+					CtrlWZoom = false,
+				},
+				Publish2 = PublishNumber {
+					CtrlWZoom = false,
+					Inputs = {
+						Value = Input { Value = 7, },
+					},
+				},
+				AnimCurves4 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Custom" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves4Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 2.653, },
+					},
+				},
+				AnimCurves4Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.100946669461827, 0 }, Flags = { Linear = true } },
+							[0.678] = { 1, LH = { 0.156813874272197, 1 }, RH = { 0.925524974165716, 1 } },
+							[1] = { 0, LH = { 0.892666666666665, 0 } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				Merge2 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "lower_right_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Rectangle3",
+							Source = "Mask",
+						},
+						Operator = Input { Value = FuID { "Mask" }, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1501.35, 358.232 } },
+				},
+				Transform1 = Transform {
+					Inputs = {
+						Center = Input {
+							SourceOp = "Vector1",
+							Source = "Position",
+						},
+						Input = Input {
+							SourceOp = "background_right",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1657.56, 239.952 } },
+				},
+				Vector1 = Vector {
+					CtrlWZoom = false,
+					Inputs = {
+						Distance = Input {
+							SourceOp = "AnimCurves3",
+							Source = "Value",
+						},
+						Angle = Input { Value = 180, },
+						ImageAspect = Input { Value = 1, },
+					},
+				},
+				AnimCurves3 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Custom" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves3Lookup1",
+							Source = "Value",
+						},
+						Offset = Input {
+							Value = -1,
+							Expression = "Scale*-1",
+						},
+					},
+				},
+				AnimCurves3Lookup1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.232333333333333, 0.46466661127409 }, Flags = { Linear = true } },
+							[0.697] = { 1, LH = { -0.201128365496353, 1 }, RH = { 1.08743456921864, 1 } },
+							[1] = { 0, LH = { 0.898999999999999, 0.202000024080279 } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				Instance_Transform1 = Transform {
+					SourceOp = "Transform1",
+					Inputs = {
+						EffectMask = Input { },
+						SettingsNest = Input { },
+						TransformNest = Input { },
+						ReferenceSize = Input { },
+						Input = Input {
+							SourceOp = "border_shape",
+							Source = "Output",
+						},
+						CommentsNest = Input { },
+						FrameRenderScriptNest = Input { },
+						StartRenderScripts = Input { },
+						EndRenderScripts = Input { },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1657.85, 200.525 } },
+				},
+				lower_right_1 = Background {
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Gradient" }, },
+						Start = Input { Value = { 0.582637075718016, 1.01906891411535 }, },
+						End = Input { Value = { 0.562527197563103, 0.181550280931086 }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.0862745121121407, 0.156862750649452, 0.239215701818466, 1 },
+									[1] = { 0.00392156885936856, 0.0549019649624825, 0.125490203499794, 1 }
+								}
+							},
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1144.02, 358.232 } },
+				},
+				Rectangle1 = RectangleMask {
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Center = Input { Value = { 1.07039494968042, 0.5 }, },
+						Width = Input { Value = 0.2615148249464, },
+						Height = Input { Value = 1.971008, },
+						Angle = Input { Value = -30, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1122.62, 279.378 } },
+				},
+				lower_right = Background {
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Rectangle1",
+							Source = "Mask",
+						},
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Gradient" }, },
+						Start = Input { Value = { 0.865970409051349, -0.021671826625387 }, },
+						End = Input { Value = { 1.01044386422977, 0.622291021671827 }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.0862745121121407, 0.156862750649452, 0.239215701818466, 1 },
+									[1] = { 0.00392156885936856, 0.0549019649624825, 0.125490203499794, 1 }
+								}
+							},
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1248.96, 279.378 } },
+				},
+				Shadow1 = Shadow {
+					Inputs = {
+						Softness = Input { Value = 0.0374, },
+						Alpha = Input { Value = 0.701, },
+						Input = Input {
+							SourceOp = "lower_right",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1393.22, 279.378 } },
+				},
+				background_right = Background {
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Rectangle1_1",
+							Source = "Mask",
+						},
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Gradient" }, },
+						Start = Input { Value = { 0.578764142732811, 0.0975232198142415 }, },
+						End = Input { Value = { 0.829416884247172, 0.794117647058823 }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.0196078438311815, 0.443137288093567, 0.478431403636932, 1 },
+									[1] = { 0, 0.137254908680916, 0.152941182255745, 1 }
+								}
+							},
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1397.92, 239.952 } },
+				},
+				Merge2_2 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "bottom_left",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Rectangle3",
+							Source = "Mask",
+						},
+						Operator = Input { Value = FuID { "Mask" }, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1552.26, 159.385 } },
+				},
+				Merge2_1 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "low_shade",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Rectangle3",
+							Source = "Mask",
+						},
+						Operator = Input { Value = FuID { "Mask" }, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1555.09, 126.999 } },
+				},
+				Merge2_1_1 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "top_shade",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Rectangle3",
+							Source = "Mask",
+						},
+						Operator = Input { Value = FuID { "Mask" }, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1545.66, 93.3385 } },
+				},
+				low_shade = Background {
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Rectangle2_1",
+							Source = "Mask",
+						},
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Gradient" }, },
+						Start = Input { Value = { 0.375615763546798, 0.029018001586613 }, },
+						End = Input { Value = { 0.0513636909768112, 0.344696622733364 }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.0826143845915794, 0.150649771094322, 0.223544806241989, 0.619607865810394 },
+									[1] = { 0, 0, 0, 0 }
+								}
+							},
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1400.59, 126.999 } },
+				},
+				top_shade = Background {
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Rectangle1_2",
+							Source = "Mask",
+						},
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Gradient" }, },
+						Start = Input { Value = { 0.674396251351676, 1.01196373802072 }, },
+						End = Input { Value = { 0.55397693139493, 0.637719878547317 }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.0826143845915794, 0.150649771094322, 0.223544806241989, 0.619607865810394 },
+									[1] = { 0, 0, 0, 0 }
+								}
+							},
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1402.86, 93.3385 } },
+				},
+				border_shape = Background {
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Bitmap1",
+							Source = "Mask",
+						},
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Gradient" }, },
+						Start = Input { Value = { 0.685960591133005, 0.913566739606127 }, },
+						End = Input { Value = { 0.411330049261084, 0.0514223194748359 }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.474509835243225, 0.196078449487686, 0.81960791349411, 1 },
+									[1] = { 0.658823549747467, 0.392156898975372, 0.917647123336792, 1 }
+								}
+							},
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1390.38, 200.525 } },
+				},
+				bottom_left = Background {
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Rectangle2",
+							Source = "Mask",
+						},
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Gradient" }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.0431372560560703, 0.105882361531258, 0.184313729405403, 1 },
+									[1] = { 0.0431372560560703, 0.10196079313755, 0.180392161011696, 1 }
+								}
+							},
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1399.81, 159.385 } },
+				},
+				Bitmap1 = BitmapMask {
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Rectangle1_1",
+							Source = "Mask",
+						},
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						PaintMode = Input { Value = FuID { "Invert" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Image = Input {
+							SourceOp = "Rectangle1_1_1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1223.5, 200.525 } },
+				},
+				Rectangle1_1_1 = RectangleMask {
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Center = Input { Value = { 0.845344058899612, 0.434984520123839 }, },
+						Width = Input { Value = 0.5541552558478, },
+						Height = Input { Value = 1.971008, },
+						Angle = Input { Value = -30, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1113.16, 200.525 } },
+				},
+				Rectangle2 = RectangleMask {
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Center = Input { Value = { 0.104679802955665, -0.0820568927789934 }, },
+						Width = Input { Value = 0.8894087758384, },
+						Angle = Input { Value = -30, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1116.73, 159.385 } },
+				},
+				Rectangle1_2 = RectangleMask {
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Center = Input { Value = { 0.668827005429549, 0.858139534883721 }, },
+						Width = Input { Value = 0.1182288773542, },
+						Height = Input { Value = 1.971008, },
+						Angle = Input { Value = -30, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1115.33, 93.3385 } },
+				},
+				Rectangle1_1 = RectangleMask {
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Center = Input { Value = { 0.861353911116361, 0.434984520123839 }, },
+						Width = Input { Value = 0.5541552558478, },
+						Height = Input { Value = 1.971008, },
+						Angle = Input { Value = -30, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1121.68, 239.952 } },
+				},
+				Rectangle2_1 = RectangleMask {
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Center = Input { Value = { 0.258019944731467, 0.0951230263243233 }, },
+						Width = Input { Value = 0.8894087758384, },
+						Height = Input { Value = 0.1554063308573, },
+						Angle = Input { Value = -30, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1114.62, 126.999 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "StingerGenericLabelWipe"
+}

@@ -1,0 +1,233 @@
+{
+	Tools = ordered() {
+		MacroTool1 = GroupOperator {
+			CustomData = {
+				HighlightStyle = {
+					{
+						Time = 0,
+						CharOffsetX = 0.045,
+						CharShearX = -0.66,
+						ElementOpacity = 0,
+						Element8 = { ElementOpacity = 0.001 },
+					},
+					{
+						Time = 0.375,
+						CharOffsetX = 0.0225,
+						CharShearX = -0.185,
+						ElementOpacity = 1,
+						Element8 = { ElementOpacity = 1 },
+					},
+					{
+						Time = 0.75,
+						CharOffsetX = 0,
+						CharShearX =  0.29,
+						ElementOpacity = 1,
+						Element8 = { ElementOpacity = 1 },
+					},
+					{
+						Time = 1,
+						CharOffsetX = 0,
+						CharShearX = 0,
+						ElementOpacity = 1,
+						Element8 = { ElementOpacity = 1 },
+					},
+				},
+			},
+			Inputs = ordered() {
+				StyledText = InstanceInput {
+					SourceOp = "Template",
+					Source = "StyledText",
+					Page = "Controls",
+				},
+				MaxWords = InstanceInput {
+					SourceOp = "Template",
+					Source = "Words",
+					Page = "Controls",
+				},
+				WriteOn = InstanceInput {
+					SourceOp = "Template",
+					Source = "WriteOn",
+					Default = 1,
+					Page = "Controls",
+				},
+				Speaker = InstanceInput {
+					SourceOp = "Template",
+					Source = "Speaker",
+					Page = "Controls",
+				},
+				Speed = InstanceInput {
+					SourceOp = "Template",
+					Source = "Speed",
+					Default = 10,
+					Page = "Controls",
+				},
+				InputSep1 = InstanceInput {
+					SourceOp = "Template",
+					Source = "KerningSeparator",
+					Page = "Controls",
+				},
+				Input35 = InstanceInput {
+					SourceOp = "Template",
+					Source = "Center",
+					Name = "Center",
+					DefaultX = "0.5",
+					DefaultY = "0.125",
+					Page = "Controls",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Template",
+					Source = "Font",
+					ControlGroup = 1,
+					Page = "Controls",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Template",
+					Source = "Style",
+					ControlGroup = 1,
+					Page = "Controls",
+				},
+				InputR = InstanceInput {
+					SourceOp = "Template",
+					Source = "Red1Clone",
+					Name = "Color",
+					ControlGroup = 2,
+					Page = "Controls",
+				},
+				InputG = InstanceInput {
+					SourceOp = "Template",
+					Source = "Green1Clone",
+					ControlGroup = 2,
+					Page = "Controls",
+				},
+				InputB = InstanceInput {
+					SourceOp = "Template",
+					Source = "Blue1Clone",
+					ControlGroup = 2,
+					Page = "Controls",
+				},
+				InputA = InstanceInput {
+					SourceOp = "Template",
+					Source = "Alpha1Clone",
+					ControlGroup = 2,
+					Default = 1,
+					Page = "Controls",
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Template",
+					Source = "Size",
+					Default = 0.06,
+					Page = "Controls",
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Template",
+					Source = "CharacterSpacingClone",
+					Name = "Tracking",
+					Default = 1,
+					Page = "Controls",
+				},
+				WordSpacing = InstanceInput {
+					SourceOp = "Template",
+					Source = "WordSpacing",
+					Default = 1,
+					Page = "Controls",
+				},
+				Input9 = InstanceInput {
+					SourceOp = "Template",
+					Source = "LineSpacingClone",
+					Default = 1,
+					Page = "Controls",
+				},
+				Input29 = InstanceInput {
+					SourceOp = "Template",
+					Source = "StylisticSet",
+					Default = 0,
+					Page = "Controls",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Template",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Template = TextPlus {
+					CtrlWZoom = false,
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Font = Input { Value = "Open Sans", },
+						Style = Input { Value = "Bold", },
+						Size = Input { Value = 0.06, },
+						VerticalJustificationNew = Input { Value = 3, },
+						HorizontalJustificationNew = Input { Value = 3, },
+						Center = Input { Value = { 0.5, 0.2 }, },
+						SelectTransform = Input { Value = 1, },
+						SelectElement = Input { Value = 1, },
+
+						Enabled8 = Input { Value = 1, },
+						Red8 = Input { Value = 0, },
+						Green8 = Input { Value = 0, },
+						Blue8 = Input { Value = 0, },
+						SoftnessX8 = Input { Value = 5, },
+						SoftnessY8 = Input { Value = 5, },
+						Offset8 = Input { Value = { 0.05, -0.05 } },
+					},
+					ViewInfo = OperatorInfo { Pos = { 229.08, 34.3096 } },
+					UserControls = ordered() {
+						StyledText = {
+							LINKS_Name = "Subtitle",
+							LINKID_DataType = "StyledText",
+							INPID_InputControl = "TextEditControl",
+							TEC_Lines = 3,
+							TEC_Wrap = true,
+							TEC_ReadOnly = true,
+							ICS_ControlPage = "Controls",
+						},
+						Words = {
+							INP_MinAllowed = 1,
+							LINKID_DataType = "Number",
+							-- INPID_InputControl = "SliderControl",
+							LINKS_Name = "Words per line",
+							INP_MinScale = 1,
+							INP_MaxScale = 10,
+							INP_Default = 20,
+							INP_Integer = true,
+							INP_External = false,
+							ICS_ControlPage = "Controls",
+						},
+						WriteOn = {
+							LINKS_Name = "Write On Words",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "CheckboxControl",
+							INP_Default = 1,
+							INP_Integer = true,
+							INP_External = false,
+							ICS_ControlPage = "Controls",
+							INPS_ExecuteOnChange = "tool:UpdateWordAnimation()",
+						},
+						Speaker = {
+							LINKS_Name = "Show Speaker",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "CheckboxControl",
+							INP_External = false,
+							ICS_ControlPage = "Controls",
+							INPS_ExecuteOnChange = "tool:UpdateWordAnimation()",
+						},
+						Speed = {
+							LINKS_Name = "Animation Speed",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 20,
+							INP_Default = 10,
+							INP_External = false,
+							ICS_ControlPage = "Controls",
+							INPS_ExecuteOnChange = "tool:UpdateWordAnimation()",
+						},
+					}
+				},
+			},
+		}
+	},
+	ActiveTool = "MacroTool1"
+}

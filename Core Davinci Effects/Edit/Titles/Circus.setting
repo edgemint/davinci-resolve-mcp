@@ -1,0 +1,69 @@
+{
+	Tools = ordered() {
+		Template = TextPlus {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				Width = Input { Value = 1920, },
+				Height = Input { Value = 1080, },
+				UseFrameFormatSettings = Input { Value = 1, },
+				["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+				LayoutType = Input { Value = 2, },
+				Center = Input { Value = { 0.5, 0.2 }, },
+				LayoutSize = Input { Value = 0.795, },
+				LayoutRotation = Input { Value = 1, },
+				TransformRotation = Input { Value = 1, },
+				SelectElement = Input { Value = 1, },
+				Select = Input { Value = 1, },
+				Enabled2 = Input { Value = 1, },
+				Enabled4 = Input { Value = 1, },
+				Enabled5 = Input { Value = 1, },
+				Enabled6 = Input { Value = 1, },
+				Enabled7 = Input { Value = 1, },
+				Green1 = Input { Value = 0.819, },
+				Blue1 = Input { Value = 0, },
+				Softness1 = Input { Value = 1, },
+				StyledText = Input { Value = "Sample", },
+				Font = Input { Value = "Open Sans", },
+				Style = Input { Value = "Bold", },
+				Size = Input { Value = 0.1024, },
+				VerticalJustificationNew = Input { Value = 3, },
+				HorizontalJustificationNew = Input { Value = 3, },
+				Thickness2 = Input { Value = 0.0079, },
+				Type2 = Input { Value = 2, },
+				Green2 = Input { Value = 1, },
+				Blue2 = Input { Value = 1, },
+				ShadingGradient2 = Input {
+					Value = Gradient {
+						Colors = {
+							[0.333333333333333] = { 0, 0, 0, 0 },
+							[0.786069651741294] = { 1, 1, 1, 1 }
+						}
+					},
+				},
+				ShadingMappingAngle2 = Input { Value = 33.9, },
+				PriorityBack2 = Input { Value = 9, },
+				ElementShape4 = Input { Value = 0, },
+				Red4 = Input { Value = 0.913, },
+				Green4 = Input { Value = 0.441957736, },
+				Blue4 = Input { Value = 0.203599, },
+				Offset4 = Input { Value = { 0.023, 0 }, },
+				Red5 = Input { Value = 0, },
+				Green5 = Input { Value = 0, },
+				Blue5 = Input { Value = 0, },
+				Offset5 = Input { Value = { 0.033, 0 }, },
+				ElementShape6 = Input { Value = 1, },
+				Thickness6 = Input { Value = 0.074, },
+				Red6 = Input { Value = 0.874, },
+				Green6 = Input { Value = 0.118, },
+				Blue6 = Input { Value = 0.094, },
+				Offset6 = Input { Value = { 0.016, -0.002 }, },
+				ElementShape7 = Input { Value = 1, },
+				Thickness7 = Input { Value = 0.0854, },
+				Softness7 = Input { Value = 1, },
+				Offset7 = Input { Value = { 0.019, -0.007 }, }
+			},
+			ViewInfo = OperatorInfo { Pos = { 1065.33, 72.2121 } },
+		}
+	}
+}

@@ -1,0 +1,768 @@
+{
+	Tools = ordered() {
+		Starfield = GroupOperator {
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Templates:\\Templates.drfx\\Edit\\Generators\\"
+					}
+				},
+			},
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "pEmitter1_3",
+					Source = "RandomSeed",
+					Width = 1,
+					Page = "Stars",
+					Default = 0,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "pEmitter1_3",
+					Source = "Randomize",
+					Width = 0.385,
+				},
+				Input13 = InstanceInput {
+					SourceOp = "pEmitter1_3",
+					Source = "NumberofStars",
+					Default = 10000,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "pEmitter1_3",
+					Source = "ParticleStyleNGon.NGonType",
+					Name = "Style",
+					Default = 1,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "pEmitter1_3",
+					Source = "ParticleStyleNGon.NGonSides",
+					Name = "Sides",
+					Default = 5,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "pEmitter1_3",
+					Source = "ParticleStyleNGon.NGonStarryness",
+					Name = "Starryness",
+					Default = 0.75,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "pEmitter1_3",
+					Source = "ParticleStyle.Red",
+					Name = "Base Color",
+					ControlGroup = 6,
+					Page = "Stars",
+					Default = 1,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "pEmitter1_3",
+					Source = "ParticleStyle.Green",
+					ControlGroup = 6,
+					Default = 1,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "pEmitter1_3",
+					Source = "ParticleStyle.Blue",
+					ControlGroup = 6,
+					Default = 1,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "pEmitter1_3",
+					Source = "ParticleStyle.RedHigh",
+					Default = 0,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "pEmitter1_3",
+					Source = "ParticleStyle.GreenHigh",
+					Default = 0,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "pEmitter1_3",
+					Source = "ParticleStyle.BlueHigh",
+					Default = 0,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "pEmitter1_3",
+					Source = "CubeRgn.Depth",
+					Page = "Animate",
+					Default = 100,
+				},
+				Input23 = InstanceInput {
+					SourceOp = "CustomTool1_1",
+					Source = "Speed",
+					Page = "Animate",
+					Default = 1,
+				},
+				Input14 = InstanceInput {
+					SourceOp = "Camera3D1_2",
+					Source = "Transform3DOp.Rotate.Y",
+					Name = "Camera Angle",
+					Default = 0,
+				},
+				Input20 = InstanceInput {
+					SourceOp = "Transform3D1_2",
+					Source = "Transform3DOp.Translate.X",
+					Name = "Horizontal Offset",
+					Default = 0,
+				},
+				Input21 = InstanceInput {
+					SourceOp = "Transform3D1_2",
+					Source = "Transform3DOp.Translate.Y",
+					Name = "Vertical Offset",
+					Default = 0,
+				},
+				Input22 = InstanceInput {
+					SourceOp = "Transform3D1_2",
+					Source = "Transform3DOp.Translate.Z",
+					Name = "Zoom Offset",
+					Default = 0,
+				},
+				Input56 = InstanceInput {
+					SourceOp = "Renderer3D1_2",
+					Source = "SampleSpread",
+					Default = 1,
+				},
+				Turb = InstanceInput {
+					SourceOp = "Camera3D1_2",
+					Source = "Turb",
+					Page = "Animate",
+				},
+				Input15 = InstanceInput {
+					SourceOp = "pTurbulence1_2",
+					Source = "RandomSeed",
+					Width = 1,
+					Page = "Animate",
+					Default = 0,
+				},
+				Input16 = InstanceInput {
+					SourceOp = "pTurbulence1_2",
+					Source = "Randomize",
+					Width = 0.385,
+				},
+				Input17 = InstanceInput {
+					SourceOp = "pTurbulence1_2",
+					Source = "XStrength",
+					Page = "Animate",
+					Default = 0.1,
+				},
+				Input18 = InstanceInput {
+					SourceOp = "pTurbulence1_2",
+					Source = "YStrength",
+					Page = "Animate",
+					Default = 0.1,
+				},
+				Input19 = InstanceInput {
+					SourceOp = "pTurbulence1_2",
+					Source = "ZStrength",
+					Page = "Animate",
+					Default = 0.1,
+				},
+				Input52 = InstanceInput {
+					SourceOp = "Renderer3D1_2",
+					Source = "MotionBlur",
+					Page = "Animate",
+					Default = 0,
+				},
+				Input53 = InstanceInput {
+					SourceOp = "Renderer3D1_2",
+					Source = "Quality",
+					Default = 2,
+				},
+				Input54 = InstanceInput {
+					SourceOp = "Renderer3D1_2",
+					Source = "ShutterAngle",
+					Default = 180,
+				},
+				Input55 = InstanceInput {
+					SourceOp = "Renderer3D1_2",
+					Source = "CenterBias",
+					Default = 0,
+				},
+				Input24 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "Type",
+					Page = "BG",
+				},
+				Input25 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "TopLeftRed",
+					Name = "Color",
+					ControlGroup = 23,
+					Default = 0,
+				},
+				Input26 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "TopLeftGreen",
+					ControlGroup = 23,
+					Default = 0,
+				},
+				Input27 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "TopLeftBlue",
+					ControlGroup = 23,
+					Default = 0,
+				},
+				Input28 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "TopLeftAlpha",
+					ControlGroup = 23,
+					Default = 1,
+				},
+				Input29 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "TopRightSep",
+				},
+				Input30 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "TopRightRed",
+					Name = "Top Right",
+					ControlGroup = 25,
+					Default = 0,
+				},
+				Input31 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "TopRightGreen",
+					ControlGroup = 25,
+					Default = 0,
+				},
+				Input32 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "TopRightBlue",
+					ControlGroup = 25,
+					Default = 0,
+				},
+				Input33 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "TopRightAlpha",
+					ControlGroup = 25,
+					Default = 1,
+				},
+				Input34 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "BottomLeftSep",
+				},
+				Input35 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "BottomLeftRed",
+					Name = "Bottom Left",
+					ControlGroup = 27,
+					Default = 0,
+				},
+				Input36 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "BottomLeftGreen",
+					ControlGroup = 27,
+					Default = 0,
+				},
+				Input37 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "BottomLeftBlue",
+					ControlGroup = 27,
+					Default = 0,
+				},
+				Input38 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "BottomLeftAlpha",
+					ControlGroup = 27,
+					Default = 1,
+				},
+				Input39 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "BottomRightSep",
+				},
+				Input40 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "BottomRightRed",
+					Name = "Bottom Right",
+					ControlGroup = 29,
+					Default = 0,
+				},
+				Input41 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "BottomRightGreen",
+					ControlGroup = 29,
+					Default = 0,
+				},
+				Input42 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "BottomRightBlue",
+					ControlGroup = 29,
+					Default = 0,
+				},
+				Input43 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "BottomRightAlpha",
+					ControlGroup = 29,
+					Default = 1,
+				},
+				Input44 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "GradientType",
+				},
+				Input45 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "Start",
+					DefaultX = 0,
+					DefaultY = 0.5,
+				},
+				Input46 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "End",
+					DefaultX = 1,
+					DefaultY = 0.5,
+				},
+				Input47 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "Gradient",
+				},
+				Input48 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "GradientInterpolationMethod",
+				},
+				Input49 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "Offset",
+					Default = 0,
+				},
+				Input50 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "Repeat",
+				},
+				Input51 = InstanceInput {
+					SourceOp = "Background1_2",
+					Source = "SubPixel",
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge1_2",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 220, 49.5 },
+				Flags = {
+					Expanded = true,
+					AllowPan = false,
+					GridSnap = true,
+					PipesAlways = true,
+					AutoSnap = true,
+					RemoveRouters = true
+				},
+				Size = { 652.341, 132.364, 341.841, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				pEmitter1_3 = pEmitter {
+					ID = 2,
+					NameSet = true,
+					Inputs = {
+						Number = Input {
+							SourceOp = "Calculation1_4",
+							Source = "Result",
+						},
+						Lifespan = Input { Value = 100000, },
+						TemporalDistribution = Input { Value = 1, },
+						StyleNest = Input { Value = 0, },
+						Style = Input { Value = FuID { "ParticleStyleNGon" }, },
+						["ParticleStyleNGon.NGonType"] = Input { Value = 1, },
+						Region = Input { Value = FuID { "CubeRgn" }, },
+						["ParticleStyle.ColorControls"] = Input { Value = 1, },
+						["ParticleStyle.ColorVariance"] = Input { Value = 1, },
+						["ParticleStyle.SizeControls"] = Input { Value = 1, },
+						["ParticleStyle.Size"] = Input { Value = 0.05, },
+						["ParticleStyle.SizeOverLife"] = Input {
+							SourceOp = "pEmitter1SizeOverLife_3",
+							Source = "Value",
+						},
+						["ParticleStyle.BlurOverLife"] = Input {
+							SourceOp = "pEmitter1BlurOverLife2D_3",
+							Source = "Value",
+						},
+						["CubeRgn.Width"] = Input { Value = 60, },
+						["CubeRgn.Height"] = Input { Value = 30, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -275, 16.5 } },
+					UserControls = ordered() { ["ParticleStyle.Red"] = { INP_MaxAllowed = 1000000, INP_Integer = false, CLRC_NoSliders = true, INPID_InputControl = "ColorControl", CLRC_ColorSpace = "HSV", ICS_ControlPage = "Style", INP_MaxScale = 1, INP_Default = 1, INP_External = false, INP_MinScale = 0, INP_MinAllowed = -1000000, LINKID_DataType = "Number", IC_ControlID = 0, CLRC_ShowWheel = false, IC_ControlGroup = 207, LINKS_Name = "Red" }, ["ParticleStyle.RedHigh"] = { INP_MaxAllowed = 1, INP_Integer = false, INPID_InputControl = "SliderControl", INP_MaxScale = 1, INP_Default = 0, INP_MinScale = 0, INP_MinAllowed = 0, LINKID_DataType = "Number", INP_External = false, LINKS_Name = "Red Variance", }, ["ParticleStyle.GreenHigh"] = { INP_MaxAllowed = 1, INP_Integer = false, INPID_InputControl = "SliderControl", INP_MaxScale = 1, INP_Default = 0, INP_MinScale = 0, INP_MinAllowed = 0, LINKID_DataType = "Number", LINKS_Name = "Green Variance", }, ["ParticleStyle.BlueHigh"] = { INP_MaxAllowed = 1, INP_Integer = false, INPID_InputControl = "SliderControl", INP_MaxScale = 1, INP_Default = 0, INP_MinScale = 0, INP_MinAllowed = 0, LINKID_DataType = "Number", LINKS_Name = "Blue Variance", }, NumberofStars = {
+							LINKS_Name = "Number of Stars",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 10000,
+							INP_Integer = true,
+							INP_MinScale = 0,
+							INP_MaxScale = 100000,
+							INP_MinAllowed = 0,
+							INP_MaxAllowed = 1000000,
+							INP_SplineType = "Default",
+							ICD_Center = 50000,
+							IC_Steps = 1000,
+							INP_External = false,
+						}, ["CubeRgn.Depth"] = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = true,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1000,
+							INP_Default = 100,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Depth",
+						} }
+				},
+				Calculation1_4 = Calculation {
+					Inputs = {
+						FirstOperand = Input {
+							Value = 10000,
+							Expression = "pEmitter1_3.NumberofStars",
+						},
+						Operator = Input { Value = 2, },
+						SecondOperand = Input {
+							SourceOp = "KeyframeStretcher1",
+							Source = "Result",
+						}
+					},
+				},
+				pEmitter1SizeOverLife_3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0.5, RH = { 0.333333333333333, 0.5 }, Flags = { Linear = true } },
+							[1] = { 0.5, LH = { 0.666666666666667, 0.5 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 192, Green = 128, Blue = 64 },
+				},
+				pEmitter1BlurOverLife2D_3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0.5, RH = { 0.333333333333333, 0.5 }, Flags = { Linear = true } },
+							[1] = { 0.5, LH = { 0.666666666666667, 0.5 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Camera3D1_2 = Camera3D {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Translate.Z"] = Input {
+							SourceOp = "AnimCurves1_3",
+							Source = "Value",
+						},
+						AoV = Input { Value = 19.26427, },
+						FLength = Input { Value = 34.9999968656308, },
+						["Stereo.Nest"] = Input { Value = 1, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmBack = Input { Value = 1, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" }, },
+						ApertureW = Input { Value = 0.831496062992126, },
+						ApertureH = Input { Value = 0.467716535433071, },
+						ControlVis = Input { Value = 1, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 3, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 3, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -275, 49.5 } },
+					UserControls = ordered() {
+						Turb = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 5,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Turbulence",
+						}
+					}
+				},
+				AnimCurves1_3 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves1Lookup_1",
+							Source = "Value",
+						},
+						Scale = Input {
+							SourceOp = "Calculation2_3",
+							Source = "Result",
+						},
+						Offset = Input {
+							Value = 50,
+							Expression = "pEmitter1_3.CubeRgn.Depth/2",
+						}
+					},
+				},
+				AnimCurves1Lookup_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Calculation2_3 = Calculation {
+					CtrlWZoom = false,
+					Inputs = {
+						FirstOperand = Input {
+							Value = -100,
+							Expression = "-pEmitter1_3.CubeRgn.Depth",
+						},
+						Operator = Input { Value = 3, },
+						SecondOperand = Input {
+							Value = 10,
+							Expression = "11-CustomTool1_1.Speed",
+						}
+					},
+				},
+				pTurbulence1_2 = pTurbulence {
+					ID = 10,
+					CtrlWShown = false,
+					Inputs = {
+						StrengthOverLife = Input { Value = 1, },
+						StrengthOverLifeLUT = Input {
+							SourceOp = "pTurbulence1StrengthOverLifeLUT_1",
+							Source = "Value",
+						},
+						Input = Input {
+							SourceOp = "pEmitter1_3",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -165, 16.5 } },
+					UserControls = ordered() {
+						XStrength = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 25,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "X Strength"
+						},
+						YStrength = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 25,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "Y Strength"
+						},
+						ZStrength = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 25,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "Z Strength"
+						}
+					}
+				},
+				pTurbulence1StrengthOverLifeLUT_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0.5, RH = { 0.333333333333333, 0.5 }, Flags = { Linear = true } },
+							[1] = { 0.5, LH = { 0.666666666666667, 0.5 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 192, Green = 128, Blue = 64 },
+					CtrlWZoom = false,
+				},
+				Transform3D1_2 = Transform3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "Camera3D1_2",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -165, 49.5 } },
+				},
+				pRender1_2 = pRender {
+					CtrlWShown = false,
+					Inputs = {
+						_MotionBlurWarning = Input { Disabled = true, },
+						GlobalOut = Input { Value = 119, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						OutputMode = Input { Disabled = true, },
+						KillParticlesThatLeaveTheView = Input { Value = 1, },
+						["MaterialID.MaterialID"] = Input { Value = 1, },
+						["ObjectID.ObjectID"] = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "pTurbulence1_2",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -55, 16.5 } },
+				},
+				Merge3D1_2 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput1 = Input {
+							SourceOp = "pRender1_2",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "Transform3D1_2",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -55, 49.5 } },
+				},
+				CustomTool1_1 = Custom {
+					Inputs = {
+						LUTIn1 = Input {
+							SourceOp = "CustomTool1LUTIn1_1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool1LUTIn2_1",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool1LUTIn3_1",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool1LUTIn4_1",
+							Source = "Value",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 16.5 } },
+					UserControls = ordered() { Speed = { INP_MaxAllowed = 10, INP_Integer = false, INPID_InputControl = "SliderControl", INP_MaxScale = 10, INP_Default = 1, INP_MinScale = 0, INP_MinAllowed = 0, LINKID_DataType = "Number", ICS_ControlPage = "Controls", LINKS_Name = "Speed" } }
+				},
+				CustomTool1LUTIn1_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+				},
+				CustomTool1LUTIn2_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+				},
+				CustomTool1LUTIn3_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+				},
+				CustomTool1LUTIn4_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Background1_2 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						GlobalOut = Input { Value = 119, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 82.5 } },
+				},
+				Renderer3D1_2 = Renderer3D {
+					CtrlWShown = false,
+					CustomData = { ToolVersion = 2, },
+					Inputs = {
+						GlobalOut = Input { Value = 119, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						SceneInput = Input {
+							SourceOp = "Merge3D1_2",
+							Source = "Output",
+						},
+						RendererType = Input { Value = FuID { "RendererOpenGL" }, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.HighQuality.Enable"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.Rate"] = Input { Value = 3, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.HighQuality.SampleCount"] = Input { Value = 3, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.Rate"] = Input { Value = 3, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.HighQuality.SampleCount"] = Input { Value = 3, },
+						["RendererOpenGL.AccumQuality"] = Input { Value = 32, },
+						["RendererOpenGL.TransparencySorting"] = Input { Value = 2, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 49.5 } },
+					SubInputsData = {
+						RendererOpenGL = {
+							Version = 1
+						}
+					}
+				},
+				Merge1_2 = Merge {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Background1_2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Renderer3D1_2",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 82.5 } },
+				}
+			},
+			UserControls = ordered() {
+				Common = ControlPage { CT_Visible = false, CT_Priority = 0 },
+				Controls = ControlPage { CT_Visible = false, CT_Priority = 0 },
+				Style = ControlPage { CT_Visible = false, CT_Priority = 0 }
+			}
+		},
+		KeyframeStretcher1 = KeyStretcherMod {
+			Inputs = {
+				Keyframes = Input {
+					SourceOp = "KeyStretcheronCalculationonpEmitter1_3NumberKeyframes",
+					Source = "Value",
+				}
+			},
+		},
+		KeyStretcheronCalculationonpEmitter1_3NumberKeyframes = BezierSpline {
+			SplineColor = { Red = 241, Green = 192, Blue = 193 },
+			KeyFrames = {
+				[-1] = { 1, RH = { -0.333333333333333, 0.666666666666667 }, Flags = { Linear = true } },
+				[1] = { 0, LH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } }
+			}
+		}
+	}
+}

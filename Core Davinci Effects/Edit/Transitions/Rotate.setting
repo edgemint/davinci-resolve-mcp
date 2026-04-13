@@ -1,0 +1,273 @@
+{
+	Tools = ordered() {
+		Rotate = GroupOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter1",
+					Source = "Input",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "PipeRouter2",
+					Source = "Input",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "rotate",
+					Source = "MotionBlur",
+					Default = 0,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "rotate",
+					Source = "Quality",
+					Default = 2,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "rotate",
+					Source = "ShutterAngle",
+					Default = 180,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "rotate",
+					Source = "CenterBias",
+					Default = 0,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "rotate",
+					Source = "SampleSpread",
+					Default = 1,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "rotate",
+					Source = "Blank6",
+				},
+				Input7 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "Curve",
+				},
+				Input8 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "EaseIn",
+					Width = 0.5,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "EaseOut",
+					Width = 0.5,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "Scale",
+					Name = "Rotation",
+					Default = 180,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "Buttons1",
+					Source = "Input1",
+					Width = 0.5,
+					Page = "Controls",
+					Default = 0,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "Buttons1",
+					Source = "Input2",
+					Width = 0.5,
+					Page = "Controls",
+					Default = 0,
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "rotate",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				PipeRouter1 = PipeRouter {
+					ViewInfo = PipeRouterInfo { Pos = { 317.23, 80.7174 } },
+				},
+				PipeRouter2 = PipeRouter {
+					ViewInfo = PipeRouterInfo { Pos = { 315.525, 14.0552 } },
+				},
+				Flip = Transform {
+					NameSet = true,
+					Inputs = {
+						FlipHoriz = Input { Value = 1, },
+						FlipVert = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, 16.5 } },
+				},
+				Dissolve = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					NameSet = true,
+					Inputs = {
+						Mix = Input {
+							SourceOp = "AnimCurves2",
+							Source = "Value",
+						},
+						Background = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flip",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, 16.5 } },
+				},
+				AnimCurves2 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Quint" }, },
+						EaseOut = Input { Value = FuID { "Quint" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurvesonDissolve1_2Lookup",
+							Source = "Value",
+						},
+					},
+				},
+				AnimCurvesonDissolve1_2Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				rotate = Transform {
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						Angle = Input {
+							SourceOp = "AnimCurves1",
+							Source = "Value",
+						},
+						Edges = Input { Value = 3, },
+						Input = Input {
+							SourceOp = "Dissolve",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 660, 16.5 } },
+				},
+				AnimCurves1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Quint" }, },
+						EaseOut = Input { Value = FuID { "Quint" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurvesonrotate_1Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 180, },
+					},
+				},
+				AnimCurvesonrotate_1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				Buttons1 = GroupOperator {
+					Inputs = ordered() {
+						Input1 = InstanceInput {
+							SourceOp = "Buttons",
+							Source = "Button01",
+							Width = 0.5,
+							Page = "Controls",
+							Default = 0,
+						},
+						Input2 = InstanceInput {
+							SourceOp = "Buttons",
+							Source = "Button02",
+							Width = 0.5,
+							Page = "Controls",
+							Default = 0,
+						}
+					},
+					ViewInfo = GroupInfo { Pos = { 660, 82.5 } },
+					Tools = ordered() {
+						Buttons = Fuse.Wireless {
+							CtrlWZoom = false,
+							CtrlWShown = false,
+							ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+							UserControls = ordered() {
+								Button01 = {
+									ICD_Width = 0.5,
+									INP_Integer = false,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									BTNCS_Execute = "tool:SetInput('Input10',180)",
+									ICS_ControlPage = "Controls",
+									INPID_InputControl = "ButtonControl",
+									LINKS_Name = "Spin Left",
+								},
+								Button02 = {
+									ICD_Width = 0.5,
+									INP_Integer = false,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									BTNCS_Execute = "tool:SetInput('Input10',-180)",
+									ICS_ControlPage = "Controls",
+									INPID_InputControl = "ButtonControl",
+									LINKS_Name = "Spin Right",
+								},
+								Button03 = {
+									ICD_Width = 0.5,
+									INP_Integer = false,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									ICS_ControlPage = "Controls",
+									INPID_InputControl = "ButtonControl",
+									LINKS_Name = "Spin Up",
+								},
+								Button04 = {
+									ICD_Width = 0.5,
+									INP_Integer = false,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									ICS_ControlPage = "Controls",
+									INPID_InputControl = "ButtonControl",
+									LINKS_Name = "Spin Down",
+								},
+								Button05 = {
+									ICD_Width = 0.5,
+									INP_Integer = false,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									ICS_ControlPage = "Controls",
+									INPID_InputControl = "ButtonControl",
+									LINKS_Name = "Button05",
+								},
+								Button06 = {
+									ICD_Width = 0.5,
+									INP_Integer = false,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									ICS_ControlPage = "Controls",
+									INPID_InputControl = "ButtonControl",
+									LINKS_Name = "Button06",
+								}
+							}
+						}
+					},
+				}
+			},
+		}
+	},
+	ActiveTool = "Rotate_Rebuild"
+}

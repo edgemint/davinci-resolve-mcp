@@ -1,0 +1,363 @@
+{
+	Tools = ordered() {
+		Flip3D = GroupOperator {
+			CtrlWZoom = false,
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "Dissolve",
+					Source = "Background",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "ImageFlip",
+					Source = "Input",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Buttons1",
+					Source = "Input1",
+					Width = 0.5,
+					Page = "Controls",
+					Default = 0,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Buttons1",
+					Source = "Input2",
+					Width = 0.5,
+					Page = "Controls",
+					Default = 0,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Flip",
+					Source = "Blank5",
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Flip",
+					Source = "MotionBlur",
+					Default = 0,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Flip",
+					Source = "Quality",
+					Default = 2,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Flip",
+					Source = "ShutterAngle",
+					Default = 180,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Flip",
+					Source = "CenterBias",
+					Default = 0,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Flip",
+					Source = "SampleSpread",
+					Default = 1,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "Flip",
+					Source = "Blank6",
+				},
+				Input10 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "Curve",
+				},
+				Input11 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "EaseIn",
+					Width = 0.5,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "EaseOut",
+					Width = 0.5,
+				},
+				Input13 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "Scale",
+					Name = "X Rotation",
+					MinScale = -360,
+					MaxScale = 360,
+					Default = 20,
+				},
+				Input14 = InstanceInput {
+					SourceOp = "AnimCurves2",
+					Source = "Scale",
+					Name = "Y Rotation",
+					Default = 180,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Flip",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 1050.67, 44.8636 } },
+			Tools = ordered() {
+				Dissolve = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Mix = Input {
+							SourceOp = "AnimCurves4",
+							Source = "Value",
+						},
+						Foreground = Input {
+							SourceOp = "ImageFlip",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -83, 41.2576 } },
+				},
+				AnimCurves4 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Custom" }, },
+						EaseIn = Input { Value = FuID { "Expo" }, },
+						EaseOut = Input { Value = FuID { "Expo" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves4Lookup",
+							Source = "Value",
+						},
+					},
+				},
+				AnimCurves4Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.166666666666667, 0 }, Flags = { Linear = true } },
+							[0.5] = { 0, LH = { 0.333333333333333, 0 }, RH = { 0.500000000333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[0.500000001] = { 1, LH = { 0.500000000666667, 0.666666666666667 }, RH = { 0.666666666666667, 1 }, Flags = { Linear = true }, offset = 1e-09 },
+							[1] = { 1, LH = { 0.833333333333333, 1 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				ImageFlip = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						FlipHoriz = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -83, 8.25758 } },
+				},
+				Buttons1 = GroupOperator {
+					CtrlWShown = false,
+					Inputs = ordered() {
+						Input1 = InstanceInput {
+							SourceOp = "Buttons",
+							Source = "Button01",
+							Name = "Flip Left",
+							Width = 0.5,
+							Page = "Controls",
+							Default = 0,
+						},
+						Input2 = InstanceInput {
+							SourceOp = "Buttons",
+							Source = "Button02",
+							Name = "Flip Right",
+							Width = 0.5,
+							Page = "Controls",
+							Default = 0,
+						}
+					},
+					ViewInfo = GroupInfo { Pos = { 27, 8.25758 } },
+					Tools = ordered() {
+						Buttons = Fuse.Wireless {
+							CtrlWZoom = false,
+							CtrlWShown = false,
+							ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+							UserControls = ordered() {
+								Button01 = {
+									ICD_Width = 0.5,
+									INP_Integer = false,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									BTNCS_Execute = "tool:SetInput('Input14',-180)",
+									ICS_ControlPage = "Controls",
+									INPID_InputControl = "ButtonControl",
+									LINKS_Name = "Spin Left",
+								},
+								Button02 = {
+									ICD_Width = 0.5,
+									INP_Integer = false,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									BTNCS_Execute = "tool:SetInput('Input14',180)",
+									ICS_ControlPage = "Controls",
+									INPID_InputControl = "ButtonControl",
+									LINKS_Name = "Spin Right",
+								},
+								Button03 = {
+									ICD_Width = 0.5,
+									INP_Integer = false,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									ICS_ControlPage = "Controls",
+									INPID_InputControl = "ButtonControl",
+									LINKS_Name = "Spin Up",
+								},
+								Button04 = {
+									ICD_Width = 0.5,
+									INP_Integer = false,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									ICS_ControlPage = "Controls",
+									INPID_InputControl = "ButtonControl",
+									LINKS_Name = "Spin Down",
+								},
+								Button05 = {
+									ICD_Width = 0.5,
+									INP_Integer = false,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									ICS_ControlPage = "Controls",
+									INPID_InputControl = "ButtonControl",
+									LINKS_Name = "Button05",
+								},
+								Button06 = {
+									ICD_Width = 0.5,
+									INP_Integer = false,
+									INP_External = false,
+									LINKID_DataType = "Number",
+									ICS_ControlPage = "Controls",
+									INPID_InputControl = "ButtonControl",
+									LINKS_Name = "Button06",
+								}
+							}
+						}
+					},
+				},
+				Flip = DVE {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						ZMove = Input {
+							SourceOp = "AnimCurves3",
+							Source = "Value",
+						},
+						XRotation = Input {
+							SourceOp = "AnimCurves1",
+							Source = "Value",
+						},
+						YRotation = Input {
+							SourceOp = "AnimCurves2",
+							Source = "Value",
+						},
+						AlphaMode = Input { Value = 2, },
+						Input = Input {
+							SourceOp = "Dissolve",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 82, 41.2576 } },
+				},
+				AnimCurves3 = LUTLookup {
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Cubic" }, },
+						EaseOut = Input { Value = FuID { "Cubic" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves3Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Offset = Input { Value = 1, },
+					},
+				},
+				AnimCurves3Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+				},
+				AnimCurves1 = LUTLookup {
+					Inputs = {
+						Curve = Input {
+							SourceOp = "Publish1",
+							Source = "Value",
+						},
+						EaseIn = Input {
+							SourceOp = "Publish2",
+							Source = "Value",
+						},
+						EaseOut = Input {
+							SourceOp = "Publish3",
+							Source = "Value",
+						},
+						Lookup = Input {
+							SourceOp = "AnimCurves1Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Scale = Input { Value = 20, },
+					},
+				},
+				Publish1 = PublishFuID {
+					Inputs = {
+						Value = Input { Value = FuID { "Easing" }, }
+					},
+				},
+				Publish2 = PublishFuID {
+					Inputs = {
+						Value = Input { Value = FuID { "Quad" }, }
+					},
+				},
+				Publish3 = PublishFuID {
+					Inputs = {
+						Value = Input { Value = FuID { "Quad" }, }
+					},
+				},
+				AnimCurves1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+				},
+				AnimCurves2 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input {
+							SourceOp = "Publish1",
+							Source = "Value",
+						},
+						EaseIn = Input {
+							SourceOp = "Publish2",
+							Source = "Value",
+						},
+						EaseOut = Input {
+							SourceOp = "Publish3",
+							Source = "Value",
+						},
+						Lookup = Input {
+							SourceOp = "AnimCurves2Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 180, },
+					},
+				},
+				AnimCurves2Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+				}
+			},
+		}
+	},
+	ActiveTool = "Flip3D"
+}

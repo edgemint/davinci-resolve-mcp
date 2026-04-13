@@ -1,0 +1,69 @@
+{
+	Tools = ordered() {
+		PopWobble = GroupOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "Merge1",
+					Source = "Background",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "Merge1",
+					Source = "Foreground",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Merge1",
+					Source = "Angle",
+					Default = 0,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "AnimCurves2",
+					Source = "Scale",
+					Default = 1,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Merge1 = Merge {
+					CtrlWZoom = false,
+					Inputs = {
+						Size = Input {
+							SourceOp = "AnimCurves2",
+							Source = "Value",
+						},
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 214.667, 148.5 } },
+				},
+				AnimCurves2 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseOut = Input { Value = FuID { "Elastic" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves2Lookup",
+							Source = "Value",
+						}
+					},
+				},
+				AnimCurves2Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				}
+			},
+		}
+	},
+	ActiveTool = "PopWobble"
+}

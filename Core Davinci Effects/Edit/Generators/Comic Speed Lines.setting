@@ -1,0 +1,230 @@
+{
+	Tools = ordered() {
+		ComicSpeedLines = GroupOperator {
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "Scale",
+					Name = "Speed",
+					Default = 10,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "FastNoise1",
+					Source = "Detail",
+					Name = "Texture",
+					Default = 4.72,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "FastNoise1",
+					Source = "XScale",
+					Name = "Line Separation",
+					Default = 20,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "FastNoise1",
+					Source = "YScale",
+					Name = "Line Stretch",
+					MaxScale = 0.5,
+					Default = 0.24,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Transform1",
+					Source = "Angle",
+					Default = 54.8,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "FastNoise1",
+					Source = "Blank6",
+				},
+				Input6 = InstanceInput {
+					SourceOp = "FastNoise2",
+					Source = "Gradient",
+				},
+				Input7 = InstanceInput {
+					SourceOp = "FastNoise2",
+					Source = "Offset",
+					Name = "Gradient Offset",
+					Default = 0,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Transform1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 7.01061, 49.5 },
+				Flags = {
+					AllowPan = false,
+					ConnectedSnap = true,
+					AutoSnap = true,
+					RemoveRouters = true
+				},
+				Size = { 544.003, 116.061, 272.002, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				FastNoise1_1 = FastNoise {
+					Inputs = {
+						GlobalOut = Input { Value = 47, },
+						Width = Input { Value = 1080, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Center = Input {
+							SourceOp = "Vector1",
+							Source = "Position",
+						},
+						Detail = Input { Value = 5.01, },
+						Contrast = Input { Value = 6, },
+						Brightness = Input { Value = -0.53, },
+						LockXY = Input { Value = 0, },
+						XScale = Input {
+							Value = 20,
+							Expression = "FastNoise1.XScale",
+						},
+						YScale = Input {
+							Value = 0.24,
+							Expression = "FastNoise1.YScale",
+						},
+						Seethe = Input { Value = 0.884, },
+						Type = Input { Value = 1, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0.945273631840796] = { 0, 0, 0, 0 },
+									[1] = { 0.094, 0.094, 0.094, 1 }
+								}
+							},
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 24.33, 8.90908 } },
+				},
+				Vector1 = Vector {
+					CtrlWZoom = false,
+					Inputs = {
+						Distance = Input {
+							SourceOp = "AnimCurves1",
+							Source = "Value",
+						},
+						Angle = Input { Value = 90, },
+						ImageAspect = Input { Value = 1.777778, }
+					},
+				},
+				AnimCurves1 = LUTLookup {
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Easing" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves1Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 10, }
+					},
+				},
+				AnimCurves1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+				},
+				FastNoise1 = FastNoise {
+					Inputs = {
+						GlobalOut = Input { Value = 47, },
+						Width = Input { Value = 1080, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Center = Input {
+							SourceOp = "Vector1",
+							Source = "Position",
+						},
+						Detail = Input { Value = 4.72, },
+						Contrast = Input { Value = 4.94, },
+						Brightness = Input { Value = -0.53, },
+						LockXY = Input { Value = 0, },
+						XScale = Input { Value = 20, },
+						YScale = Input { Value = 0.24, },
+						Type = Input { Value = 1, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0.880597014925373] = { 0, 0, 0, 0 },
+									[1] = { 1, 1, 1, 1 }
+								}
+							},
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -115.67, 10.1211 } },
+				},
+				Transform1 = Transform {
+					Inputs = {
+						Angle = Input { Value = 54.8, },
+						Edges = Input { Value = 2, },
+						Input = Input {
+							SourceOp = "MultiMerge1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 186.87, 58.6061 } },
+				},
+				FastNoise2 = FastNoise {
+					Inputs = {
+						GlobalOut = Input { Value = 47, },
+						Width = Input { Value = 1080, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Detail = Input { Value = 0, },
+						Type = Input { Value = 1, },
+						GradientType = Input { Value = 2, },
+						Start = Input { Value = { 0.5, 0.5 }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0.119402985074627] = { 1, 0.937, 0.409, 1 },
+									[0.671641791044776] = { 0.4313725490196, 0.0941176470588, 0.0666666666667, 1 },
+									[1] = { 0.137254901960784, 0.0117647058823529, 0.0196078431372549, 1 }
+								}
+							},
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -209.003, 58.6061 } },
+				},
+				MultiMerge1 = MultiMerge {
+					CtrlWShown = false,
+					Inputs = {
+						LayerOrder = Input { Value = ScriptVal { { [0] = 1, 2 } }, },
+						Background = Input {
+							SourceOp = "FastNoise2",
+							Source = "Output",
+						},
+						["Layer1.Foreground"] = Input {
+							SourceOp = "FastNoise1",
+							Source = "Output",
+						},
+						["Layer1.ApplyMode"] = Input { Value = FuID { "Overlay" }, },
+						LayerName1 = Input { Value = "FastNoise1 Layer", },
+						["Layer2.Foreground"] = Input {
+							SourceOp = "FastNoise1_1",
+							Source = "Output",
+						},
+						["Layer2.ApplyMode"] = Input { Value = FuID { "VividLight" }, },
+						["Layer2.Blend"] = Input { Value = 0.11, },
+						LayerName2 = Input { Value = "FastNoise1_1 Layer", }
+					},
+					ViewInfo = OperatorInfo { Pos = { -7.66901, 58.6061 } },
+				}
+			},
+		}
+	}
+}

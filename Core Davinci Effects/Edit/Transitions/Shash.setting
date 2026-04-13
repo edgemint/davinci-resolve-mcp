@@ -1,0 +1,203 @@
+{
+	Tools = ordered() {
+		Shash1 = GroupOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter1",
+					Source = "Input",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "PipeRouter2",
+					Source = "Input",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "AnimCurves3",
+					Source = "Curve",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "AnimCurves3",
+					Source = "EaseIn",
+					Width = 0.5,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "AnimCurves3",
+					Source = "EaseOut",
+					Width = 0.5,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "Background1",
+					Source = "Blank6",
+				},
+				Input4 = InstanceInput {
+					SourceOp = "FilmGrain1",
+					Source = "TimeLockSeed",
+					Name = "Static Noise",
+					Width = 0.615,
+					Default = 0,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "FilmGrain1",
+					Source = "Monochrome",
+					Default = 0,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "FilmGrain1",
+					Source = "MasterXSize",
+					Name = "Noise Size",
+					Default = 3.1,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "FilmGrain1",
+					Source = "MasterYSize",
+					Default = 1,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "FilmGrain1",
+					Source = "MasterStrength",
+					Name = "Noise Strength",
+					Default = 0.5,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "FilmGrain1",
+					Source = "MasterRoughness",
+					Name = "Noise Roughness",
+					Default = 0.15,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				PipeRouter1 = PipeRouter {
+					CtrlWShown = false,
+					ViewInfo = PipeRouterInfo { Pos = { 88.1934, 133.419 } },
+				},
+				PipeRouter2 = PipeRouter {
+					CtrlWShown = false,
+					ViewInfo = PipeRouterInfo { Pos = { 91.9774, 88.1229 } },
+				},
+				Dissolve1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input {
+							SourceOp = "AnimCurves3",
+							Source = "Value",
+						},
+						Background = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 207.849, 133.931 } },
+				},
+				AnimCurves3 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves4Lookup",
+							Source = "Value",
+						}
+					},
+				},
+				AnimCurves4Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0.265] = { 0, RH = { 0.423333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[0.74] = { 1, LH = { 0.581666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				FilmGrain1 = FilmGrain {
+					CtrlWShown = false,
+					Inputs = {
+						Monochrome = Input { Value = 0, },
+						MasterXSize = Input { Value = 3.1, },
+						MasterStrength = Input { Value = 0.5, },
+						Input = Input {
+							SourceOp = "Background1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 510.931, 93.1369 } },
+				},
+				Background1 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Dissolve1",
+							Source = "Output",
+						},
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftRed = Input { Value = 0.5145888, },
+						TopLeftGreen = Input { Value = 0.460944, },
+						TopLeftBlue = Input { Value = 0.528, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 510.931, 62.2813 } },
+				},
+				Merge1 = Merge {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					Inputs = {
+						Blend = Input {
+							SourceOp = "AnimCurves1",
+							Source = "Value",
+						},
+						Background = Input {
+							SourceOp = "Dissolve1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "FilmGrain1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 510.931, 133.931 } },
+				},
+				AnimCurves1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves1Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, }
+					},
+				},
+				AnimCurves1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				}
+			},
+		}
+	},
+	ActiveTool = "Shash1"
+}

@@ -1,0 +1,124 @@
+{
+	Tools = ordered() {
+		Template = TextPlus {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				GlobalOut = Input { Value = 549, },
+				Width = Input { Value = 1920, },
+				Height = Input { Value = 1080, },
+				UseFrameFormatSettings = Input { Value = 1, },
+				Depth = Input { Value = 1, },
+				["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+				LayoutType = Input { Value = 3, },
+				LayoutRotation = Input { Value = 1, },
+				AngleY = Input { Value = 25, },
+				Path = Input {
+					SourceOp = "TemplatePath",
+					Source = "Value",
+				},
+				TransformRotation = Input { Value = 1, },
+				SelectElement = Input { Value = 3, },
+				Select = Input { Value = 3, },
+				Name1 = Input { Value = "Grad Fill", },
+				Name2 = Input { Value = "Shadow Line", },
+				Enabled2 = Input { Value = 1, },
+				Name3 = Input { Value = "Depth", },
+				Enabled3 = Input { Value = 1, },
+				Name4 = Input { Value = "Outline_01", },
+				Enabled4 = Input { Value = 1, },
+				Name5 = Input { Value = "Outline_02", },
+				Enabled5 = Input { Value = 1, },
+				Name6 = Input { Value = "Shadow lIne 2", },
+				Enabled6 = Input { Value = 1, },
+				Type1 = Input { Value = 2, },
+				ShadingGradient1 = Input {
+					Value = Gradient {
+						Colors = {
+							[0.00497512437810945] = { 1, 0.244, 0, 1 },
+							[1] = { 1, 1, 0, 1 }
+						}
+					},
+				},
+				ShadingMappingAngle1 = Input { Value = 18.3, },
+				ShadingMappingLevel1 = Input { Value = 3, },
+				Softness1 = Input { Value = 1, },
+				StyledText = Input { Value = "SAMPLE", },
+				Font = Input { Value = "Open Sans", },
+				Style = Input { Value = "Extrabold Italic", },
+				Size = Input { Value = 0.2717, },
+				VerticalJustificationNew = Input { Value = 3, },
+				HorizontalJustificationNew = Input { Value = 3, },
+				Thickness2 = Input { Value = 0.0055, },
+				OutsideOnly2 = Input { Value = 1, },
+				CleanIntersections2 = Input { Value = 1, },
+				Red2 = Input { Value = 0.331, },
+				Green2 = Input { Value = 0.229383, },
+				Blue2 = Input { Value = 0.229383, },
+				Softness2 = Input { Value = 1, },
+				SoftnessX2 = Input { Value = 1.26, },
+				SoftnessY2 = Input { Value = 1.1, },
+				PriorityBack2 = Input { Value = 8.66, },
+				ElementShape3 = Input { Value = 1, },
+				Thickness3 = Input { Value = 0.048, },
+				Type3 = Input { Value = 2, },
+				Red3 = Input { Value = 0.732, },
+				Green3 = Input { Value = 0.732, },
+				Blue3 = Input { Value = 0.732, },
+				ShadingGradient3 = Input {
+					Value = Gradient {
+						Colors = {
+							[0.0199004975124378] = { 0.449, 0.424754, 0.424754, 1 },
+							[1] = { 1, 1, 1, 1 }
+						}
+					},
+				},
+				ShadingMappingAngle3 = Input { Value = -2.6, },
+				ShadingMappingLevel3 = Input { Value = 3, },
+				Softness3 = Input { Value = 1, },
+				SoftnessX3 = Input { Value = 0, },
+				SoftnessY3 = Input { Value = 0, },
+				Offset3 = Input { Value = { 0.01, -0.015 }, },
+				ElementShape4 = Input { Value = 1, },
+				Thickness4 = Input { Value = 0.089, },
+				Red4 = Input { Value = 0.709, },
+				Green4 = Input { Value = 0.134, },
+				Blue4 = Input { Value = 0, },
+				Softness4 = Input { Value = 1, },
+				Offset4 = Input { Value = { 0.018, -0.025 }, },
+				ElementShape5 = Input { Value = 1, },
+				Thickness5 = Input { Value = 0.1118, },
+				Red5 = Input { Value = 0, },
+				Green5 = Input { Value = 0, },
+				Blue5 = Input { Value = 0, },
+				Offset5 = Input { Value = { 0.02, -0.029 }, },
+				Opacity6 = Input { Value = 0.504, },
+				ElementShape6 = Input { Value = 1, },
+				Thickness6 = Input { Value = 0.0543, },
+				Red6 = Input { Value = 0, },
+				Green6 = Input { Value = 0, },
+				Blue6 = Input { Value = 0, },
+				Softness6 = Input { Value = 1, },
+				SoftnessX6 = Input { Value = 1.1, },
+				SoftnessY6 = Input { Value = 0.63, },
+				PriorityBack6 = Input { Value = 5.71, },
+				Offset6 = Input { Value = { 0.008, -0.018 }, }
+			},
+			ViewInfo = OperatorInfo { Pos = { -407.438, 61.3919 } },
+		},
+		TemplatePath = BezierSpline {
+			SplineColor = { Red = 186, Green = 244, Blue = 89 },
+			CtrlWZoom = false,
+			NameSet = true,
+			KeyFrames = {
+				[0] = { 0, Flags = { Linear = true, LockedY = true }, Value = Polyline {
+						Points = {
+							{ X = -0.286979166666667, Y = -0.0133122730153836, RX = 0.165708976746797, RY = 0.0713273190806468 },
+							{ X = 0.224479166666667, Y = -0.0235642687669168, LX = -0.161416344959935, LY = 0.0555907674993462 }
+						}
+					} }
+			}
+		}
+	},
+	ActiveTool = "Template"
+}

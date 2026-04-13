@@ -40,6 +40,8 @@ User-installed templates go here (create any missing subfolders):
 
 `<role>` is literally `Edit` or `Fusion`. `<category>` mirrors the folders you see in the effects library (`Effects`, `Transitions`, `Titles`, `Generators`, `Tools`, `Backgrounds`, etc.). Restart Resolve after dropping new files in; they get indexed at launch.
 
+**The `<category>` subfolder is not optional.** A file at `Templates/Edit/MyEffect.setting` (loose in `Edit/`, no category folder) is invisible to the Edit page — it falls through to the Fusion-page library instead, which silently indexes anything under `Templates/`. Always write the full path including the category: `Templates/Edit/Effects/MyEffect.setting`. Same rule applies to Fusion macros (`Fusion/Tools/`, not loose in `Fusion/`). See gotcha 18.
+
 ## Anatomy of a `.setting` File
 
 The outermost structure is always a table containing a `Tools` list and (optionally) an `ActiveTool` pointer:

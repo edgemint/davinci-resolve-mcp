@@ -1,0 +1,60 @@
+{
+	Tools = ordered() {
+		Template = TextPlus {
+			CtrlWZoom = false,
+			Inputs = {
+				Softness4 = Input { Value = 1, },
+				ElementShape4 = Input { Value = 1, },
+				PriorityBack4 = Input { Value = 9.09, },
+				GlobalOut = Input { Value = 99, },
+				Width = Input { Value = 1920, },
+				Height = Input { Value = 1080, },
+				UseFrameFormatSettings = Input { Value = 1, },
+				Depth = Input { Value = 1, },
+				LineSpacing = Input { Value = 0.898, },
+				Enabled2 = Input { Value = 1, },
+				Type1 = Input { Value = 2, },
+				Red1 = Input { Value = 0.247968, },
+				Green1 = Input { Value = 0.28893312, },
+				Blue1 = Input { Value = 0.504, },
+				ShadingGradient1 = Input {
+					Value = Gradient {
+						Colors = {
+							[0.0774907749077491] = { 0.995, 0.941, 0.893, 1 },
+							[0.225092250922509] = { 0.929411764705882, 0.529, 0.737254901960784, 1 },
+							[0.350553505535055] = { 0.541176470588235, 0.333333333333333, 0.596078431372549, 1 },
+							[0.509225092250922] = { 0, 0, 0.107, 1 },
+							[0.553505535055351] = { 0.984, 0.973, 0.957, 1 },
+							[0.804428044280443] = { 0.615, 0.893, 1, 1 }
+						}
+					},
+				},
+				ShadingMappingSize1 = Input { Value = 0.524, },
+				Softness1 = Input { Value = 1, },
+				SoftnessOnFillColorToo1 = Input { Value = 1, },
+				StyledText = Input { Value = "Sample", },
+				Font = Input { Value = "Open Sans", },
+				Style = Input { Value = "Extrabold Italic", },
+				Size = Input { Value = 0.1497, },
+				VerticalJustificationNew = Input { Value = 3, },
+				HorizontalJustificationNew = Input { Value = 3, },
+				Thickness2 = Input { Value = 0.0107, },
+				Type2 = Input { Value = 2, },
+				ShadingGradient2 = Input {
+					Value = Gradient {
+						Colors = {
+							[0.354243542435424] = { 0, 0, 0, 0 },
+							[0.619926199261993] = { 1, 1, 1, 1 },
+							[1] = { 0, 0, 0, 0 }
+						}
+					},
+				},
+				ShadingMappingAngle2 = Input { Value = 18.2, },
+				ShadingMappingSize2 = Input { Value = 1.102, },
+				Softness2 = Input { Value = 1, },
+				PriorityBack2 = Input { Value = 8.02, }
+			},
+			ViewInfo = OperatorInfo { Pos = { 830.692, 221.632 } },
+		}
+	}
+}

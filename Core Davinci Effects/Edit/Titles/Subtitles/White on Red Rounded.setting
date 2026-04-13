@@ -1,0 +1,47 @@
+{
+	Tools = ordered() {
+		Template = TextPlus {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				GlobalOut = Input { Value = 119, },
+				Width = Input { Value = 1920, },
+				Height = Input { Value = 1080, },
+				UseFrameFormatSettings = Input { Value = 1, },
+				["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+				Wrap = Input { Value = 1, },
+				Center = Input { Value = { 0.5, 0.11 }, },
+				LayoutRotation = Input { Value = 1, },
+				LineSpacing = Input { Value = 0.9, },
+				TransformRotation = Input { Value = 1, },
+				SelectElement = Input { Value = 3, },
+				Select = Input { Value = 3, },
+				Name1 = Input { Value = "Solid Fill", },
+				Name2 = Input { Value = "Outline", },
+				Name4 = Input { Value = "Border", },
+				Enabled4 = Input { Value = 1, },
+				Softness1 = Input { Value = 1, },
+				StyledText = Input { Value = "Sample", },
+				Font = Input { Value = "Open Sans", },
+				Style = Input { Value = "Extrabold", },
+				Size = Input { Value = 0.04, },
+				VerticalTopCenterBottom = Input { Value = 1, },
+				VerticalJustificationNew = Input { Value = 3, },
+				HorizontalJustificationNew = Input { Value = 3, },
+				Thickness2 = Input { Value = 0.03, },
+				Red2 = Input { Value = 0, },
+				Softness2 = Input { Value = 1, },
+				Level4 = Input { Value = 0, },
+				ExtendHorizontal4 = Input { Value = 0.15, },
+				ExtendVertical4 = Input { Value = 0.15, },
+				Round4 = Input { Value = 1, },
+				Red4 = Input { Value = 1, },
+				Blue4 = Input { Value = 0.2, },
+				Softness4 = Input { Value = 1, },
+				Shear4 = Input { Value = 1, },
+				Softness3 = Input { Value = 1, }
+			},
+			ViewInfo = OperatorInfo { Pos = { 655.651, 115.85 } },
+		}
+	}
+}

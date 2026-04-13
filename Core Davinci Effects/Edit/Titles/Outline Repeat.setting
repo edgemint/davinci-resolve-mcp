@@ -1,0 +1,450 @@
+{
+	Tools = ordered() {
+		OutlineRepeat = GroupOperator {
+			CtrlWZoom = false,
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "StyledText",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "Font",
+					ControlGroup = 2,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "Style",
+					ControlGroup = 2,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "Red1Clone",
+					Name = "Color",
+					ControlGroup = 3,
+					Default = 1,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "Green1Clone",
+					ControlGroup = 3,
+					Default = 1,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "Blue1Clone",
+					ControlGroup = 3,
+					Default = 1,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "Alpha1Clone",
+					ControlGroup = 3,
+					Default = 1,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "Size",
+					Default = 0.1693,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "CharacterSpacingClone",
+					Name = "Tracking",
+					Default = 1,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "LineSpacingClone",
+					Default = 1,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "VerticalJustificationTop",
+					Name = "V Anchor",
+					ControlGroup = 7,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "VerticalJustificationCenter",
+					ControlGroup = 7,
+				},
+				Input13 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "VerticalJustificationBottom",
+					ControlGroup = 7,
+				},
+				Input14 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "VerticalTopCenterBottom",
+					Default = 0,
+				},
+				Input15 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "CenterOnBaseOfFirstLine",
+					Default = 0,
+				},
+				Input16 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "VerticallyJustified",
+					Default = 0,
+				},
+				Input17 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "HorizontalJustificationLeft",
+					Name = "H Anchor",
+					ControlGroup = 11,
+				},
+				Input18 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "HorizontalJustificationCenter",
+					ControlGroup = 11,
+				},
+				Input19 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "HorizontalJustificationRight",
+					ControlGroup = 11,
+				},
+				Input20 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "HorizontalLeftCenterRight",
+					Default = 0,
+				},
+				Input21 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "HorizontallyJustified",
+					Default = 0,
+				},
+				Input22 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "Strikeout",
+					Name = "Emphasis",
+					ControlGroup = 14,
+				},
+				Input23 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "Underline",
+					Name = "Emphasis",
+					ControlGroup = 14,
+				},
+				Input24 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "Start",
+					Name = "Start",
+					ControlGroup = 15,
+					Default = 0,
+				},
+				Input25 = InstanceInput {
+					SourceOp = "sText1",
+					Source = "End",
+					Name = "End",
+					ControlGroup = 15,
+					Default = 1,
+				},
+				Input35 = InstanceInput {
+					SourceOp = "sRender1",
+					Source = "Blank6",
+				},
+				Input34 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "Scale",
+					Name = "Hight Separation",
+					Default = 0.082,
+				},
+				Input33 = InstanceInput {
+					SourceOp = "sGrid1",
+					Source = "XOffset",
+					Name = "Width Separation",
+					Default = 0.391,
+				},
+				Input31 = InstanceInput {
+					SourceOp = "sGrid1",
+					Source = "CellsX",
+					Name = "Horiz Copies",
+					Default = 1,
+				},
+				Input32 = InstanceInput {
+					SourceOp = "sGrid1",
+					Source = "CellsY",
+					Name = "Vert Copies",
+					Default = 20,
+				},
+				Input26 = InstanceInput {
+					SourceOp = "sTransform1",
+					Source = "XSize",
+					Name = "Copy Size",
+					Default = 0.59,
+				},
+				Input36 = InstanceInput {
+					SourceOp = "sRender1",
+					Source = "Blank6",
+				},
+				Input27 = InstanceInput {
+					SourceOp = "sChangeStyle1",
+					Source = "Red",
+					Name = "Copy Color",
+					ControlGroup = 17,
+					Default = 1,
+				},
+				Input28 = InstanceInput {
+					SourceOp = "sChangeStyle1",
+					Source = "Green",
+					ControlGroup = 17,
+					Default = 1,
+				},
+				Input29 = InstanceInput {
+					SourceOp = "sChangeStyle1",
+					Source = "Blue",
+					ControlGroup = 17,
+					Default = 1,
+				},
+				Input30 = InstanceInput {
+					SourceOp = "sChangeStyle1",
+					Source = "Opacity",
+					Default = 0.7,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "sRender1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { -449.622, 65.3699 },
+				Flags = {
+					AllowPan = false,
+					ConnectedSnap = true,
+					AutoSnap = true,
+					RemoveRouters = true
+				},
+				Size = { 710.67, 154.849, 355.335, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				sText1 = sText {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					Inputs = {
+						LayoutRotation = Input { Value = 1, },
+						AngleX = Input {
+							SourceOp = "AnimCurves2",
+							Source = "Value",
+						},
+						TransformRotation = Input { Value = 1, },
+						ElementShape1 = Input { Value = 1, },
+						Thickness1 = Input { Value = 0.0047, },
+						StyledText = Input { Value = "SAMPLE", },
+						Font = Input { Value = "Open Sans", },
+						Style = Input { Value = "Extrabold Italic", },
+						Size = Input { Value = 0.1693, },
+						VerticalJustificationNew = Input { Value = 3, },
+						HorizontalJustificationNew = Input { Value = 3, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -292.67, 8.51498 } },
+				},
+				AnimCurves2 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Cubic" }, },
+						EaseOut = Input { Value = FuID { "Cubic" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves2Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = -90, },
+						Offset = Input { Value = 90, },
+						TimeScale = Input { Value = 10, }
+					},
+				},
+				AnimCurves2Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Instance_sText1 = sText {
+					CtrlWShown = false,
+					SourceOp = "sText1",
+					Inputs = {
+						Layout = Input {
+						},
+						LayoutRotation = Input {
+							Value = 1,
+						},
+						TransformTransform = Input {
+						},
+						TransformRotation = Input {
+							Value = 1,
+						},
+						TransformPivot = Input {
+						},
+						TransformShear = Input {
+						},
+						TransformSize = Input {
+						},
+						Properties1 = Input {
+						},
+						Opacity1 = Input {
+						},
+						ElementShape1 = Input {
+						},
+						Position1 = Input {
+						},
+						Rotation1 = Input {
+						},
+						PivotNest1 = Input {
+						},
+						Shear1 = Input {
+						},
+						Size1 = Input {
+						},
+						TextText = Input {
+						},
+						TabSpacing = Input {
+						},
+						AdvancedFontControls = Input {
+						},
+						ClearSelectedKerning = Input {
+						},
+						ClearAllKerning = Input {
+						},
+						ClearSelectedPlacement = Input {
+						},
+						ClearAllPlacement = Input {
+						},
+						Internal = Input {
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -38, 8.51498 } },
+				},
+				sTransform1 = sTransform {
+					CtrlWShown = false,
+					Inputs = {
+						XSize = Input { Value = 0.59, },
+						YSize = Input {
+							Value = 0.59,
+							Expression = "XSize",
+						},
+						Input = Input {
+							SourceOp = "sChangeStyle1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -35.33, 97.0002 } },
+				},
+				sMerge1 = sMerge {
+					CtrlWShown = false,
+					Inputs = {
+						Input1 = Input {
+							SourceOp = "sTransform1",
+							Source = "Output",
+						},
+						Input2 = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 172, 97.0002 } },
+				},
+				sChangeStyle1 = sChangeStyle {
+					CtrlWShown = false,
+					Inputs = {
+						Input = Input {
+							SourceOp = "sGrid1",
+							Source = "Output",
+						},
+						Opacity = Input { Value = 0.7, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -145.33, 97.0002 } },
+				},
+				sGrid1 = sGrid {
+					CtrlWShown = false,
+					Inputs = {
+						CellsX = Input { Value = 1, },
+						CellsY = Input { Value = 20, },
+						XOffset = Input { Value = 0.391, },
+						YOffset = Input {
+							SourceOp = "AnimCurves1",
+							Source = "Value",
+						},
+						Input = Input {
+							SourceOp = "sText1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -292.67, 97.0002 } },
+				},
+				AnimCurves1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Custom" }, },
+						EaseIn = Input { Value = FuID { "Quint" }, },
+						EaseOut = Input { Value = FuID { "Quint" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves1Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 0.082, },
+						TimeOffset = Input { Value = 0.05, }
+					},
+				},
+				AnimCurves1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.117856383244207, 0 } },
+							[0.145013] = { 0.871717220324057, LH = { 0.0538900599703935, 0.831177894855053 }, RH = { 0.367457714806662, 0.970679772338702 } },
+							[0.922348] = { 1, LH = { 0.663236333333334, 1 } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				PipeRouter1 = PipeRouter {
+					CtrlWShown = false,
+					Inputs = {
+						Input = Input {
+							SourceOp = "Instance_sText1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 172, 8.51498 } },
+				},
+				sRender1 = sRender {
+					Inputs = {
+						GlobalOut = Input { Value = 549, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Input = Input {
+							SourceOp = "sMerge1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 292, 97.0002 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "OutlineRepeat"
+}

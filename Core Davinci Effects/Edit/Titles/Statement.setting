@@ -1,0 +1,48 @@
+{
+	Tools = ordered() {
+		Template = TextPlus {
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "/Volumes/Katie Eighty/Other/Fusion Setting Files/_NEW Templates/Edit/Titles/NEW 2024/Text+ Presets/"
+					}
+				},
+			},
+			Inputs = {
+				GlobalOut = Input { Value = 119, },
+				Width = Input { Value = 1920, },
+				Height = Input { Value = 1080, },
+				UseFrameFormatSettings = Input { Value = 1, },
+				LayoutRotation = Input { Value = 1, },
+				AngleZ = Input { Value = 10, },
+				CharacterShearX = Input { Value = -0.2, },
+				SelectElement = Input { Value = 1, },
+				Select = Input { Value = 1, },
+				Name2 = Input { Value = "MATTE", },
+				Enabled2 = Input { Value = 1, },
+				Name4 = Input { Value = "RED Border", },
+				Enabled4 = Input { Value = 1, },
+				StyledText = Input { Value = "SAMPLE", },
+				Font = Input { Value = "Open Sans", },
+				Style = Input { Value = "Bold", },
+				VerticalJustificationNew = Input { Value = 3, },
+				HorizontalJustificationNew = Input { Value = 3, },
+				ElementShape2 = Input { Value = 2, },
+				Level2 = Input { Value = 0, },
+				ExtendHorizontal2 = Input { Value = 1.21, },
+				Red2 = Input { Value = 0, },
+				Alpha2 = Input { Value = 0, },
+				Softness2 = Input { Value = 1, },
+				Level4 = Input { Value = 0, },
+				ExtendVertical4 = Input { Value = 0.09, },
+				Red4 = Input { Value = 1, },
+				Blue4 = Input { Value = 0, },
+				Softness4 = Input { Value = 1, },
+				Shear4 = Input { Value = 1, },
+				ShearX4 = Input { Value = -0.18, }
+			},
+			ViewInfo = OperatorInfo { Pos = { 1723.17, 143.136 } },
+		}
+	}
+}

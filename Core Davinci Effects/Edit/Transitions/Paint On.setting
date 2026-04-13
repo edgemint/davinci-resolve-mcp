@@ -1,0 +1,413 @@
+{
+	Tools = ordered() {
+		PaintOn = GroupOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter2",
+					Source = "Input",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "PipeRouter3",
+					Source = "Input",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Loader2",
+					Source = "BrushLoader",
+					Name = "Brush Style",
+					Page = "Controls",
+					Default = 0,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "PolylineStroke1",
+					Source = "ImageBrush.Size",
+					Default = 0.15,
+					MaxScale = 1.0,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "PolylineStroke1",
+					Source = "PaintApplyColor.Opacity",
+					Default = 0.5,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Publish1",
+					Source = "Value",
+					Name = "Angle",
+					Default = 36.5,
+					MaxScale = 90.0,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Multiply1",
+					Source = "Blend",
+					Name = "Shadow",
+					Page = "Controls",
+					Default = 1,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Shadow1",
+					Source = "Softness",
+					Name = "Shadow Softness",
+					Page = "Controls",
+					Default = 0.05,
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Dissolve2",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Loader2 = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "setting:Brushes\\brush_001.png",
+							FormatID = "PNGFormat",
+							StartFrame = 1,
+							Length = 6,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 5,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 1,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 5
+						}
+					},
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						["Clip1.PNGFormat.PostMultiply"] = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 247.5 } },
+					UserControls = ordered() { BrushLoader = { { CCS_AddString = "Round" }, { CCS_AddString = "Square" }, { CCS_AddString = "Streaky 1" }, { CCS_AddString = "Streaky 2" }, { CCS_AddString = "Streaky 3" }, { CCS_AddString = "Streaky 4" }, INP_MaxAllowed = 1000000, INP_Integer = true, INPID_InputControl = "ComboControl", CC_LabelPosition = "Horizontal", INP_MaxScale = 1, INP_MinScale = 0, INP_MinAllowed = -1000000, LINKID_DataType = "Number", INP_External = false, ICS_ControlPage = "Controls", LINKS_Name = "Brush Loader" } }
+				},
+				PipeRouter2 = PipeRouter {
+					ViewInfo = PipeRouterInfo { Pos = { 605, 379.5 } },
+				},
+				PipeRouter3 = PipeRouter {
+					ViewInfo = PipeRouterInfo { Pos = { 605, 445.5 } },
+				},
+				Paint1 = Paint {
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "Background1_1",
+							Source = "Output",
+						},
+						Paint = Input {
+							SourceOp = "PolylineStroke1",
+							Source = "Out",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, 313.5 } },
+				},
+				PolylineStroke1 = PolylineStroke {
+					Points = {
+					},
+					IsThreaded = true,
+					Brushes = { "ImageBrush" },
+					ApplyModes = { "PaintApplyColor" },
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						BrushControls = Input { Value = 1, },
+						BrushShape = Input { Value = FuID { "ImageBrush" }, },
+						["ImageBrush.Size"] = Input { Value = 0.15, },
+						["ImageBrush.ImageSource"] = Input { Value = 0, },
+						["ImageBrush.SourceTool"] = Input {
+							SourceOp = "Transform1",
+							Source = "Output",
+						},
+						["ImageBrush.Brush"] = Input { UserString1 = "ball_metal", },
+						["PaintApplyColor.Opacity"] = Input { Value = 0.5, },
+						StrokeControls = Input { Value = 1, },
+						WriteOnEnd = Input {
+							SourceOp = "AnimCurves2_2_1_1",
+							Source = "Value",
+						},
+						Center = Input { Value = { 0.439, 0.5 }, },
+						StrokeAngle = Input {
+							SourceOp = "Publish1",
+							Source = "Value",
+						},
+						Spacing = Input { Value = 0.05, },
+						Polyline = Input {
+							Value = Polyline {
+								Points = {
+									{ Linear = true, X = -0.54976731795383, Y = -0.308013016066707, RX = 0.00754936243159835, RY = 0.38251958939716 },
+									{ Linear = true, X = -0.527119230659035, Y = 0.839545752124772, LX = -0.00754936243159835, LY = -0.38251958939716, RX = 0.0223925338684491, RY = 0.00425158902951372 },
+									{ Linear = true, X = -0.459941629053687, Y = 0.852300519213314, LX = -0.0223925338684491, LY = -0.00425158902951372, RX = 0.00477057177587403, RY = -0.628923912473159 },
+									{ Linear = true, X = -0.445629913726065, Y = -1.03447121820616, LX = -0.00477057177587403, LY = 0.628923912473159, RX = 0.0288947819973295, RY = 0.00241897872811829 },
+									{ Linear = true, X = -0.358945567734077, Y = -1.02721428202181, LX = -0.0288947819973295, LY = -0.00241897872811829, RX = 0.00039323118203514, RY = 0.676957156535548 },
+									{ Linear = true, X = -0.357765874187972, Y = 1.00365718758483, LX = -0.00039323118203514, LY = -0.676957156535548, RX = 0.0298150502761315, RY = -0.000521356045293168 },
+									{ Linear = true, X = -0.268320723359577, Y = 1.00209311944895, LX = -0.0298150502761315, LY = 0.000521356045293168, RX = 0.00604493286790932, RY = -0.677352484749271 },
+									{ Linear = true, X = -0.250185924755849, Y = -1.02996433479886, LX = -0.00604493286790932, LY = 0.677352484749271, RX = 0.0229138000060634, RY = -0.00356623528806136 },
+									{ Linear = true, X = -0.181444524737659, Y = -1.04066304066304, LX = -0.0229138000060634, LY = 0.00356623528806136, RX = -0.00311466578481911, RY = 0.71137868615352 },
+									{ Linear = true, X = -0.190788522092116, Y = 1.09347301779752, LX = 0.00311466578481911, LY = -0.71137868615352, RX = 0.0282200176882312, RY = 0.00288344625056876 },
+									{ Linear = true, X = -0.106128469027423, Y = 1.10212335654923, LX = -0.0282200176882312, LY = -0.00288344625056876, RX = 0.003890651072508, RY = -0.712624122774895 },
+									{ Linear = true, X = -0.0944565158098988, Y = -1.03574901177546, LX = -0.003890651072508, LY = 0.712624122774895, RX = 0.0221886212252463, RY = 0.0050859929200721 },
+									{ Linear = true, X = -0.02789065213416, Y = -1.02049103301524, LX = -0.0221886212252463, LY = -0.0050859929200721, RX = -0.000172106512666847, RY = 0.670697363573099 },
+									{ Linear = true, X = -0.0284069716721605, Y = 0.991601057704058, LX = 0.000172106512666847, LY = -0.670697363573099, RX = 0.0309620910463099, RY = 0.00169259014775928 },
+									{ Linear = true, X = 0.0644793014667692, Y = 0.996678828147336, LX = -0.0309620910463099, LY = -0.00169259014775928, RX = -0.00476701441258579, RY = -0.732492834963028 },
+									{ Linear = true, X = 0.0501782582290118, Y = -1.20079967674175, LX = 0.00476701441258579, LY = 0.732492834963028, RX = 0.0296945417738438, RY = -0.00507510913941434 },
+									{ Linear = true, X = 0.139261883550543, Y = -1.21602500415999, LX = -0.0296945417738438, LY = 0.00507510913941434, RX = 0.00224498697413263, RY = 0.694171116194907 },
+									{ Linear = true, X = 0.145996844472941, Y = 0.866488344424731, LX = -0.00224498697413263, LY = -0.694171116194907, RX = 0.0254266765748435, RY = 0.00159050827486921 },
+									{ Linear = true, X = 0.222276874197472, Y = 0.871259869249339, LX = -0.0254266765748435, LY = -0.00159050827486921, RX = 0.00123616994048665, RY = -0.709322364744053 },
+									{ Linear = true, X = 0.225985384018932, Y = -1.25670722498282, LX = -0.00123616994048665, LY = 0.709322364744053, RX = 0.0280094499831644, RY = -0.00356296174527844 },
+									{ Linear = true, X = 0.310013733968425, Y = -1.26739611021866, LX = -0.0280094499831644, LY = 0.00356296174527844, RX = -0.000876905240510373, RY = 0.7127840994637 },
+									{ Linear = true, X = 0.307383018246894, Y = 0.870956188172443, LX = 0.000876905240510373, LY = -0.7127840994637, RX = 0.0268924454630349, RY = -0.00134844042052532 },
+									{ Linear = true, X = 0.388060354635999, Y = 0.866910866910867, LX = -0.0268924454630349, LY = 0.00134844042052532, RX = 0.00321722172837526, RY = -0.634922736582246 },
+									{ Linear = true, X = 0.397712019821125, Y = -1.03785734283587, LX = -0.00321722172837526, LY = 0.634922736582246, RX = 0.0316369844514428, RY = -0.00144426705586409 },
+									{ Linear = true, X = 0.492622973175453, Y = -1.04219014400346, LX = -0.0316369844514428, LY = 0.00144426705586409, RX = -0.00181052618785242, RY = 0.634524562906372 },
+									{ Linear = true, X = 0.487191394611896, Y = 0.861383544715653, LX = 0.00181052618785242, LY = -0.634524562906372, RX = 0.0311806333280171, RY = -0.00411383536351173 },
+									{ Linear = true, X = 0.580733294595947, Y = 0.849042038625118, LX = -0.0311806333280171, LY = 0.00411383536351173, RX = -0.00716567554313186, RY = -0.632079472725298 },
+									{ Linear = true, X = 0.559236267966551, Y = -1.04719637955077, LX = 0.00716567554313186, LY = 0.632079472725298, RX = 0.0356243146921982, RY = -0.00183959647482516 },
+									{ Linear = true, X = 0.666109212043146, Y = -1.05271516897525, LX = -0.0356243146921982, LY = 0.00183959647482516, RX = 0.00245871364261659, RY = 0.609006680462134 },
+									{ Linear = true, X = 0.673485352970996, Y = 0.774304872411151, LX = -0.00245871364261659, LY = -0.609006680462134 }
+								}
+							},
+						}
+					},
+				},
+				AnimCurves2_2_1_1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input {
+							SourceOp = "Publish2",
+							Source = "Value",
+						},
+						EaseIn = Input {
+							SourceOp = "Publish3",
+							Source = "Value",
+						},
+						EaseOut = Input {
+							SourceOp = "Publish4",
+							Source = "Value",
+						},
+						Lookup = Input {
+							SourceOp = "AnimCurvesonPolylineStroke1Lookup",
+							Source = "Value",
+						}
+					},
+				},
+				Publish2 = PublishFuID {
+					CtrlWZoom = false,
+					Inputs = {
+						Value = Input { Value = FuID { "Linear" }, }
+					},
+				},
+				Publish3 = PublishFuID {
+					CtrlWZoom = false,
+					Inputs = {
+						Value = Input { Value = FuID { "None" }, }
+					},
+				},
+				Publish4 = PublishFuID {
+					CtrlWZoom = false,
+					Inputs = {
+						Value = Input { Value = FuID { "None" }, }
+					},
+				},
+				AnimCurvesonPolylineStroke1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				Publish1 = PublishNumber {
+					CtrlWZoom = false,
+					Inputs = {
+						Value = Input { Value = 36.5, }
+					},
+				},
+				Multiply1 = Merge {
+					NameSet = true,
+					Inputs = {
+						ProcessAlpha = Input { Value = 0, },
+						Background = Input {
+							SourceOp = "Dissolve1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shadow1",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Multiply" }, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 935, 379.5 } },
+					UserControls = ordered() { Blend = { LINKS_Name = "ShadowSwitch", INPID_InputControl = "CheckboxControl", ICS_ControlPage = "Controls", LINKID_DataType = "Number", } }
+				},
+				Dissolve2 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWZoom = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "WIPE_ANIM",
+							Source = "Output",
+						},
+						MaskChannel = Input { Value = 5, },
+						Background = Input {
+							SourceOp = "Multiply1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter3",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1045, 379.5 } },
+				},
+				Background1_1 = Background {
+					NameSet = true,
+					Inputs = {
+						GlobalIn = Input { Value = 1001, },
+						GlobalOut = Input { Value = 1100, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftAlpha = Input { Value = 0, },
+						TopRightRed = Input { Value = 1, },
+						TopRightGreen = Input { Value = 1, },
+						BottomLeftBlue = Input { Value = 1, },
+						BottomRightGreen = Input { Value = 1, },
+						BottomRightBlue = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, 247.5 } },
+				},
+				Shadow1 = Shadow {
+					NameSet = true,
+					Inputs = {
+						Softness = Input { Value = 0.05, },
+						Input = Input {
+							SourceOp = "Paint1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 935, 313.5 } },
+				},
+				WIPE_ANIM = Background {
+					NameSet = true,
+					Inputs = {
+						GlobalIn = Input { Value = 1001, },
+						GlobalOut = Input { Value = 1100, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Gradient" }, },
+						Start = Input { Value = { 0.5, 0.5 }, },
+						End = Input {
+							SourceOp = "Vector1",
+							Source = "Position",
+						},
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0.3136531365314] = { 1, 1, 1, 1 },
+									[1] = { 0, 0, 0, 1 }
+								}
+							},
+						},
+						Offset = Input {
+							SourceOp = "AnimCurves2",
+							Source = "Value",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1045, 313.5 } },
+				},
+				Vector1 = Vector {
+					CtrlWZoom = false,
+					Inputs = {
+						Distance = Input { Value = 0.3, },
+						Angle = Input {
+							SourceOp = "Publish1",
+							Source = "Value",
+						},
+						ImageAspect = Input { Value = 1.777778, }
+					},
+				},
+				AnimCurves2 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Lookup = Input {
+							SourceOp = "AnimCurves2Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 5, },
+						Offset = Input { Value = -3.3, }
+					},
+				},
+				AnimCurves2Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Transform1 = Transform {
+					Inputs = {
+						Angle = Input {
+							Value = 36.5,
+							Expression = "PolylineStroke1.StrokeAngle",
+						},
+						Input = Input {
+							SourceOp = "TimeSpeed1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 313.5 } },
+				},
+				TimeSpeed1 = TimeSpeed {
+					Inputs = {
+						Speed = Input { Value = 0, },
+						Delay = Input { Expression = "Loader2.BrushLoader", },
+						Input = Input {
+							SourceOp = "Loader2",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 280.5 } },
+				},
+				Dissolve1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Paint1",
+							Source = "Output",
+						},
+						Background = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter3",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 770, 379.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "PaintOn"
+}

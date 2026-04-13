@@ -1,0 +1,260 @@
+{
+	Tools = ordered() {
+		DetailDissolve = GroupOperator {
+			CtrlWZoom = false,
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter3",
+					Source = "Input",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Merge2",
+					Source = "BlendClone",
+					Page = "Controls",
+					Default = 0.4,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "AnimCurves3",
+					Source = "Scale",
+					Page = "Controls",
+					Default = 25,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Blur1",
+					Source = "Blank6",
+					Page = "Controls",
+				},
+				Input4 = InstanceInput {
+					SourceOp = "AnimCurves4",
+					Source = "Curve",
+				},
+				Input5 = InstanceInput {
+					SourceOp = "AnimCurves4",
+					Source = "EaseIn",
+					Width = 0.5,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "AnimCurves4",
+					Source = "EaseOut",
+					Width = 0.5,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "AnimCurves4",
+					Source = "Lookup",
+					ControlGroup = 8,
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "PipeRouter4",
+					Source = "Input",
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge3",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 293.613, 91.8513 },
+				Flags = {
+					AllowPan = false,
+					ConnectedSnap = true,
+					AutoSnap = true,
+					RemoveRouters = true
+				},
+				Size = { 931.116, 199.947, 465.558, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				PipeRouter3 = PipeRouter {
+					CtrlWShown = false,
+					ViewInfo = PipeRouterInfo { Pos = { -421.116, 142.307 } },
+				},
+				Merge2 = Merge {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					Inputs = {
+						Blend = Input { Value = 0.4, },
+						Background = Input {
+							SourceOp = "PipeRouter3",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "ChannelBooleans2",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Overlay" }, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 136.751, 142.307 } },
+					UserControls = ordered() {
+						BlendClone = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_SplineType = "Default",
+							LINKS_Name = "Detail Mix",
+						}
+					}
+				},
+				Blur1 = Blur {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						XBlurSize = Input {
+							SourceOp = "AnimCurves3",
+							Source = "Value",
+						},
+						Input = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -149.916, 104.487 } },
+				},
+				AnimCurves3 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves3Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 25, }
+					},
+					UserControls = ordered() {
+						Scale = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 75,
+							INP_Default = 75,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 36,
+							INP_SplineType = "Default",
+							LINKS_Name = "Strength"
+						}
+					}
+				},
+				AnimCurves3Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Merge3 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Blend = Input {
+							SourceOp = "AnimCurves4",
+							Source = "Value",
+						},
+						Background = Input {
+							SourceOp = "Merge2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter6",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 420, 142.307 } },
+				},
+				AnimCurves4 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Easing" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurvesonMerge3Lookup",
+							Source = "Value",
+						}
+					},
+				},
+				AnimCurvesonMerge3Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				ChannelBooleans2 = ChannelBoolean {
+					CtrlWShown = false,
+					Inputs = {
+						Operation = Input { Value = 10, },
+						ToAlpha = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "BrightnessContrast1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 136.751, 63.7774 } },
+				},
+				BrightnessContrast1 = BrightnessContrast {
+					CtrlWShown = false,
+					Inputs = {
+						Gain = Input { Value = 5, },
+						Brightness = Input { Value = 0.5, },
+						Input = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -3.91599, 63.7774 } },
+				},
+				ChannelBooleans1 = ChannelBoolean {
+					CtrlWShown = false,
+					Inputs = {
+						Operation = Input { Value = 2, },
+						ToAlpha = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "Blur1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -149.916, 63.7774 } },
+				},
+				PipeRouter6 = PipeRouter {
+					CtrlWShown = false,
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						}
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 420, 7.20844 } },
+				},
+				PipeRouter4 = PipeRouter {
+					CtrlWShown = false,
+					ViewInfo = PipeRouterInfo { Pos = { -420.987, 7.20844 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "DetailDissolve"
+}

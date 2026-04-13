@@ -1,0 +1,412 @@
+{
+	Tools = ordered() {
+		CrashZoom = GroupOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter2",
+					Source = "Input",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "PipeRouter1",
+					Source = "Input",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "ZoomBlur1",
+					Source = "CenterXPos",
+					Default = 0.5,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "ZoomBlur1",
+					Source = "CenterYPos",
+					Default = 0.5,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "ZoomBlur1",
+					Source = "xyPosition",
+					DefaultX = 0.5,
+					DefaultY = 0.5,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "ZoomBlur1",
+					Source = "blurTypeChoice",
+				},
+				Input5 = InstanceInput {
+					SourceOp = "ZoomBlur1",
+					Source = "centerExclusion",
+					Default = 0.25,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "ZoomBlur1",
+					Source = "BorderType",
+				},
+				Input7 = InstanceInput {
+					SourceOp = "ZoomBlur1",
+					Source = "isFollowSizing",
+					Default = 1,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "Scale",
+					Name = "Zoom Amount",
+					Default = 0.75,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "Transform1",
+					Source = "Blank5",
+				},
+				Input10 = InstanceInput {
+					SourceOp = "Transform1",
+					Source = "MotionBlur",
+					Default = 0,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "Transform1",
+					Source = "Quality",
+					Default = 2,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "Transform1",
+					Source = "ShutterAngle",
+					Default = 180,
+				},
+				Input13 = InstanceInput {
+					SourceOp = "Transform1",
+					Source = "CenterBias",
+					Default = 0,
+				},
+				Input14 = InstanceInput {
+					SourceOp = "Transform1",
+					Source = "SampleSpread",
+					Default = 1,
+				},
+				Input15 = InstanceInput {
+					SourceOp = "AnimCurves5",
+					Source = "Curve",
+				},
+				Input16 = InstanceInput {
+					SourceOp = "AnimCurves5",
+					Source = "EaseIn",
+					Width = 0.5,
+				},
+				Input17 = InstanceInput {
+					SourceOp = "AnimCurves5",
+					Source = "EaseOut",
+					Width = 0.5,
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "ZoomBlur1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				PipeRouter2 = PipeRouter {
+					CtrlWShown = false,
+					ViewInfo = PipeRouterInfo { Pos = { 31.1656, 172.063 } },
+				},
+				PipeRouter1 = PipeRouter {
+					CtrlWShown = false,
+					ViewInfo = PipeRouterInfo { Pos = { 30.4989, 115.093 } },
+				},
+				ZoomBlur1 = ofx.com.blackmagicdesign.resolvefx.ZoomBlur {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					Inputs = {
+						Source = Input {
+							SourceOp = "Dissolve1_2_1",
+							Source = "Output",
+						},
+						CenterXPos = Input { Value = 0.5, },
+						CenterYPos = Input { Value = 0.5, },
+						xyPosition = Input { Value = { 0.5, 0.5 }, },
+						SmoothStrength = Input {
+							SourceOp = "AnimCurves2",
+							Source = "Value",
+						},
+						zoomAmount = Input {
+							SourceOp = "AnimCurves1",
+							Source = "Value",
+						},
+						blurTypeChoice = Input { Value = FuID { "BlurTypeRealistic" }, },
+						centerExclusion = Input { Value = 0.25, },
+						advancedControlsGroup = Input { Value = 1, },
+						BorderType = Input { Value = FuID { "BORDER_TYPE_REFLECT" }, },
+						isFollowSizing = Input { Value = 1, },
+						isBlurAlpha = Input { Value = 1, },
+						BlendAmount = Input { Value = 0, },
+						isUseLegacyPosition = Input { Value = 0, },
+						blendGroup = Input { Value = 0, },
+						blendIn = Input { Value = 1, },
+						blend = Input { Value = 0, },
+						ignoreContentShape = Input { Value = 0, },
+						legacyIsProcessRGBOnly = Input { Value = 0, },
+						refreshTrigger = Input { Value = 1, },
+						resolvefxVersion = Input { Value = "2.1", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, 172.732 } },
+				},
+				AnimCurves2 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input {
+							SourceOp = "Publish1",
+							Source = "Value",
+						},
+						EaseIn = Input {
+							SourceOp = "Publish2",
+							Source = "Value",
+						},
+						EaseOut = Input {
+							SourceOp = "Publish3",
+							Source = "Value",
+						},
+						Lookup = Input {
+							SourceOp = "AnimCurves2Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Scale = Input {
+							Value = 0.75,
+							Expression = "AnimCurves1.Scale",
+						},
+					},
+				},
+				Publish1 = PublishFuID {
+					CtrlWZoom = false,
+					Inputs = {
+						Value = Input { Value = FuID { "Easing" }, }
+					},
+				},
+				Publish2 = PublishFuID {
+					CtrlWZoom = false,
+					Inputs = {
+						Value = Input { Value = FuID { "Quad" }, }
+					},
+				},
+				Publish3 = PublishFuID {
+					CtrlWZoom = false,
+					Inputs = {
+						Value = Input { Value = FuID { "Quad" }, }
+					},
+				},
+				AnimCurves2Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				AnimCurves1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input {
+							SourceOp = "Publish1",
+							Source = "Value",
+						},
+						EaseIn = Input {
+							SourceOp = "Publish2",
+							Source = "Value",
+						},
+						EaseOut = Input {
+							SourceOp = "Publish3",
+							Source = "Value",
+						},
+						Lookup = Input {
+							SourceOp = "AnimCurvesonZoomBlur1Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Scale = Input { Value = 0.75, },
+					},
+				},
+				AnimCurvesonZoomBlur1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				Transform1 = ofx.com.blackmagicdesign.resolvefx.Transform {
+					CtrlWShown = false,
+					Inputs = {
+						Source = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						controlMode = Input { Value = FuID { "TransformControlsSliders" }, },
+						controlReset = Input { Value = 0, },
+						controlGroup = Input { Value = 1, },
+						controlVisibility = Input { Value = FuID { "Show" }, },
+						posX = Input { Value = 0, },
+						posY = Input { Value = 0, },
+						zoom = Input {
+							SourceOp = "AnimCurves5",
+							Source = "Value",
+						},
+						rotate = Input { Value = 0, },
+						scaleX = Input { Value = 1, },
+						scaleY = Input { Value = 1, },
+						pitch = Input { Value = 0, },
+						yaw = Input { Value = 0, },
+						flipH = Input { Value = 0, },
+						flipV = Input { Value = 0, },
+						adjustGroup = Input { Value = 0, },
+						isCrop = Input { Value = 0, },
+						cropL = Input { Value = 0, },
+						cropR = Input { Value = 0, },
+						cropT = Input { Value = 0, },
+						cropB = Input { Value = 0, },
+						edgeSoftness = Input { Value = 0, },
+						edgeRounding = Input { Value = 0, },
+						animationGroup = Input { Value = 0, },
+						serializedWarpable = Input {
+							Value = Text {
+							},
+						},
+						serializedPinnable = Input {
+							Value = Text {
+							},
+						},
+						motionBlur = Input { Value = 0, },
+						advancedGroup = Input { Value = 1, },
+						edgeBehaviour = Input { Value = FuID { "Reflect" }, },
+						CompositeType = Input { Value = FuID { "COMPOSITE_NORMAL" }, },
+						olayAntiAlias = Input { Value = 0, },
+						previewAlpha = Input { Value = 0, },
+						isLegacyCrop = Input { Value = 1, },
+						isLegacyAlphaHandling = Input { Value = 1, },
+						blendGroup = Input { Value = 0, },
+						blendIn = Input { Value = 1, },
+						blend = Input { Value = 0, },
+						ignoreContentShape = Input { Value = 0, },
+						legacyIsProcessRGBOnly = Input { Value = 0, },
+						refreshTrigger = Input { Value = 1, },
+						resolvefxVersion = Input { Value = "1.3", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, 115.5 } },
+				},
+				AnimCurves5 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input {
+							SourceOp = "Publish1",
+							Source = "Value",
+						},
+						EaseIn = Input {
+							SourceOp = "Publish2",
+							Source = "Value",
+						},
+						EaseOut = Input {
+							SourceOp = "Publish3",
+							Source = "Value",
+						},
+						Lookup = Input {
+							SourceOp = "AnimCurves5Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 0.4, },
+						Offset = Input { Value = 0.6, },
+					},
+				},
+				AnimCurves5Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				Instance_Transform1 = ofx.com.blackmagicdesign.resolvefx.Transform {
+					CtrlWShown = false,
+					SourceOp = "Transform1",
+					Inputs = {
+						EffectMask = Input { },
+						SettingsNest = Input { },
+						Source = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+						SourceTo = Input { },
+						controlReset = Input { Value = 0, },
+						controlGroup = Input { Value = 1, },
+						zoom = Input {
+							SourceOp = "Calculation1",
+							Source = "Result",
+						},
+						advancedGroup = Input { Value = 1, },
+						blendGroup = Input { Value = 0, },
+						CommentsNest = Input { },
+						FrameRenderScriptNest = Input { },
+						StartRenderScripts = Input { },
+						EndRenderScripts = Input { },
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, 172.732 } },
+				},
+				Calculation1 = Calculation {
+					CtrlWZoom = false,
+					Inputs = {
+						FirstOperand = Input {
+							SourceOp = "AnimCurves5",
+							Source = "Value",
+						},
+						SecondOperand = Input { Value = 0.4, },
+					},
+				},
+				Dissolve1_2_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input {
+							SourceOp = "AnimCurves3_1",
+							Source = "Value",
+						},
+						Background = Input {
+							SourceOp = "Instance_Transform1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Transform1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 275, 172.732 } },
+				},
+				AnimCurves3_1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Cubic" }, },
+						EaseOut = Input { Value = FuID { "Cubic" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurvesonDissolve1_2_1Lookup",
+							Source = "Value",
+						},
+					},
+				},
+				AnimCurvesonDissolve1_2_1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				}
+			},
+		}
+	},
+	ActiveTool = "CrashZoom11"
+}

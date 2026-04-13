@@ -1,0 +1,55 @@
+{
+	Tools = ordered() {
+		Template = TextPlus {
+			CtrlWZoom = false,
+			Inputs = {
+				GlobalOut = Input { Value = 119, },
+				Width = Input { Value = 1920, },
+				Height = Input { Value = 1080, },
+				UseFrameFormatSettings = Input { Value = 1, },
+				["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+				LayoutType = Input { Value = 3, },
+				Perspective = Input { Value = 5, },
+				LayoutRotation = Input { Value = 1, },
+				AngleX = Input { Value = 20, },
+				TransformRotation = Input { Value = 1, },
+				SelectElement = Input { Value = 4, },
+				Select = Input { Value = 3, },
+				Enabled2 = Input { Value = 1, },
+				Name4 = Input { Value = "Border", },
+				Enabled4 = Input { Value = 1, },
+				Enabled5 = Input { Value = 1, },
+				Softness1 = Input { Value = 1, },
+				StyledText = Input { Value = "SAMPLE", },
+				Font = Input { Value = "Open Sans", },
+				Style = Input { Value = "Extrabold", },
+				VerticalJustificationNew = Input { Value = 3, },
+				HorizontalJustificationNew = Input { Value = 3, },
+				JoinStyle2 = Input { Value = 0, },
+				Red2 = Input { Value = 0, },
+				Softness2 = Input { Value = 1, },
+				ElementShape4 = Input { Value = 1, },
+				Thickness4 = Input { Value = 0.0732, },
+				Blue4 = Input { Value = 0, },
+				Softness4 = Input { Value = 1, },
+				Offset4 = Input { Value = { 0, -0.02 }, },
+				ElementShape5 = Input { Value = 1, },
+				Thickness5 = Input { Value = 0.0882, },
+				Green5 = Input { Value = 0.724, },
+				Blue5 = Input { Value = 0.339, },
+				Softness5 = Input { Value = 1, },
+				Offset5 = Input { Value = { 0, -0.027 }, },
+				Path = Input {
+					Value = Polyline {
+						Points = {
+							{ X = -0.399538946857559, Y = -0.124568593615185, RX = 0.132115646065439, RY = 0.0625 },
+							{ X = -0.000121329774326537, Y = 0.000431406384814536, LX = -0.135186324952354, LY = -0, RX = 0.135027440400585, RY = 0 },
+							{ X = 0.39881229590272, Y = -0.124568593615185, LX = -0.131953092638231, LY = 0.0625 }
+						}
+					},
+				}
+			},
+			ViewInfo = OperatorInfo { Pos = { 143.906, 49.5 } },
+		}
+	}
+}

@@ -1,0 +1,289 @@
+{
+	Tools = ordered() {
+		GradLines = GroupOperator {
+			CtrlWZoom = false,
+			Inputs = ordered() {
+				Position = InstanceInput {
+					SourceOp = "FastNoise1",
+					Source = "Position",
+					Page = "Controls",
+				},
+				Input8 = InstanceInput {
+					SourceOp = "BUTTONS",
+					Source = "Button01",
+					Width = 0.5,
+					Page = "Controls",
+				},
+				Input9 = InstanceInput {
+					SourceOp = "BUTTONS",
+					Source = "Button02",
+					Width = 0.5,
+					Page = "Controls",
+				},
+				Input10 = InstanceInput {
+					SourceOp = "BUTTONS",
+					Source = "Button03",
+					Width = 0.5,
+					Page = "Controls",
+				},
+				Input11 = InstanceInput {
+					SourceOp = "BUTTONS",
+					Source = "Button04",
+					Width = 0.5,
+					Page = "Controls",
+				},
+				Input12 = InstanceInput {
+					SourceOp = "BUTTONS",
+					Source = "Button05",
+					Width = 0.5,
+					Page = "Controls",
+				},
+				Input13 = InstanceInput {
+					SourceOp = "BUTTONS",
+					Source = "Button06",
+					Width = 0.5,
+					Page = "Controls",
+				},
+				Blank2 = InstanceInput {
+					SourceOp = "FastNoise1",
+					Source = "Blank6",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "FastNoise1",
+					Source = "Start",
+					DefaultX = 0.5,
+					DefaultY = 0.5,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "FastNoise1",
+					Source = "End",
+					DefaultX = 0.5469,
+					DefaultY = 0.6511,
+				},
+				Color = InstanceInput {
+					SourceOp = "FastNoise1",
+					Source = "Color",
+					Page = "Controls",
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Background1",
+					Source = "TopLeftRed",
+					Name = "Color",
+					ControlGroup = 4,
+					Default = 0.74,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Background1",
+					Source = "TopLeftGreen",
+					ControlGroup = 4,
+					Default = 0.24938,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Background1",
+					Source = "TopLeftBlue",
+					ControlGroup = 4,
+					Default = 0.24938,
+				},
+				Blank1 = InstanceInput {
+					SourceOp = "FastNoise1",
+					Source = "Blank6",
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Merge1",
+					Source = "BlendClone",
+					Name = "Color Blend",
+					Default = 1,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "Scale",
+					Name = "Animation Speed",
+					Default = 1,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 1136.67, 232.818 },
+				Flags = {
+					AllowPan = false,
+					ConnectedSnap = true,
+					AutoSnap = true,
+					RemoveRouters = true
+				},
+				Size = { 479.33, 113.637, 239.665, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				FastNoise1 = FastNoise {
+					CtrlWShown = false,
+					Inputs = {
+						GlobalOut = Input { Value = 119, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Detail = Input { Value = 0, },
+						Discontinuous = Input { Value = 1, },
+						Inverted = Input { Value = 1, },
+						Type = Input { Value = 1, },
+						GradientType = Input { Value = 1, },
+						Start = Input { Value = { 0.5, 0.5 }, },
+						End = Input { Value = { 0.5469, 0.6511 }, },
+						Offset = Input {
+							SourceOp = "AnimCurves1",
+							Source = "Value",
+						},
+						Repeat = Input { Value = 2, },
+						Position = Input { Value = 1, },
+						Color = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -158.663, 55.3941 } },
+					UserControls = ordered() {
+						Position = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 9,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Position",
+						},
+						Color = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 5,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Color",
+						}
+					}
+				},
+				AnimCurves1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Easing" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves1Lookup",
+							Source = "Value",
+						}
+					},
+				},
+				AnimCurves1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Background1 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						GlobalOut = Input { Value = 119, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftRed = Input { Value = 0.48263, },
+						TopLeftGreen = Input { Value = 0.67431928, },
+						TopLeftBlue = Input { Value = 0.835, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 56.0031, 9.33308 } },
+				},
+				Merge1 = Merge {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					Inputs = {
+						Blend = Input { Value = 0.25, },
+						Background = Input {
+							SourceOp = "Background1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "FastNoise1",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Overlay" }, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 56.0031, 55.3941 } },
+				},
+				BUTTONS = Fuse.Wireless {
+					CtrlWShown = false,
+					NameSet = true,
+					ViewInfo = OperatorInfo { Pos = { 176, 8.12108 } },
+					UserControls = ordered() {
+						Button01 = {
+							ICD_Width = 0.5,
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							BTNCS_Execute = "tool:SetInput('Input1',{0.5,0.5})\n tool:SetInput('Input2',{0.5,0.44})",
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "ButtonControl",
+							LINKS_Name = "Horizontal",
+						},
+						Button02 = {
+							ICD_Width = 0.5,
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							BTNCS_Execute = "tool:SetInput('Input1',{0.5,0.5})\n tool:SetInput('Input2',{0.54,0.5})",
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "ButtonControl",
+							LINKS_Name = "Vertical",
+						},
+						Button03 = {
+							ICD_Width = 0.5,
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							BTNCS_Execute = "tool:SetInput('Input1',{0.5,0.5})\n tool:SetInput('Input2',{0.5269,0.5479})",
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "ButtonControl",
+							LINKS_Name = "Left 45",
+						},
+						Button04 = {
+							ICD_Width = 0.5,
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							BTNCS_Execute = "tool:SetInput('Input1',{0.5,0.5})\n tool:SetInput('Input2',{0.4731,0.5479})",
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "ButtonControl",
+							LINKS_Name = "Right 45",
+						},
+						Button05 = {
+							ICD_Width = 0.5,
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							BTNCS_Execute = "tool:SetInput('Input1',{0.5,0.5})\n tool:SetInput('Input2',{0.5469,0.6511})",
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "ButtonControl",
+							LINKS_Name = "Thick",
+						},
+						Button06 = {
+							ICD_Width = 0.5,
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							BTNCS_Execute = "tool:SetInput('Input1',{0.5,0.5})\n tool:SetInput('Input2',{0.503,0.5088})",
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "ButtonControl",
+							LINKS_Name = "Thin",
+						}
+					}
+				}
+			},
+		}
+	}
+}

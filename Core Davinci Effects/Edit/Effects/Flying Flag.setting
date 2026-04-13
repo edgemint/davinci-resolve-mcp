@@ -1,0 +1,353 @@
+{
+	Tools = ordered() {
+		FlyingFlag = GroupOperator {
+			CtrlWZoom = false,
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "AnimCurves2_1",
+					Source = "Scale",
+					Name = "Wind Strength",
+					Default = 3.256,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "Displace3D1_1",
+					Source = "Scale",
+					Name = "Bump Scale",
+					MaxScale = 0.8,
+					Default = 0.535,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "Background1",
+					Source = "Blank6",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Perturb1",
+					Source = "Value",
+					Name = "Flag Twist Offset",
+					Default = 0.1,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Perturb1",
+					Source = "Strength",
+					Name = "Twist Strength",
+					MaxScale = 0.5,
+					Default = 0,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Bender3D1",
+					Source = "Amount",
+					Name = "Flag Blend",
+					MinScale = -0.3,
+					MaxScale = 0.3,
+					Default = 0,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "Background1",
+					Source = "Blank6",
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Merge3D1_1",
+					Source = "Transform3DOp.Rotate.X",
+					Name = "Rotate X",
+					Default = 0,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Merge3D1_1",
+					Source = "Transform3DOp.Rotate.Y",
+					Name = "Rotate Y",
+					Default = 0,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Merge3D1_1",
+					Source = "Transform3DOp.Rotate.Z",
+					Name = "Rotate Z",
+					Default = 0,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Merge3D1_1",
+					Source = "Transform3DOp.Scale.X",
+					Name = "Scale",
+					Default = 1,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "Transform1",
+					Source = "FlipHoriz",
+					Name = "Flip",
+					ControlGroup = 9,
+					Default = 0,
+				},
+				MainInput1 = InstanceInput {
+					SourceOp = "Transform2",
+					Source = "Input",
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Transform1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 291.28, -78.621 },
+				Flags = {
+					AllowPan = false,
+					ConnectedSnap = true,
+					AutoSnap = true,
+					RemoveRouters = true
+				},
+				Size = { 1174.4, 135.57, 587.202, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				FastNoise1_1 = FastNoise {
+					CtrlWShown = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Background1",
+							Source = "Output",
+						},
+						MaskChannel = Input { Value = 5, },
+						GlobalOut = Input { Value = 691, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Center = Input {
+							SourceOp = "Vector2_1",
+							Source = "Position",
+						},
+						LockXY = Input { Value = 0, },
+						XScale = Input { Value = 2.2, },
+						YScale = Input { Value = 3.62, },
+						SeetheRate = Input { Value = 0.299, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -256.293, 25.2726 } },
+				},
+				Vector2_1 = Vector {
+					CtrlWZoom = false,
+					Inputs = {
+						Distance = Input {
+							SourceOp = "AnimCurves2_1",
+							Source = "Value",
+						},
+						Angle = Input { Value = 180, },
+						ImageAspect = Input { Value = 1.777778, }
+					},
+				},
+				AnimCurves2_1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves2Lookup_1",
+							Source = "Value",
+						},
+						Scale = Input { Value = 3.256, }
+					},
+				},
+				AnimCurves2Lookup_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				Bender3D1_1 = Bender3D {
+					CtrlWShown = false,
+					CurrentSettings = 4,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "Displace3D1_1",
+							Source = "Output",
+						},
+						Bender = Input { Value = FuID { "Twist" }, },
+						Amount = Input {
+							SourceOp = "Perturb1",
+							Source = "Value",
+						},
+						Axis = Input { Value = 0, },
+						Center = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -73.3191, 77.3606 } },
+				},
+				Perturb1 = PerturbNumber {
+					CtrlWZoom = false,
+					Inputs = {
+						Value = Input { Value = 0.1, },
+						Strength = Input { Value = 0, },
+						Wobble = Input { Value = 0.39, },
+						Speed = Input { Value = 3.7, }
+					},
+				},
+				Bender3D1 = Bender3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "Bender3D1_1",
+							Source = "Output",
+						},
+						Axis = Input { Value = 0, },
+						Angle = Input { Value = -90, },
+						Center = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 52.192, 77.3606 } },
+				},
+				Merge3D1_1 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Translation"] = Input { Value = 0, },
+						SceneInput1 = Input {
+							SourceOp = "Bender3D1",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "DirectionalLight1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 208.518, 77.3606 } },
+				},
+				Transform1 = Transform {
+					CtrlWShown = false,
+					Inputs = {
+						Input = Input {
+							SourceOp = "Renderer3D1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 524, 77.3606 } },
+				},
+				Renderer3D1_1 = Renderer3D {
+					CustomData = {
+						ToolVersion = 2,
+					},
+					Inputs = {
+						GlobalOut = Input { Value = 691, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						SceneInput = Input {
+							SourceOp = "Merge3D1_1",
+							Source = "Output",
+						},
+						RendererType = Input { Value = FuID { "RendererOpenGL" }, },
+						["RendererOpenGL.AntiAliasing.Nest"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.HighQuality.Enable"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Nest"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.Rate"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.HighQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.Rate"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.HighQuality.SampleCount"] = Input { Value = 3, },
+						["RendererOpenGL.AccumQuality"] = Input { Value = 32, },
+						["RendererOpenGL.LightingEnabled"] = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 377.099, 77.3606 } },
+					SubInputsData = {
+						RendererOpenGL = {
+							Version = 1
+						}
+					}
+				},
+				Displace3D1_1 = Displace3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "ImagePlane3D1_1",
+							Source = "Output",
+						},
+						Scale = Input { Value = 0.535, },
+						Input = Input {
+							SourceOp = "FastNoise1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -257.235, 77.3606 } },
+				},
+				DirectionalLight1_1 = LightDirectional {
+					CtrlWShown = false,
+					CustomData = {
+						Settings = {
+							[2] = {
+								Tools = ordered() {
+									DirectionalLight1 = LightDirectional {
+										Inputs = {
+											["Transform3DOp.Rotate.X"] = Input { Value = 2.6 },
+											["ShadowLightInputs3D.ShadowMapSize"] = Input { Value = 2048 },
+											["Transform3DOp.Translation"] = Input { Value = 0 },
+											["Transform3DOp.Rotate.Y"] = Input { Value = 114.8 },
+											["ShadowLightInputs3D.SoftnessType"] = Input { Value = FuID { "Constant" } },
+											["ShadowLightInputs3D.ConstantSoftness"] = Input { Value = 0.0598 }
+										},
+										CtrlWZoom = false,
+										ViewInfo = OperatorInfo { Pos = { 1161.64, 15.7327 } },
+										CustomData = {
+										}
+									}
+								}
+							}
+						}
+					},
+					Inputs = {
+						["Transform3DOp.Translation"] = Input { Value = 0, },
+						["Transform3DOp.Rotate.Y"] = Input { Value = 28.7, },
+						["ShadowLightInputs3D.ShadowMapSize"] = Input { Value = 2048, },
+						["ShadowLightInputs3D.SoftnessType"] = Input { Value = FuID { "Constant" }, },
+						["ShadowLightInputs3D.ConstantSoftness"] = Input { Value = 0.0598, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 207.575, 8.15458 } },
+				},
+				ImagePlane3D1_1 = ImagePlane3D {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Scale.X"] = Input { Value = 1.851, },
+						["SurfacePlaneInputs.SubdivisionWidth"] = Input { Value = 100, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 1, },
+						MaterialInput = Input {
+							SourceOp = "Transform2",
+							Source = "Output",
+						},
+						["MtlStdInputs.Specular.Nest"] = Input { Value = 1, },
+						["MtlStdInputs.Specular.Intensity"] = Input { Value = 0.063, },
+						["MtlStdInputs.Specular.Exponent"] = Input { Value = 20.5, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -391.096, 77.3606 } },
+				},
+				Background1 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						GlobalOut = Input { Value = 691, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Gradient" }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.756, 0.756, 0.756, 1 },
+									[1] = { 0.165, 0.165, 0.165, 0 }
+								}
+							},
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -395.416, 25.2726 } },
+				},
+				Transform2 = Transform {
+					CtrlWShown = false,
+					Inputs = {
+						FlipHoriz = Input { Expression = "Transform1.FlipHoriz", }
+					},
+					ViewInfo = OperatorInfo { Pos = { -524.404, 77.3606 } },
+				}
+			},
+		}
+	}
+}

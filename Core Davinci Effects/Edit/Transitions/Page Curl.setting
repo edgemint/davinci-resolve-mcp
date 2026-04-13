@@ -1,0 +1,289 @@
+{
+	Tools = ordered() {
+		PageCurl = GroupOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "Merge2",
+					Source = "Background",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "Camera3D1_FG_CLIP",
+					Source = "ImageInput",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Transform3D2",
+					Source = "Transform3DOp.Rotate.Z",
+					Name = "Curl Angle",
+					Default = 23.5,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Bender3D2",
+					Source = "Amount",
+					Name = "Roll Amount",
+					Default = -1.25,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "Merge1",
+					Source = "Blank5",
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Merge1",
+					Source = "BlendClone",
+					Name = "Shading",
+					Default = 0.402,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Merge1",
+					Source = "Blank5",
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Shadow1",
+					Source = "Softness",
+					Name = "Shadow Softness",
+					Default = 0.05,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Shadow1",
+					Source = "Red",
+					Name = "Shadow Color",
+					ControlGroup = 8,
+					Default = 0,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Shadow1",
+					Source = "Green",
+					Name = "Shadow Color",
+					ControlGroup = 8,
+					Default = 0,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Shadow1",
+					Source = "Blue",
+					Name = "Shadow Color",
+					ControlGroup = 8,
+					Default = 0,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "Shadow1",
+					Source = "Blend",
+					Name = "Shadow Blend",
+					Default = 1,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge2",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Merge2 = Merge {
+					Inputs = {
+						Foreground = Input {
+							SourceOp = "Shadow1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 857.404, 336.582 } },
+				},
+				Camera3D1_FG_CLIP = Camera3D {
+					NameSet = true,
+					Inputs = {
+						["Transform3DOp.Translate.Z"] = Input { Value = 5, },
+						AoV = Input { Value = 19.26427, },
+						FLength = Input { Value = 34.9999968656308, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" }, },
+						ApertureW = Input { Value = 0.831496062992126, },
+						ApertureH = Input { Value = 0.467716535433071, },
+						IDepth = Input { Value = 4.6, },
+						["SurfacePlaneInputs.SubdivisionWidth"] = Input { Value = 100, },
+						["SurfacePlaneInputs.Lighting.Nest"] = Input { Value = 1, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 2, },
+						["MtlStdInputs.Specular.Nest"] = Input { Value = 1, },
+						["MtlStdInputs.Specular.Intensity"] = Input { Value = 0, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 2, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 133.85, 93.2263 } },
+				},
+				Transform3D2 = Transform3D {
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "Camera3D1_FG_CLIP",
+							Source = "Output",
+						},
+						["Transform3DOp.Rotate.Z"] = Input { Value = 23.5, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 264.266, 93.2263 } },
+				},
+				Bender3D2 = Bender3D {
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "Transform3D2",
+							Source = "Output",
+						},
+						Amount = Input { Value = -1.25, },
+						Axis = Input { Value = 0, },
+						Angle = Input { Value = -90, },
+						Center = Input { Value = 1, },
+						RangeMax = Input {
+							SourceOp = "AnimCurves6",
+							Source = "Value",
+						},
+						Group = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 401.064, 93.2263 } },
+					UserControls = ordered() { Min = { INP_Integer = false, LINKID_DataType = "Number", ICS_ControlPage = "Controls", INPID_InputControl = "ScrewControl", ICD_Center = 0, LINKS_Name = "Min", }, Max = { INP_Integer = false, LINKID_DataType = "Number", ICS_ControlPage = "Controls", INPID_InputControl = "ScrewControl", ICD_Center = 0, LINKS_Name = "Max", } }
+				},
+				AnimCurves6 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Cubic" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves6Lookup",
+							Source = "Value",
+						},
+						Invert = Input { Value = 1, }
+					},
+				},
+				AnimCurves6Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Transform3D2_1 = Transform3D {
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "Bender3D2",
+							Source = "Output",
+						},
+						["Transform3DOp.Rotate.Z"] = Input {
+							Value = -23.5,
+							Expression = "Transform3D2.Transform3DOp.Rotate.Z*-1",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 528.379, 93.2263 } },
+				},
+				DirectionalLight1 = LightDirectional {
+					Inputs = {
+						["ShadowLightInputs3D.ShadowsEnabled"] = Input { Value = 1, },
+						["ShadowLightInputs3D.ShadowMapSize"] = Input { Value = 2048, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 411.854, 163.931 } },
+				},
+				Merge3D1 = Merge3D {
+					Inputs = {
+						SceneInput1 = Input {
+							SourceOp = "Transform3D2_1",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "DirectionalLight1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 527.202, 163.931 } },
+				},
+				Renderer3D1 = Renderer3D {
+					CustomData = { ToolVersion = 2, },
+					Inputs = {
+						Quality = Input { Value = 10, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						SceneInput = Input {
+							SourceOp = "Merge3D1",
+							Source = "Output",
+						},
+						CameraSelector = Input { Value = FuID { "Camera3D1_FG_CLIP" }, },
+						RendererType = Input { Value = FuID { "RendererOpenGL" }, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.HighQuality.Enable"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.Rate"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.HighQuality.SampleCount"] = Input { Value = 3, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.Rate"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.HighQuality.SampleCount"] = Input { Value = 3, },
+						["RendererOpenGL.AccumQuality"] = Input { Value = 32, },
+						["RendererOpenGL.LightingEnabled"] = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 725.557, 163.931 } },
+					SubInputsData = {
+						RendererOpenGL = {
+							Version = 1
+						}
+					}
+				},
+				Renderer3D1_1 = Renderer3D {
+					CustomData = { ToolVersion = 2, },
+					Inputs = {
+						Quality = Input { Value = 10, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						SceneInput = Input {
+							SourceOp = "Merge3D1",
+							Source = "Output",
+						},
+						CameraSelector = Input { Value = FuID { "Camera3D1_FG_CLIP" }, },
+						RendererType = Input { Value = FuID { "RendererOpenGL" }, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.HighQuality.Enable"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.Rate"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.HighQuality.SampleCount"] = Input { Value = 3, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.Rate"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.HighQuality.SampleCount"] = Input { Value = 3, },
+						["RendererOpenGL.AccumQuality"] = Input { Value = 32, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 725.557, 218.483 } },
+					SubInputsData = {
+						RendererOpenGL = {
+							Version = 1
+						}
+					}
+				},
+				Merge1 = Merge {
+					Inputs = {
+						Blend = Input { Value = 0.402, },
+						Background = Input {
+							SourceOp = "Renderer3D1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Renderer3D1_1",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Lighten" }, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 854.679, 218.483 } },
+				},
+				Shadow1 = Shadow {
+					CtrlWZoom = false,
+					Inputs = {
+						Softness = Input { Value = 0.05, },
+						Input = Input {
+							SourceOp = "Merge1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 854.679, 254.986 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "PageCurl"
+}

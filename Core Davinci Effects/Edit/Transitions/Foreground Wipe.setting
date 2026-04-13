@@ -1,0 +1,288 @@
+{
+	Tools = ordered() {
+		ForegroundWipe = GroupOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter2",
+					Source = "Input",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "PipeRouter1",
+					Source = "Input",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Dissolve",
+					Source = "DFTWipe.InvertWipe",
+					Default = 0,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Shadow",
+					Source = "Softness",
+					Default = 0.05,
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Dissolve_1",
+					Source = "DFTWipe.BorderWidth",
+					Default = 0.3,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "Curve",
+				},
+				Input4 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "EaseIn",
+					Width = 0.5,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "EaseOut",
+					Width = 0.5,
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				PipeRouter2 = PipeRouter {
+					ViewInfo = PipeRouterInfo { Pos = { 589.333, 50 } },
+				},
+				PipeRouter1 = PipeRouter {
+					ViewInfo = PipeRouterInfo { Pos = { 605, -148.5 } },
+				},
+				NULL = Transform {
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, -148.5 } },
+				},
+				Grad = Background {
+					NameSet = true,
+					Inputs = {
+						GlobalIn = Input { Value = 1000, },
+						GlobalOut = Input { Value = 1099, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Gradient" }, },
+						Start = Input { Value = { -0.00162705149971705, 0.0688463583200425 }, },
+						End = Input { Value = { 1.06593095642332, 0.6632110579479 }, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1106.34, 97.6042 } },
+				},
+				Dissolve_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTWipe"
+					},
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = FuID { "DFTWipe" }, },
+						Mix = Input {
+							SourceOp = "AnimCurves2",
+							Source = "Value",
+						},
+						Background = Input {
+							SourceOp = "Black",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Black",
+							Source = "Output",
+						},
+						["DFTWipe.InvertWipe"] = Input { Expression = "Dissolve.DFTWipe.InvertWipe", },
+						["DFTWipe.Softness"] = Input { Value = 0, },
+						["DFTWipe.Border"] = Input { Value = 1, },
+						["DFTWipe.BorderWidth"] = Input { Value = 0.3, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1106.44, -22.5958 } },
+				},
+				AnimCurves2 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Cubic" }, },
+						EaseOut = Input { Value = FuID { "Cubic" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves2Lookup",
+							Source = "Value",
+						},
+					},
+				},
+				AnimCurves2Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				Black = Background {
+					NameSet = true,
+					Inputs = {
+						GlobalIn = Input { Value = 1000, },
+						GlobalOut = Input { Value = 1099, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1106.44, -80.097 } },
+				},
+				Dissolve = Dissolve {
+					Transitions = {
+						[0] = "DFTWipe"
+					},
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = FuID { "DFTWipe" }, },
+						Mix = Input {
+							SourceOp = "AnimCurves1",
+							Source = "Value",
+						},
+						Background = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "NULL",
+							Source = "Output",
+						},
+						Map = Input {
+							SourceOp = "Grad",
+							Source = "Output",
+						},
+						["DFTWipe.Softness"] = Input { Value = 0.15, },
+						["DFTWipe.BorderWidth"] = Input { Value = 0.26, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1106.34, 52.5392 } },
+				},
+				AnimCurves1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Cubic" }, },
+						EaseOut = Input { Value = FuID { "Cubic" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves1Lookup",
+							Source = "Value",
+						},
+					},
+				},
+				AnimCurves1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				ColorCorrector = ColorCorrector {
+					NameSet = true,
+					Inputs = {
+						WheelTintAngle1 = Input { Value = -0.3237918088252, },
+						WheelTintLength1 = Input { Value = 0.0012, },
+						MasterRGBGain = Input { Value = 1.44, },
+						ColorRanges = Input {
+							Value = ColorCurves {
+								Curves = {
+									{
+										Points = {
+											{ 0, 1 },
+											{ 0.4, 0.2 },
+											{ 0.6, 0 },
+											{ 1, 0 }
+										}
+									},
+									{
+										Points = {
+											{ 0, 0 },
+											{ 0.4, 0 },
+											{ 0.6, 0.2 },
+											{ 1, 1 }
+										}
+									}
+								}
+							},
+						},
+						HistogramIgnoreTransparent = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "Transform",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1267.09, -83.6442 } },
+				},
+				Shadow = Shadow {
+					NameSet = true,
+					Inputs = {
+						Softness = Input { Value = 0.05, },
+						Input = Input {
+							SourceOp = "ChannelBooleans",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1267.09, 15.9112 } },
+				},
+				Merge = Merge {
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						MaskChannel = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "Dissolve",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shadow",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1267.09, 52.5392 } },
+				},
+				ChannelBooleans = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Dissolve_1",
+							Source = "Output",
+						},
+						MultiplyByMask = Input { Value = 1, },
+						MaskChannel = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "ColorCorrector",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1267.09, -22.5958 } },
+				},
+				Transform = Transform {
+					NameSet = true,
+					Inputs = {
+						MaskChannel = Input { Value = 1, },
+						Size = Input { Value = 1.25, },
+						Input = Input {
+							SourceOp = "NULL",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1267.09, -130.604 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "ForegroundWipe"
+}

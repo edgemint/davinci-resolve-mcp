@@ -1,0 +1,294 @@
+{
+	Tools = ordered() {
+		VintageTexture = GroupOperator {
+			Inputs = ordered() {
+				Input9 = InstanceInput {
+					SourceOp = "Path1",
+					Source = "Size",
+					Name = "Animation Scale",
+					Default = 1,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Transform1",
+					Source = "Size",
+					Name = "Texture Size",
+					MinScale = 0.75,
+					Default = 1,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Transform1",
+					Source = "Angle",
+					Name = "Texture Angle",
+					Default = 0,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Transform1",
+					Source = "FlipHoriz",
+					ControlGroup = 7,
+					Default = 0,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Transform1",
+					Source = "FlipVert",
+					ControlGroup = 7,
+					Default = 0,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "ChannelBooleans1",
+					Source = "WhitePaper",
+					Name = "Dark Texture",
+					Page = "Controls",
+					Default = 1,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Shake1",
+					Source = "Smoothness",
+					Name = "Flicker Smoothness",
+					Default = 1.38,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Shake1",
+					Source = "XMinimum",
+					Name = "Flicker Minimum",
+					MinScale = -0.5,
+					MaxScale = 0,
+					Default = -0.01,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Shake1",
+					Source = "XMaximum",
+					Name = "Flicker Maximum",
+					MaxScale = 0.5,
+					Default = 0.01,
+				}
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "Shake1",
+					Source = "Position",
+				},
+				MainOutput1 = InstanceOutput {
+					SourceOp = "BrightnessContrast1",
+					Source = "Output",
+				},
+				Output2 = InstanceOutput {
+					SourceOp = "Shake1",
+					Source = "Y",
+				},
+				Output3 = InstanceOutput {
+					SourceOp = "Path1",
+					Source = "Heading",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { -4.66628, 49.5 },
+				Flags = {
+					AllowPan = false,
+					ConnectedSnap = true,
+					AutoSnap = true,
+					RemoveRouters = true
+				},
+				Size = { 693.669, 182.121, 313.501, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				Loader1 = Loader {
+					Clips = {
+						Clip {
+							ID = "Clip1",
+							Filename = "setting:/Paper_Texture_01.jpg",
+							FormatID = "JpegFormat",
+							StartFrame = 1,
+							LengthSetManually = true,
+							TrimIn = 0,
+							TrimOut = 0,
+							ExtendFirst = 0,
+							ExtendLast = 0,
+							Loop = 0,
+							AspectMode = 0,
+							Depth = 0,
+							TimeCode = 0,
+							GlobalStart = 0,
+							GlobalEnd = 0
+						}
+					},
+					CtrlWShown = false,
+					Inputs = {
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -251.002, 8.75758 } },
+				},
+				BrightnessContrast1 = BrightnessContrast {
+					CtrlWShown = false,
+					Inputs = {
+						Brightness = Input {
+							SourceOp = "Shake1",
+							Source = "X",
+						},
+						Input = Input {
+							SourceOp = "Transform1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 346, 61.4997 } },
+				},
+				Shake1 = Shake {
+					Faster = true,
+					CtrlWZoom = false,
+					Inputs = {
+						Smoothness = Input { Value = 1.38, },
+						XMinimum = Input { Value = -0.01, },
+						XMaximum = Input { Value = 0.01, }
+					},
+				},
+				Transform1 = Transform {
+					CtrlWShown = false,
+					Inputs = {
+						Center = Input {
+							SourceOp = "Path1",
+							Source = "Position",
+						},
+						Edges = Input { Value = 3, },
+						Input = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 223.346, 61.4997 } },
+				},
+				Path1 = PolyPath {
+					DrawMode = "InsertAndModify",
+					CtrlWZoom = false,
+					Inputs = {
+						Displacement = Input {
+							SourceOp = "Path1Displacement",
+							Source = "Value",
+						},
+						PolyLine = Input {
+							Value = Polyline {
+								Points = {
+									{ Linear = true, LockY = true, X = -0.00548599999999999, Y = 0.010693, RX = 0.0107716458738991, RY = 0.0220445008223954 },
+									{ Linear = true, LockY = true, X = 0.0268289376216972, Y = 0.0768265024671861, LX = -0.0107716458738991, LY = -0.0220445008223954, RX = -0.0113176458738991, RY = -0.0343299443634954 },
+									{ Linear = true, LockY = true, X = -0.00712400000000002, Y = -0.0261633306233, LX = 0.0113176458738991, LY = 0.0343299443634954, RX = 0.00219055887150001, RY = -0.00165588979223334 },
+									{ Linear = true, LockY = true, X = -0.000552323385499986, Y = -0.031131, LX = -0.00219055887150001, LY = 0.00165588979223334, RX = -0.0448248048608048, RY = 0.0642810824415379 },
+									{ Linear = true, LockY = true, X = -0.135026737967914, Y = 0.161712247324614, LX = 0.0448248048608048, LY = -0.0642810824415379, RX = 0.0400169340463458, RY = -0.0404742943646909 },
+									{ Linear = true, LockY = true, X = -0.014975935828877, Y = 0.0402893642305407, LX = -0.0400169340463458, LY = 0.0404742943646909, RX = 0.0299919786096257, RY = -0.0914297880768469 },
+									{ Linear = true, LockY = true, X = 0.075, Y = -0.234, LX = -0.0299919786096257, LY = 0.0914297880768469 }
+								}
+							},
+						}
+					},
+				},
+				Path1Displacement = BezierSpline {
+					SplineColor = { Red = 255, Green = 0, Blue = 255 },
+					CtrlWZoom = false,
+					KeyFrames = {
+						[0] = { 0, RH = { 2, 0 }, Flags = { LockedY = true, Loop = true } },
+						[6] = { 0.0831891972741297, LH = { 6, 0.0554594648494198 }, RH = { 8, 0.0831891972741297 }, Flags = { StepIn = true, LockedY = true } },
+						[12] = { 0.20574951870462, LH = { 12, 0.164896078227793 }, RH = { 14, 0.20574951870462 }, Flags = { StepIn = true, LockedY = true } },
+						[18] = { 0.215060029476626, LH = { 18, 0.211956525885958 }, RH = { 20, 0.215060029476626 }, Flags = { StepIn = true, LockedY = true } },
+						[24] = { 0.480767503476953, LH = { 24, 0.392198345476849 }, RH = { 26, 0.480767503476953 }, Flags = { StepIn = true, LockedY = true } },
+						[30] = { 0.67374801399859, LH = { 30, 0.609421177158044 }, RH = { 32.3333333333333, 0.67374801399859 }, Flags = { StepIn = true, LockedY = true } },
+						[37] = { 1, LH = { 37, 0.89124933799953 }, Flags = { StepIn = true, LockedY = true, Loop = true } }
+					}
+				},
+				ChannelBooleans1 = ChannelBoolean {
+					CtrlWShown = false,
+					Inputs = {
+						Blend = Input { Expression = "WhitePaper", },
+						Operation = Input { Value = 10, },
+						ToAlpha = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "Switch1",
+							Source = "Output",
+						},
+						WhitePaper = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 105.514, 61.4997 } },
+					UserControls = ordered() {
+						WhitePaper = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "White Texture",
+						}
+					}
+				},
+				Letterbox1 = Letterbox {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Mode = Input { Value = 1, },
+						HiQOnly = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "Loader1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -126.574, 8.75758 } },
+				},
+				Letterbox1_1 = Letterbox {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						HiQOnly = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "Loader1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -127.334, 61.4997 } },
+				},
+				Switch1 = Switch {
+					CtrlWShown = false,
+					Inputs = {
+						Source = Input { Expression = "iif(Background2.ASPECT >=1,0,1)", },
+						Name0 = Input { Value = "Portrait", },
+						Input0 = Input {
+							SourceOp = "Letterbox1_1",
+							Source = "Output",
+						},
+						Name1 = Input { Value = "Landscape", },
+						Input1 = Input {
+							SourceOp = "Letterbox1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -17.3337, 61.4997 } },
+					Colors = { TileColor = { R = 0.623529411764706, G = 0.776470588235294, B = 0.0823529411764706 }, }
+				},
+				Background2 = Background {
+					Inputs = {
+						GlobalOut = Input { Value = 119, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						ASPECT = Input { Expression = "Width/Height", }
+					},
+					ViewInfo = OperatorInfo { Pos = { -18.0002, 91.8027 } },
+					UserControls = ordered() {
+						ASPECT = {
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Image",
+							INPID_InputControl = "SliderControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "ASPECT",
+						}
+					}
+				}
+			},
+		}
+	},
+	ActiveTool = "VintageTexture"
+}

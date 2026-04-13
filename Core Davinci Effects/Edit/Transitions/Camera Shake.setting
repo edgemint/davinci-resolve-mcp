@@ -1,0 +1,367 @@
+{
+	Tools = ordered() {
+		CameraShake = GroupOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "Dissolve_1",
+					Source = "Background",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "Dissolve_1",
+					Source = "Foreground",
+				},
+				Input8 = InstanceInput {
+					SourceOp = "CameraShake1_1_1",
+					Source = "Speed",
+					Name = "Shake Speed",
+					Default = 0.874,
+				},
+				Input15 = InstanceInput {
+					SourceOp = "AnimCurves8_1",
+					Source = "Scale",
+					Name = "Shake Strength",
+					Default = 1,
+				},
+				Input1 = InstanceInput {
+					SourceOp = "BrightnessContrast_1",
+					Source = "Contrast",
+					Default = 0.21,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "BrightnessContrast_1",
+					Source = "Brightness",
+					Default = 0.06,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "BrightnessContrast_1",
+					Source = "Saturation",
+					Default = 1,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Shake1_1_1",
+					Source = "XMinimum",
+					Name = "X Refraction Min",
+					Default = -0.137,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Shake1_1_1",
+					Source = "XMaximum",
+					Name = "X Refraction Max",
+					Default = 0.037,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Shake3_1",
+					Source = "XMinimum",
+					Name = "Y Refraction Min",
+					Default = -0.006,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Shake3_1",
+					Source = "XMaximum",
+					Name = "Y Refraction Max",
+					Default = 0.038,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "CameraShake1_1_1",
+					Source = "Blank5",
+				},
+				Input10 = InstanceInput {
+					SourceOp = "CameraShake1_1_1",
+					Source = "MotionBlur",
+					Default = 0,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "CameraShake1_1_1",
+					Source = "Quality",
+					Default = 2,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "CameraShake1_1_1",
+					Source = "ShutterAngle",
+					Default = 180,
+				},
+				Input13 = InstanceInput {
+					SourceOp = "CameraShake1_1_1",
+					Source = "CenterBias",
+					Default = 0,
+				},
+				Input14 = InstanceInput {
+					SourceOp = "CameraShake1_1_1",
+					Source = "SampleSpread",
+					Default = 1,
+				},
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "Shake1_1_1",
+					Source = "Position",
+				},
+				Output2 = InstanceOutput {
+					SourceOp = "Shake1_1_1",
+					Source = "Y",
+				},
+				Output3 = InstanceOutput {
+					SourceOp = "Shake3_1",
+					Source = "Position",
+				},
+				Output4 = InstanceOutput {
+					SourceOp = "Shake3_1",
+					Source = "Y",
+				},
+				MainOutput1 = InstanceOutput {
+					SourceOp = "CameraShake1_1_1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Dissolve_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Mix = Input {
+							SourceOp = "AnimCurves6_1",
+							Source = "Value",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 599.563, 55.5035 } },
+				},
+				AnimCurves6_1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Custom" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurvesonDissolveLookup_1",
+							Source = "Value",
+						},
+					},
+				},
+				AnimCurvesonDissolveLookup_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.590017825311943, 0.0296296296296295 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.49554367201426, 0.955555555555556 } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				BrightnessContrast_1 = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input {
+							SourceOp = "AnimCurves7_1",
+							Source = "Value",
+						},
+						Contrast = Input { Value = 0.21, },
+						Brightness = Input { Value = 0.06, },
+						Input = Input {
+							SourceOp = "Dissolve_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 745.064, 55.5035 } },
+				},
+				AnimCurves7_1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Quad" }, },
+						EaseOut = Input { Value = FuID { "Quad" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurvesonBrightnessContrastLookup_1",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+					},
+				},
+				AnimCurvesonBrightnessContrastLookup_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				FastNoise_1 = FastNoise {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 3840, },
+						Height = Input { Value = 2160, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Contrast = Input { Value = 2.27, },
+						SeetheRate = Input { Value = 0.378, },
+						Color1Alpha = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 790.87, 109.497 } },
+				},
+				MosaicBlur_1 = ofx.com.blackmagicdesign.resolvefx.MosaicBlur {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Source = Input {
+							SourceOp = "FastNoise_1",
+							Source = "Output",
+						},
+						PixelFrequency = Input { Value = 4, },
+						SmoothStrength = Input { Value = 0, },
+						cellShape = Input { Value = FuID { "CellShapeSquare" }, },
+						aliasing = Input { Value = 1, },
+						advancedControlsGroup = Input { Value = 0, },
+						xOffset = Input { Value = 0, },
+						yOffset = Input { Value = 0, },
+						aspect = Input { Value = 1, },
+						BorderType = Input { Value = FuID { "BORDER_TYPE_CONSTANT" }, },
+						isAntiAlias = Input { Value = 0, },
+						isBlurAlpha = Input { Value = 1, },
+						isBinarizeAlpha = Input { Value = 0, },
+						isLegacyMethod = Input { Value = 1, },
+						BlendAmount = Input { Value = 0, },
+						blendGroup = Input { Value = 0, },
+						blendIn = Input { Value = 1, },
+						blend = Input { Value = 0, },
+						ignoreContentShape = Input { Value = 0, },
+						legacyIsProcessRGBOnly = Input { Value = 0, },
+						refreshTrigger = Input { Value = 1, },
+						resolvefxVersion = Input { Value = "3.0", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 901.768, 109.497 } },
+				},
+				Displace_1 = Displace {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input {
+							SourceOp = "AnimCurves5_1",
+							Source = "Value",
+						},
+						ProcessGreen = Input { Value = 0, },
+						ProcessBlue = Input { Value = 0, },
+						Type = Input { Value = 1, },
+						XRefraction = Input {
+							SourceOp = "Shake1_1_1",
+							Source = "X",
+						},
+						YRefraction = Input {
+							SourceOp = "Shake3_1",
+							Source = "X",
+						},
+						Input = Input {
+							SourceOp = "BrightnessContrast_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "MosaicBlur_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 901.768, 55.5035 } },
+				},
+				AnimCurves5_1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Custom" }, },
+						EaseIn = Input { Value = FuID { "Quad" }, },
+						EaseOut = Input { Value = FuID { "Quad" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurvesonDisplaceLookup_1",
+							Source = "Value",
+						},
+					},
+				},
+				AnimCurvesonDisplaceLookup_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.0440945454247283, 0.221317757942058 }, Flags = { Linear = true } },
+							[0.132283636274185] = { 0.663953273826175, LH = { 0.0881890908494567, 0.442635515884117 }, RH = { 0.166752096078423, 0.482175343462342 }, Flags = { Linear = true } },
+							[0.235689015686898] = { 0.118619482734675, LH = { 0.20122055588266, 0.300397413098508 }, RH = { 0.239366519831425, 0.386825216768355 }, Flags = { Linear = true } },
+							[0.246721528120478] = { 0.923236684835716, LH = { 0.243044023975951, 0.655030950802036 }, RH = { 0.281769201770278, 0.663566283634545 }, Flags = { Linear = true } },
+							[0.351864549069878] = { 0.144225481232202, LH = { 0.316816875420078, 0.403895882433373 }, RH = { 0.357857110456586, 0.415954509307358 }, Flags = { Linear = true } },
+							[0.369842233230001] = { 0.959412565457671, LH = { 0.363849671843293, 0.687683537382515 }, RH = { 0.408399763259979, 0.651837223024368 }, Flags = { Linear = true } },
+							[0.485514823319935] = { 0.0366865381577626, LH = { 0.446957293289957, 0.344261880591065 }, RH = { 0.495708876038717, 0.296162733660214 }, Flags = { Linear = true } },
+							[0.516096981476282] = { 0.815115124665118, LH = { 0.5059029287575, 0.555638929162666 }, RH = { 0.547875690987416, 0.548706024611558 }, Flags = { Linear = true } },
+							[0.611433110009683] = { 0.0158878245044378, LH = { 0.579654400498549, 0.282296924557998 }, RH = { 0.62502873781465, 0.0254581031978447 }, Flags = { Linear = true } },
+							[0.652219993424585] = { 0.764692566498007, LH = { 0.638624365619617, 0.515090985833484 }, RH = { 0.676594800965014, 0.779030013126926 } },
+							[0.724795076715664] = { 0.00506963070428145, LH = { 0.700603382285304, 0.258277275968857 }, RH = { 0.767274101215879, 0.0671588102879584 } },
+							[0.852232150216308] = { 0.206151984270127, LH = { 0.809753125716094, 0.146531940488919 }, RH = { 0.868310268770015, 0.44952949665952 } },
+							[0.900466505877429] = { 0.921469706623491, LH = { 0.884101529143405, 0.867687788201455 }, RH = { 0.933644337251619, 0.729096380339261 } },
+							[1] = { 0, LH = { 0.965415409428155, 0.00141410377393967 } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				Shake1_1_1 = Shake {
+					Faster = true,
+					CtrlWZoom = false,
+					Inputs = {
+						RandomSeed = Input { Value = 18060, },
+						Smoothness = Input { Value = 2.95, },
+						XMinimum = Input { Value = -0.137, },
+						XMaximum = Input { Value = 0.037, },
+					},
+				},
+				Shake3_1 = Shake {
+					Faster = true,
+					CtrlWZoom = false,
+					Inputs = {
+						Smoothness = Input { Value = 0.79, },
+						XMinimum = Input { Value = -0.006, },
+						XMaximum = Input { Value = 0.038, },
+					},
+				},
+				CameraShake1_1_1 = CameraShake {
+					CtrlWShown = false,
+					Inputs = {
+						RotationDeviation = Input { Value = 0.063, },
+						Randomness = Input { Value = 0.953, },
+						OverallStrength = Input {
+							SourceOp = "AnimCurves8_1",
+							Source = "Value",
+						},
+						Speed = Input { Value = 0.874, },
+						Edges = Input { Value = 3, },
+						Input = Input {
+							SourceOp = "Displace_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1050.44, 55.5035 } },
+				},
+				AnimCurves8_1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves8Lookup_1",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+					},
+				},
+				AnimCurves8Lookup_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				}
+			},
+		}
+	},
+	ActiveTool = "CameraShake_WIP"
+}

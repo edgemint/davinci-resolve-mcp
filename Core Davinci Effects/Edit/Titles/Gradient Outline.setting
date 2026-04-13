@@ -1,0 +1,49 @@
+{
+	Tools = ordered() {
+		Template = TextPlus {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				GlobalOut = Input { Value = 99, },
+				Width = Input { Value = 1920, },
+				Height = Input { Value = 1080, },
+				UseFrameFormatSettings = Input { Value = 1, },
+				["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+				LayoutRotation = Input { Value = 1, },
+				TransformRotation = Input { Value = 1, },
+				Name1 = Input { Value = "Gradient", },
+				Name2 = Input { Value = "Outline", },
+				Enabled2 = Input { Value = 1, },
+				Type1 = Input { Value = 2, },
+				ShadingGradient1 = Input {
+					Value = Gradient {
+						Colors = {
+							[0.109452736318408] = { 0, 0, 0, 0 },
+							[0.855721393034826] = { 1, 1, 1, 1 }
+						}
+					},
+				},
+				ShadingMappingLevel1 = Input { Value = 2, },
+				Softness1 = Input { Value = 1, },
+				StyledText = Input { Value = "Sample", },
+				Font = Input { Value = "Open Sans", },
+				Style = Input { Value = "Extrabold", },
+				VerticalJustificationNew = Input { Value = 3, },
+				HorizontalJustificationNew = Input { Value = 3, },
+				Thickness2 = Input { Value = 0.0142, },
+				Type2 = Input { Value = 2, },
+				ShadingGradient2 = Input {
+					Value = Gradient {
+						Colors = {
+							[0] = { 0, 0, 0, 0 },
+							[1] = { 1, 1, 1, 1 }
+						}
+					},
+				},
+				ShadingMappingAngle2 = Input { Value = 54.7, },
+				Softness2 = Input { Value = 1, }
+			},
+			ViewInfo = OperatorInfo { Pos = { 654.007, 126.806 } },
+		}
+	}
+}

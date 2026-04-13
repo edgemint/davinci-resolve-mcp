@@ -1,0 +1,1474 @@
+{
+	Tools = ordered() {
+		ComicCloudSky = GroupOperator {
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "ImagePlane3D2",
+					Source = "Transform3DOp.Scale.X",
+					Name = "Separation",
+					Default = 1.575,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Replicate3D2",
+					Source = "JitterTranslate.Y",
+					Name = "Vert Separation",
+					Default = 0.17,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "ImagePlane3D2",
+					Source = "SurfacePlaneInputs.SubdivisionWidth",
+					Name = "Number of Clouds",
+					Default = 3,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Replicate3D2",
+					Source = "RandomSeed",
+					Width = 1,
+					Default = 6,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Transform3D1",
+					Source = "Transform3DOp.Translate.X",
+					Name = "Horiz Position",
+					Page = "Controls",
+					Default = 0,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Transform3D1",
+					Source = "Transform3DOp.Translate.Y",
+					Name = "Vert Position",
+					MinScale = -0.8000000119209,
+					MaxScale = 0.3000000119209,
+					Page = "Controls",
+					Default = 0,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "ColorCorrector1",
+					Source = "Hue1",
+					Name = "Hue Offest",
+					Page = "Controls",
+					Default = 0,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Calculation1",
+					Source = "SecondOperand",
+					Name = "Animation Speed",
+					Default = 1,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "ColorCorrector1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 667.379, 218.264 },
+				Flags = {
+					AllowPan = false,
+					ConnectedSnap = true,
+					AutoSnap = true,
+					RemoveRouters = true
+				},
+				Size = { 1972.31, 288.044, 986.155, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				Transform3D1 = Transform3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "Camera3D1_1",
+							Source = "Output",
+						},
+						["Transform3DOp.Translate.Z"] = Input {
+							SourceOp = "AnimCurves1_1",
+							Source = "Value",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 354.14, 230.598 } },
+					UserControls = ordered() {
+						["Transform3DOp.Translate.X"] = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 2,
+							INP_Default = 0,
+							INP_MinScale = -2,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICD_Center = 0,
+							LINKS_Name = "X Offset",
+						},
+						["Transform3DOp.Translate.Y"] = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 0.300000011920929,
+							INP_Default = 0,
+							INP_MinScale = -0.800000011920929,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICD_Center = 0,
+							LINKS_Name = "Y Offset",
+						}
+					}
+				},
+				AnimCurves1_1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves1Lookup_1",
+							Source = "Value",
+						},
+						Scale = Input {
+							SourceOp = "Calculation1",
+							Source = "Result",
+						}
+					},
+				},
+				AnimCurves1Lookup_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Calculation1 = Calculation {
+					CtrlWZoom = false,
+					Inputs = {
+						FirstOperand = Input { Value = -0.3, },
+						Operator = Input { Value = 2, },
+						SecondOperand = Input { Value = 1, }
+					},
+				},
+				Background1 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Vertical" }, },
+						TopLeftRed = Input { Value = 0.1705294725925, },
+						TopLeftGreen = Input { Value = 0.6137059091735, },
+						TopLeftBlue = Input { Value = 0.8352941274643, },
+						BottomLeftRed = Input { Value = 0.665127, },
+						BottomLeftGreen = Input { Value = 0.783709, },
+						BottomLeftBlue = Input { Value = 0.843, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0.00995024875621891] = { 0.681912, 0.831747648, 0.984, 1 },
+									[1] = { 0.867, 0.867, 1, 1 }
+								}
+							},
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 48.511, 230.598 } },
+				},
+				Camera3D1_1 = Camera3D {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Translate.Y"] = Input { Value = 0.273, },
+						["Transform3DOp.Translate.Z"] = Input { Value = 2.03, },
+						AoV = Input { Value = 27.8027015390182, },
+						FLength = Input { Value = 24, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" }, },
+						ApertureW = Input { Value = 0.831496062992126, },
+						ApertureH = Input { Value = 0.467716535433071, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 2, },
+						ImageInput = Input {
+							SourceOp = "Background1",
+							Source = "Output",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 3, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 202.201, 230.598 } },
+				},
+				Merge3D2 = Merge3D {
+					Inputs = {
+						SceneInput1 = Input {
+							SourceOp = "Transform3D1",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "Replicate3D2",
+							Source = "Data3D",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 563.6, 230.598 } },
+				},
+				Renderer3D1 = Renderer3D {
+					CtrlWShown = false,
+					CustomData = {
+						ToolVersion = 2
+					},
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						SceneInput = Input {
+							SourceOp = "SoftClip1",
+							Source = "Output",
+						},
+						RendererType = Input { Value = FuID { "RendererOpenGL" }, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.HighQuality.Enable"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Nest"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.Rate"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.HighQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.Rate"] = Input { Value = 3, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.HighQuality.SampleCount"] = Input { Value = 3, },
+						["RendererOpenGL.AccumQuality"] = Input { Value = 32, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 785.158, 230.598 } },
+					SubInputsData = {
+						RendererOpenGL = {
+							Version = 1
+						}
+					}
+				},
+				Replicate3D2 = Replicate3D {
+					CtrlWShown = false,
+					Inputs = {
+						Translation = Input { Value = 1, },
+						["Translate.X"] = Input { Value = -0.105, },
+						ScaleNest = Input { Value = 1, },
+						["Scale.X"] = Input { Value = 0.395, },
+						RandomSeed = Input { Value = 6, },
+						["JitterTranslate.X"] = Input { Value = 0.589, },
+						["JitterTranslate.Y"] = Input { Value = 0.072, },
+						["JitterTranslate.Z"] = Input { Value = 0.623, },
+						["JitterScale.X"] = Input { Value = 1.543, },
+						Destination = Input {
+							SourceOp = "ImagePlane3D2",
+							Source = "Output",
+						},
+						Input1 = Input {
+							SourceOp = "Merge3D1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 563.6, 60.6566 } },
+				},
+				ColorCorrector1 = ColorCorrector {
+					CtrlWShown = false,
+					Inputs = {
+						ColorRanges = Input {
+							Value = ColorCurves {
+								Curves = {
+									{
+										Points = {
+											{ 0, 1 },
+											{ 0.4, 0.2 },
+											{ 0.6, 0 },
+											{ 1, 0 }
+										}
+									},
+									{
+										Points = {
+											{ 0, 0 },
+											{ 0.4, 0 },
+											{ 0.6, 0.2 },
+											{ 1, 1 }
+										}
+									}
+								}
+							},
+						},
+						HistogramIgnoreTransparent = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "Renderer3D1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 923, 230.598 } },
+					UserControls = ordered() {
+						Hue1 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 0.5,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICD_Center = 0,
+							LINKS_Name = "Master - Hue",
+						}
+					}
+				},
+				ImagePlane3D2 = ImagePlane3D {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Rotate.X"] = Input { Value = -86.1, },
+						["Transform3DOp.Scale.X"] = Input { Value = 1.575, },
+						["SurfacePlaneInputs.SubdivisionWidth"] = Input { Value = 3, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 3, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 4, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 563.6, 8.91757 } },
+				},
+				Merge3D1 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput1 = Input {
+							SourceOp = "ImagePlane3D1_1",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "ImagePlane3D1",
+							Source = "Output",
+						},
+						SceneInput3 = Input {
+							SourceOp = "ImagePlane3D1_2",
+							Source = "Output",
+						},
+						SceneInput4 = Input {
+							SourceOp = "ImagePlane3D1_3",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 346.151, 60.6566 } },
+				},
+				ImagePlane3D1_1 = ImagePlane3D {
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input { Value = -0.0053213261624, },
+						["Transform3DOp.Translate.Y"] = Input { Value = 0.0159770718951, },
+						["Transform3DOp.Translate.Z"] = Input { Value = -0.0865705822761, },
+						["Transform3DOp.Scale.X"] = Input { Value = 1.379, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 1, },
+						MaterialInput = Input {
+							SourceOp = "sRender1_1",
+							Source = "Output",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 2, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 111.223, 60.6566 } },
+				},
+				ImagePlane3D1 = ImagePlane3D {
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input { Value = -0.0204469037556, },
+						["Transform3DOp.Translate.Z"] = Input { Value = -0.1672981449144, },
+						["Transform3DOp.Scale.X"] = Input { Value = 1.733, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 1, },
+						MaterialInput = Input {
+							SourceOp = "sRender1",
+							Source = "Output",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 2, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 108.211, 18.2316 } },
+				},
+				ImagePlane3D1_3 = ImagePlane3D {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input { Value = -0.1938329886372, },
+						["Transform3DOp.Translate.Z"] = Input { Value = 0.0938905019148, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 1, },
+						MaterialInput = Input {
+							SourceOp = "sRender1_3",
+							Source = "Output",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 2, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 101.241, 143.081 } },
+				},
+				ImagePlane3D1_2 = ImagePlane3D {
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input { Value = -0.4561634958894, },
+						["Transform3DOp.Translate.Y"] = Input { Value = 0.0323111564271, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 1, },
+						MaterialInput = Input {
+							SourceOp = "sRender1_2",
+							Source = "Output",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 2, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 99.8409, 97.6946 } },
+				},
+				sRender1_1 = sRender {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Input = Input {
+							SourceOp = "Instance_sMerge1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -16.459, 60.6566 } },
+				},
+				sRender1_2 = sRender {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Input = Input {
+							SourceOp = "Instance_sMerge1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -18.1691, 97.6946 } },
+				},
+				sRender1_3 = sRender {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Input = Input {
+							SourceOp = "Instance_sMerge1_2",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -14.369, 143.081 } },
+				},
+				sRender1 = sRender {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Input = Input {
+							SourceOp = "sMerge1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -10.889, 18.2316 } },
+				},
+				Instance_Group1_2 = GroupOperator {
+					CtrlWShown = false,
+					SourceOp = "Group1",
+					Inputs = ordered() {
+						CommentsNest = Input {
+						},
+						Input1 = InstanceInput {
+							SourceOp = "Instance_sBoolean2_2",
+							Source = "Input1",
+						},
+						Input2 = InstanceInput {
+							SourceOp = "Instance_sBoolean2_2",
+							Source = "Input2",
+						}
+					},
+					Outputs = {
+						Output1 = InstanceOutput {
+							SourceOp = "Instance_sMerge1_2",
+							Source = "Output",
+						}
+					},
+					ViewInfo = GroupInfo {
+						Pos = { -148.169, 143.081 },
+						Flags = {
+							AllowPan = false,
+							ConnectedSnap = true,
+							AutoSnap = true,
+							RemoveRouters = true
+						},
+						Size = { 423.34, 234.611, 211.67, 24.2424 },
+						Direction = "Horizontal",
+						PipeStyle = "Direct",
+						Scale = 1,
+						Offset = { 0, 0 }
+					},
+					Tools = ordered() {
+						Instance_sTransform1_4 = sTransform {
+							CtrlWShown = false,
+							SourceOp = "sTransform1_1",
+							Inputs = {
+								YSize = Input {
+									Expression = "XSize"
+								},
+								Input = Input {
+									SourceOp = "Instance_sBoolean2_2",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 43.67, 8.63407 } },
+						},
+						Instance_sBoolean1_4 = sBoolean {
+							CtrlWShown = false,
+							SourceOp = "sBoolean1_1",
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "Instance_sBoolean2_2",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "Instance_sTransform1_4",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 43.67, 37.6208 } },
+						},
+						Instance_sBoolean2_2 = sBoolean {
+							CtrlWShown = false,
+							SourceOp = "sBoolean2",
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "sJitter1_3",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "sJitter1_3",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { -149.34, 176.881 } },
+						},
+						Instance_sTransform1_5 = sTransform {
+							CtrlWShown = false,
+							SourceOp = "sTransform1",
+							Inputs = {
+								YSize = Input {
+									Expression = "XSize"
+								},
+								Input = Input {
+									SourceOp = "Instance_sBoolean2_2",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 44.51, 62.6553 } },
+						},
+						Instance_sBoolean1_5 = sBoolean {
+							CtrlWShown = false,
+							SourceOp = "sBoolean1",
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "Instance_sBoolean2_2",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "Instance_sTransform1_5",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 44.51, 103.91 } },
+						},
+						Instance_sOutline1_2 = sOutline {
+							CtrlWShown = false,
+							SourceOp = "sOutline1",
+							Inputs = {
+								Input = Input {
+									SourceOp = "Instance_sBoolean2_2",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 40.71, 176.881 } },
+						},
+						Instance_sChangeStyle1_4 = sChangeStyle {
+							CtrlWShown = false,
+							SourceOp = "sChangeStyle1",
+							Inputs = {
+								Input = Input {
+									SourceOp = "Instance_sBoolean2_2",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 42.99, 137.504 } },
+						},
+						Instance_sMerge1_2 = sMerge {
+							CtrlWShown = false,
+							SourceOp = "sMerge1",
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "Instance_sChangeStyle1_4",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "Instance_sBoolean1_5",
+									Source = "Output",
+								},
+								Input4 = Input {
+									SourceOp = "Instance_sBoolean1_4",
+									Source = "Output",
+								},
+								Input3 = Input {
+									SourceOp = "Instance_sChangeStyle1_5",
+									Source = "Output",
+								},
+								Input5 = Input {
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 148, 137.504 } },
+						},
+						Instance_sChangeStyle1_5 = sChangeStyle {
+							CtrlWShown = false,
+							SourceOp = "sChangeStyle1_1",
+							Inputs = {
+								Input = Input {
+									SourceOp = "Instance_sOutline1_2",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 148, 176.881 } },
+						}
+					},
+				},
+				Instance_Group1_1 = GroupOperator {
+					CtrlWShown = false,
+					SourceOp = "Group1",
+					Inputs = ordered() {
+						CommentsNest = Input {
+						},
+						Input1 = InstanceInput {
+							SourceOp = "Instance_sBoolean2_1",
+							Source = "Input1",
+						},
+						Input2 = InstanceInput {
+							SourceOp = "Instance_sBoolean2_1",
+							Source = "Input2",
+						}
+					},
+					Outputs = {
+						Output1 = InstanceOutput {
+							SourceOp = "Instance_sMerge1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = GroupInfo {
+						Pos = { -248.459, 97.6946 },
+						Flags = {
+							AllowPan = false,
+							ConnectedSnap = true,
+							AutoSnap = true,
+							RemoveRouters = true
+						},
+						Size = { 423.34, 234.611, 211.67, 24.2424 },
+						Direction = "Horizontal",
+						PipeStyle = "Direct",
+						Scale = 1,
+						Offset = { 0, 0 }
+					},
+					Tools = ordered() {
+						Instance_sTransform1_2 = sTransform {
+							CtrlWShown = false,
+							SourceOp = "sTransform1_1",
+							Inputs = {
+								YSize = Input {
+									Expression = "XSize"
+								},
+								Input = Input {
+									SourceOp = "Instance_sBoolean2_1",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 43.67, 8.63407 } },
+						},
+						Instance_sBoolean1_2 = sBoolean {
+							CtrlWShown = false,
+							SourceOp = "sBoolean1_1",
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "Instance_sBoolean2_1",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "Instance_sTransform1_2",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 43.67, 37.6208 } },
+						},
+						Instance_sBoolean2_1 = sBoolean {
+							CtrlWShown = false,
+							SourceOp = "sBoolean2",
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "sJitter1_2",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "sJitter1_2",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { -149.34, 176.881 } },
+						},
+						Instance_sTransform1_3 = sTransform {
+							CtrlWShown = false,
+							SourceOp = "sTransform1",
+							Inputs = {
+								YSize = Input {
+									Expression = "XSize"
+								},
+								Input = Input {
+									SourceOp = "Instance_sBoolean2_1",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 44.51, 62.6553 } },
+						},
+						Instance_sBoolean1_3 = sBoolean {
+							CtrlWShown = false,
+							SourceOp = "sBoolean1",
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "Instance_sBoolean2_1",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "Instance_sTransform1_3",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 44.51, 103.91 } },
+						},
+						Instance_sOutline1_1 = sOutline {
+							CtrlWShown = false,
+							SourceOp = "sOutline1",
+							Inputs = {
+								Input = Input {
+									SourceOp = "Instance_sBoolean2_1",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 40.71, 176.881 } },
+						},
+						Instance_sChangeStyle1_2 = sChangeStyle {
+							CtrlWShown = false,
+							SourceOp = "sChangeStyle1",
+							Inputs = {
+								Input = Input {
+									SourceOp = "Instance_sBoolean2_1",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 42.99, 137.504 } },
+						},
+						Instance_sMerge1_1 = sMerge {
+							CtrlWShown = false,
+							SourceOp = "sMerge1",
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "Instance_sChangeStyle1_2",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "Instance_sBoolean1_3",
+									Source = "Output",
+								},
+								Input4 = Input {
+									SourceOp = "Instance_sBoolean1_2",
+									Source = "Output",
+								},
+								Input3 = Input {
+									SourceOp = "Instance_sChangeStyle1_3",
+									Source = "Output",
+								},
+								Input5 = Input {
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 148, 137.504 } },
+						},
+						Instance_sChangeStyle1_3 = sChangeStyle {
+							CtrlWShown = false,
+							SourceOp = "sChangeStyle1_1",
+							Inputs = {
+								Input = Input {
+									SourceOp = "Instance_sOutline1_1",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 148, 176.881 } },
+						}
+					},
+				},
+				Instance_Group1 = GroupOperator {
+					CtrlWShown = false,
+					SourceOp = "Group1",
+					Inputs = ordered() {
+						CommentsNest = Input {
+						},
+						Input1 = InstanceInput {
+							SourceOp = "Instance_sBoolean2",
+							Source = "Input1",
+						},
+						Input2 = InstanceInput {
+							SourceOp = "Instance_sBoolean2",
+							Source = "Input2",
+						}
+					},
+					Outputs = {
+						Output1 = InstanceOutput {
+							SourceOp = "Instance_sMerge1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = GroupInfo {
+						Pos = { -335.249, 60.6566 },
+						Flags = {
+							AllowPan = false,
+							ConnectedSnap = true,
+							AutoSnap = true,
+							RemoveRouters = true
+						},
+						Size = { 423.34, 234.611, 211.67, 24.2424 },
+						Direction = "Horizontal",
+						PipeStyle = "Direct",
+						Scale = 1,
+						Offset = { 0, 0 }
+					},
+					Tools = ordered() {
+						Instance_sTransform1_1 = sTransform {
+							CtrlWShown = false,
+							SourceOp = "sTransform1_1",
+							Inputs = {
+								YSize = Input {
+									Expression = "XSize"
+								},
+								Input = Input {
+									SourceOp = "Instance_sBoolean2",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 43.67, 8.63407 } },
+						},
+						Instance_sBoolean1_1 = sBoolean {
+							CtrlWShown = false,
+							SourceOp = "sBoolean1_1",
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "Instance_sBoolean2",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "Instance_sTransform1_1",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 43.67, 37.6208 } },
+						},
+						Instance_sBoolean2 = sBoolean {
+							CtrlWShown = false,
+							SourceOp = "sBoolean2",
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "sJitter1_1",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "sJitter1_1",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { -149.34, 176.881 } },
+						},
+						Instance_sTransform1 = sTransform {
+							CtrlWShown = false,
+							SourceOp = "sTransform1",
+							Inputs = {
+								YSize = Input {
+									Expression = "XSize"
+								},
+								Input = Input {
+									SourceOp = "Instance_sBoolean2",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 44.51, 62.6553 } },
+						},
+						Instance_sBoolean1 = sBoolean {
+							CtrlWShown = false,
+							SourceOp = "sBoolean1",
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "Instance_sBoolean2",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "Instance_sTransform1",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 44.51, 103.91 } },
+						},
+						Instance_sOutline1 = sOutline {
+							CtrlWShown = false,
+							SourceOp = "sOutline1",
+							Inputs = {
+								Input = Input {
+									SourceOp = "Instance_sBoolean2",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 40.71, 176.881 } },
+						},
+						Instance_sChangeStyle1 = sChangeStyle {
+							CtrlWShown = false,
+							SourceOp = "sChangeStyle1",
+							Inputs = {
+								Input = Input {
+									SourceOp = "Instance_sBoolean2",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 42.99, 137.504 } },
+						},
+						Instance_sMerge1 = sMerge {
+							CtrlWShown = false,
+							SourceOp = "sMerge1",
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "Instance_sChangeStyle1",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "Instance_sBoolean1",
+									Source = "Output",
+								},
+								Input4 = Input {
+									SourceOp = "Instance_sBoolean1_1",
+									Source = "Output",
+								},
+								Input3 = Input {
+									SourceOp = "Instance_sChangeStyle1_1",
+									Source = "Output",
+								},
+								Input5 = Input {
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 148, 137.504 } },
+						},
+						Instance_sChangeStyle1_1 = sChangeStyle {
+							CtrlWShown = false,
+							SourceOp = "sChangeStyle1_1",
+							Inputs = {
+								Input = Input {
+									SourceOp = "Instance_sOutline1",
+									Source = "Output",
+								},
+								CommentsNest = Input {
+								},
+								FrameRenderScriptNest = Input {
+								},
+								StartRenderScripts = Input {
+								},
+								EndRenderScripts = Input {
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 148, 176.881 } },
+						}
+					},
+				},
+				Group1 = GroupOperator {
+					CtrlWShown = false,
+					Inputs = ordered() {
+						Input1 = InstanceInput {
+							SourceOp = "sBoolean2",
+							Source = "Input1",
+						},
+						Input2 = InstanceInput {
+							SourceOp = "sBoolean2",
+							Source = "Input2",
+						}
+					},
+					Outputs = {
+						Output1 = InstanceOutput {
+							SourceOp = "sMerge1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = GroupInfo {
+						Pos = { -415.339, 18.2316 },
+						Flags = {
+							AllowPan = false,
+							ConnectedSnap = true,
+							AutoSnap = true,
+							RemoveRouters = true
+						},
+						Size = { 423.34, 234.611, 211.67, 24.2424 },
+						Direction = "Horizontal",
+						PipeStyle = "Direct",
+						Scale = 1,
+						Offset = { 0, 0 }
+					},
+					Tools = ordered() {
+						sTransform1_1 = sTransform {
+							CtrlWShown = false,
+							Inputs = {
+								XOffset = Input { Value = -0.0043629227867, },
+								YOffset = Input { Value = 0.0090877038343, },
+								YSize = Input { Expression = "XSize", },
+								Input = Input {
+									SourceOp = "sBoolean2",
+									Source = "Output",
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 43.67, 8.63407 } },
+						},
+						sBoolean1_1 = sBoolean {
+							CtrlWShown = false,
+							Inputs = {
+								Operation = Input { Value = FuID { "Subtract" }, },
+								Input1 = Input {
+									SourceOp = "sBoolean2",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "sTransform1_1",
+									Source = "Output",
+								},
+								Red = Input { Value = 0.5979999899864, },
+								Green = Input { Value = 0.7239999771118, },
+								Blue = Input { Value = 0.8820000290871, }
+							},
+							ViewInfo = OperatorInfo { Pos = { 43.67, 37.6208 } },
+						},
+						sBoolean2 = sBoolean {
+							CtrlWShown = false,
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "sTransform2",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "sTransform2",
+									Source = "Output",
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { -149.34, 176.881 } },
+						},
+						sTransform1 = sTransform {
+							CtrlWShown = false,
+							Inputs = {
+								XOffset = Input { Value = 0.0035700873499, },
+								YOffset = Input { Value = -0.0120669898634, },
+								YSize = Input { Expression = "XSize", },
+								Input = Input {
+									SourceOp = "sBoolean2",
+									Source = "Output",
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 44.51, 62.6553 } },
+						},
+						sBoolean1 = sBoolean {
+							CtrlWShown = false,
+							Inputs = {
+								Operation = Input { Value = FuID { "Subtract" }, },
+								Input1 = Input {
+									SourceOp = "sBoolean2",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "sTransform1",
+									Source = "Output",
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 44.51, 103.91 } },
+						},
+						sOutline1 = sOutline {
+							CtrlWShown = false,
+							Inputs = {
+								Thickness = Input { Value = 0.003, },
+								Input = Input {
+									SourceOp = "sBoolean2",
+									Source = "Output",
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 40.71, 176.881 } },
+						},
+						sChangeStyle1 = sChangeStyle {
+							CtrlWShown = false,
+							Inputs = {
+								Input = Input {
+									SourceOp = "sBoolean2",
+									Source = "Output",
+								},
+								Red = Input { Value = 0.717, },
+								Green = Input { Value = 0.795, },
+								Blue = Input { Value = 0.835, }
+							},
+							ViewInfo = OperatorInfo { Pos = { 42.99, 137.504 } },
+						},
+						sMerge1 = sMerge {
+							CtrlWShown = false,
+							Inputs = {
+								Input1 = Input {
+									SourceOp = "sChangeStyle1",
+									Source = "Output",
+								},
+								Input2 = Input {
+									SourceOp = "sBoolean1",
+									Source = "Output",
+								},
+								Input4 = Input {
+									SourceOp = "sBoolean1_1",
+									Source = "Output",
+								},
+								Input3 = Input {
+									SourceOp = "sChangeStyle1_1",
+									Source = "Output",
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 148, 137.504 } },
+						},
+						sChangeStyle1_1 = sChangeStyle {
+							CtrlWShown = false,
+							Inputs = {
+								Input = Input {
+									SourceOp = "sOutline1",
+									Source = "Output",
+								},
+								Red = Input { Value = 0.598, },
+								Green = Input { Value = 0.724, },
+								Blue = Input { Value = 0.882, }
+							},
+							ViewInfo = OperatorInfo { Pos = { 148, 176.881 } },
+						}
+					},
+				},
+				sTransform2 = sTransform {
+					Inputs = {
+						XOffset = Input { Value = -0.058, },
+						YOffset = Input { Value = 0.101, },
+						Input = Input {
+							SourceOp = "sJitter1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -525.339, 18.2316 } },
+				},
+				sJitter1 = sJitter {
+					Inputs = {
+						RandomSeed = Input { Value = 4, },
+						["Shape.OffsetX.Min"] = Input { Value = -0.1, },
+						["Shape.OffsetX.Max"] = Input { Value = 0.2, },
+						["Shape.OffsetY.Min"] = Input { Value = -0.1, },
+						["Shape.OffsetY.Max"] = Input { Value = -0.0056, },
+						Input = Input {
+							SourceOp = "sDuplicate1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -635.339, 18.2316 } },
+				},
+				sJitter1_2 = sJitter {
+					Inputs = {
+						RandomSeed = Input { Value = 45, },
+						["Shape.OffsetX.Min"] = Input { Value = -0.1, },
+						["Shape.OffsetX.Max"] = Input { Value = 0.3, },
+						["Shape.OffsetY.Min"] = Input { Value = -0.1, },
+						["Shape.OffsetY.Max"] = Input { Value = 0.0611, },
+						["Shape.Rotate.Min"] = Input { Value = -208, },
+						["Shape.Rotate.Max"] = Input { Value = 176, },
+						Input = Input {
+							SourceOp = "sDuplicate1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -631.311, 97.6946 } },
+				},
+				sJitter1_1 = sJitter {
+					Inputs = {
+						RandomSeed = Input { Value = 12, },
+						["Shape.OffsetX.Min"] = Input { Value = -0.1, },
+						["Shape.OffsetX.Max"] = Input { Value = 0.2711, },
+						["Shape.OffsetY.Min"] = Input { Value = -0.0444, },
+						["Shape.OffsetY.Max"] = Input { Value = 0.0611, },
+						Input = Input {
+							SourceOp = "sDuplicate1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -633.825, 60.6566 } },
+				},
+				sJitter1_3 = sJitter {
+					Inputs = {
+						RandomSeed = Input { Value = 51, },
+						["Shape.OffsetX.Min"] = Input { Value = -0.1, },
+						["Shape.OffsetX.Max"] = Input { Value = 0.3, },
+						["Shape.OffsetY.Min"] = Input { Value = -0.1, },
+						["Shape.OffsetY.Max"] = Input { Value = 0.0611, },
+						["Shape.Rotate.Min"] = Input { Value = -208, },
+						["Shape.Rotate.Max"] = Input { Value = 176, },
+						Input = Input {
+							SourceOp = "sDuplicate1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -633.567, 143.081 } },
+				},
+				sDuplicate1 = sDuplicate {
+					CtrlWShown = false,
+					Inputs = {
+						Copies = Input { Value = 12, },
+						Input = Input {
+							SourceOp = "sEllipse2",
+							Source = "Output",
+						},
+						Polyline = Input {
+							Value = Polyline {
+							},
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -756.639, 18.2316 } },
+				},
+				sDuplicate1_1 = sDuplicate {
+					CtrlWShown = false,
+					Inputs = {
+						Copies = Input { Value = 20, },
+						Input = Input {
+							SourceOp = "sEllipse2",
+							Source = "Output",
+						},
+						Polyline = Input {
+							Value = Polyline {
+							},
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -763.969, 143.081 } },
+				},
+				sEllipse2 = sEllipse {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input { Value = 0.1311446948714, },
+						Height = Input { Value = 0.1311446948714, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -923.309, 18.2316 } },
+				},
+				SoftClip1 = SoftClip {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "Merge3D2",
+							Source = "Output",
+						},
+						OpaqueDistance = Input { Value = 0.3, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 673.6, 230.598 } },
+				}
+			},
+		}
+	}
+}

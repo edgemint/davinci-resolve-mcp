@@ -1,0 +1,63 @@
+{
+	Tools = ordered() {
+		Template = TextPlus {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				GlobalOut = Input { Value = 99, },
+				Width = Input { Value = 1920, },
+				Height = Input { Value = 1080, },
+				UseFrameFormatSettings = Input { Value = 1, },
+				["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+				LayoutRotation = Input { Value = 1, },
+				TransformRotation = Input { Value = 1, },
+				SelectElement = Input { Value = 6, },
+				Enabled2 = Input { Value = 1, },
+				Enabled5 = Input { Value = 1, },
+				Type1 = Input { Value = 2, },
+				ShadingGradient1 = Input {
+					Value = Gradient {
+						Colors = {
+							[0] = { 0, 0, 0, 0 },
+							[1] = { 0, 1, 1, 1 }
+						}
+					},
+				},
+				Softness1 = Input { Value = 1, },
+				StyledText = Input { Value = "Title", },
+				Font = Input { Value = "Open Sans", },
+				Style = Input { Value = "Bold", },
+				VerticalJustificationNew = Input { Value = 3, },
+				HorizontalJustificationNew = Input { Value = 3, },
+				Thickness2 = Input { Value = 0.0323, },
+				AdaptThicknessToPerspective2 = Input { Value = 1, },
+				OutsideOnly2 = Input { Value = 1, },
+				Red2 = Input { Value = 0, },
+				Alpha2 = Input { Value = 0, },
+				ShadingMappingAngle2 = Input { Value = 57.4, },
+				Softness2 = Input { Value = 1, },
+				PriorityBack2 = Input { Value = 8.27, },
+				Offset2 = Input { Value = { 0.009, -0.005 }, },
+				ElementShape5 = Input { Value = 1, },
+				Thickness5 = Input { Value = 0.0283, },
+				Softness5 = Input { Value = 1, },
+				ElementShape7 = Input { Value = 1, },
+				Thickness7 = Input { Value = 0.0079, },
+				Type7 = Input { Value = 2, },
+				ShadingGradient7 = Input {
+					Value = Gradient {
+						Colors = {
+							[0.228855721393035] = { 0, 0, 0, 0 },
+							[1] = { 1, 1, 1, 1 }
+						}
+					},
+				},
+				ShadingMappingAngle7 = Input { Value = 49.5, },
+				ShadingMappingSize7 = Input { Value = 1e-05, },
+				Softness7 = Input { Value = 1, },
+				Offset7 = Input { Value = { -0.033, 0 }, }
+			},
+			ViewInfo = OperatorInfo { Pos = { 466.667, 38.8788 } },
+		}
+	}
+}

@@ -1,0 +1,65 @@
+{
+	Tools = ordered() {
+		Template = TextPlus {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				GlobalOut = Input { Value = 271, },
+				Width = Input { Value = 3840, },
+				Height = Input { Value = 2160, },
+				UseFrameFormatSettings = Input { Value = 1, },
+				["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+				LayoutType = Input { Value = 3, },
+				LayoutRotation = Input { Value = 1, },
+				AngleZ = Input { Value = -12.2, },
+				Name1 = Input { Value = "Green", },
+				Name2 = Input { Value = "Black Outline", },
+				Enabled2 = Input { Value = 1, },
+				Name4 = Input { Value = "Thick Black Border", },
+				Enabled4 = Input { Value = 1, },
+				Type1 = Input { Value = 2, },
+				ShadingGradient1 = Input {
+					Value = Gradient {
+						Colors = {
+							[0] = { 0.388235294117647, 0.847058823529412, 0.250980392156863, 1 },
+							[1] = { 0.72156862745098, 0.988235294117647, 0.309803921568627, 1 }
+						}
+					},
+				},
+				ShadingMappingSize1 = Input { Value = 0.299, },
+				StyledText = Input { Value = "SAMPLE", },
+				Font = Input { Value = "Open Sans", },
+				Style = Input { Value = "Extrabold", },
+				Size = Input { Value = 0.15, },
+				VerticalJustificationNew = Input { Value = 3, },
+				HorizontalJustificationNew = Input { Value = 3, },
+				Thickness2 = Input { Value = 0.0449, },
+				Red2 = Input { Value = 0, },
+				Softness2 = Input { Value = 1, },
+				ElementShape4 = Input { Value = 1, },
+				Thickness4 = Input { Value = 0.1, },
+				Blue4 = Input { Value = 0, },
+				Softness4 = Input { Value = 1, },
+				Offset4 = Input { Value = { 0, -0.025 }, },
+				Path = Input {
+					SourceOp = "TemplatePath",
+					Source = "Value",
+				}
+			},
+			ViewInfo = OperatorInfo { Pos = { 1483.33, 99.485 } },
+		},
+		TemplatePath = BezierSpline {
+			SplineColor = { Red = 186, Green = 244, Blue = 89 },
+			CtrlWZoom = false,
+			NameSet = true,
+			KeyFrames = {
+				[114] = { 0, Flags = { Linear = true, LockedY = true }, Value = Polyline {
+						Points = {
+							{ X = -0.400900900900901, Y = -0.0789473684210526, RX = 0.441870441870442, RY = 0.003813882532418 },
+							{ X = 0.3996138996139, Y = 0.0835240274599543, LX = -0.426426426426426, LY = -0.00610221205186873 }
+						}
+					} }
+			}
+		}
+	}
+}

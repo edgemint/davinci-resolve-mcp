@@ -1,0 +1,509 @@
+{
+	Tools = ordered() {
+		CheckerWipe1 = GroupOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "Dissolve1",
+					Source = "Background",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "Dissolve1",
+					Source = "Foreground",
+				},
+				Input10 = InstanceInput {
+					SourceOp = "Transform2",
+					Source = "Size",
+					Name = "Checker Size",
+					MinScale = 0.001,
+					MaxScale = 1,
+					Default = 0.1,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Transform1",
+					Source = "Angle",
+					Default = 0,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "FastNoise1_1",
+					Source = "Detail",
+					Name = "Wipe Texture",
+					Default = 0,
+				},
+				Border = InstanceInput {
+					SourceOp = "ChannelBooleans2",
+					Source = "Border",
+					Page = "Controls",
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Instance_Dissolve1",
+					Source = "DFTLumaRamp.Softness",
+					Name = "Border Width",
+					Default = 0.031,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "Gradient",
+				},
+				Blur = InstanceInput {
+					SourceOp = "ChannelBooleans1",
+					Source = "Blur",
+					Page = "Controls",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Blur1",
+					Source = "XBlurSize",
+					Name = "Blur Amount",
+					Default = 0,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Blur1",
+					Source = "YBlurSize",
+					Default = 1,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "Instance_Dissolve1_3",
+					Source = "DFTLumaRamp.Softness",
+					Name = "Blur Width",
+					Default = 1.7,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { -437.866, 148.5 },
+				Flags = {
+					AllowPan = false,
+					ConnectedSnap = true,
+					AutoSnap = true,
+					RemoveRouters = true
+				},
+				Size = { 1041.63, 321.777, 520.817, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				Merge1 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Blur1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Background3",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 308.092, 263.464 } },
+				},
+				Blur1 = Blur {
+					CtrlWShown = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "ChannelBooleans2",
+							Source = "Output",
+						},
+						MaskChannel = Input { Value = 5, },
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						XBlurSize = Input { Value = 10, },
+						Input = Input {
+							SourceOp = "Dissolve1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 102.758, 263.464 } },
+				},
+				BUTTONS = Fuse.Wireless {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					NameSet = true,
+					ViewInfo = OperatorInfo { Pos = { 457, 183.073 } },
+					UserControls = ordered() { Button01 = { ICD_Width = 0.5, INP_Integer = false, LINKID_DataType = "Number", BTNCS_Execute = "tool:SetInput('Input9',{0.5,1})\n tool:SetInput('Input10',{0.5,0})", ICS_ControlPage = "Controls", INPID_InputControl = "ButtonControl", LINKS_Name = "Button01", }, Button02 = { ICD_Width = 0.5, INP_Integer = false, LINKID_DataType = "Number", BTNCS_Execute = "tool:SetInput('Input9',{0.5,0})\n tool:SetInput('Input10',{0.5,1})", ICS_ControlPage = "Controls", INPID_InputControl = "ButtonControl", LINKS_Name = "Button02", }, Button03 = { ICD_Width = 0.5, INP_Integer = false, LINKID_DataType = "Number", BTNCS_Execute = "tool:SetInput('Input9',{0.5,0.5})\n tool:SetInput('Input10',{1,0.5})", ICS_ControlPage = "Controls", INPID_InputControl = "ButtonControl", LINKS_Name = "Button03", }, Button04 = { ICD_Width = 0.5, INP_Integer = false, LINKID_DataType = "Number", ICS_ControlPage = "Controls", INPID_InputControl = "ButtonControl", LINKS_Name = "Button04", }, Button05 = { ICD_Width = 0.5, INP_Integer = false, LINKID_DataType = "Number", ICS_ControlPage = "Controls", INPID_InputControl = "ButtonControl", LINKS_Name = "Button05", }, Button06 = { ICD_Width = 0.5, INP_Integer = false, LINKID_DataType = "Number", ICS_ControlPage = "Controls", INPID_InputControl = "ButtonControl", LINKS_Name = "Button06", } }
+				},
+				Dissolve1 = Dissolve {
+					Transitions = {
+						[0] = "DFTLumaRamp"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Operation = Input { Value = FuID { "DFTLumaRamp" }, },
+						Mix = Input {
+							SourceOp = "AnimCurves1",
+							Source = "Value",
+						},
+						Map = Input {
+							SourceOp = "ChannelBooleans3",
+							Source = "Output",
+						},
+						["DFTLumaRamp.Softness"] = Input { Value = 0, },
+						["DFTLumaRamp.Border"] = Input { Value = 1, },
+						["DFTLumaRamp.BorderSoftness"] = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -94.09, 263.464 } },
+					UserControls = ordered() { Switch = { CBC_TriState = false, INP_Integer = false, LINKID_DataType = "Number", ICS_ControlPage = "Controls", INPID_InputControl = "CheckboxControl", LINKS_Name = "Switch", } }
+				},
+				AnimCurves1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Cubic" }, },
+						EaseOut = Input { Value = FuID { "Cubic" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves1Lookup",
+							Source = "Value",
+						}
+					},
+				},
+				AnimCurves1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Instance_Dissolve1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve",
+						"DFTLumaRamp"
+					},
+					CtrlWShown = false,
+					SourceOp = "Dissolve1",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						Background = Input {
+							SourceOp = "Background4",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Background4",
+							Source = "Output",
+						},
+						Map = Input {
+							SourceOp = "ChannelBooleans3",
+							Source = "Output",
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						},
+						["DFTLumaRamp.Softness"] = Input {
+							Value = 0.031,
+						},
+						["DFTLumaRamp.BorderSoftness"] = Input {
+							Value = 0,
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -88.575, 226.114 } },
+					UserControls = ordered() { Switch = { CBC_TriState = false, INP_Integer = false, LINKID_DataType = "Number", ICS_ControlPage = "Controls", INPID_InputControl = "CheckboxControl", LINKS_Name = "Switch", } }
+				},
+				Background3 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Instance_Dissolve1",
+							Source = "Output",
+						},
+						MaskChannel = Input { Value = 5, },
+						GlobalOut = Input { Value = 23, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Gradient" }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.87843137254902, 0.598, 0.307, 1 },
+									[1] = { 0.646, 0.244, 0.819, 1 }
+								}
+							},
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 308.092, 226.114 } },
+				},
+				ChannelBooleans1 = ChannelBoolean {
+					CtrlWShown = false,
+					Inputs = {
+						Operation = Input { Value = 10, },
+						ToAlpha = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "Background4",
+							Source = "Output",
+						},
+						Blur = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -316.575, 178.842 } },
+					UserControls = ordered() { Blur = { INP_Integer = false, LBLC_DropDownButton = true, LINKID_DataType = "Number", LBLC_NumInputs = 3, INP_External = false, INPID_InputControl = "LabelControl", LINKS_Name = "Blur", } }
+				},
+				Instance_Dissolve1_2 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve",
+						"DFTLumaRamp"
+					},
+					CtrlWShown = false,
+					SourceOp = "Dissolve1",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						Background = Input {
+							SourceOp = "Background4",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						},
+						Map = Input {
+							SourceOp = "ChannelBooleans3",
+							Source = "Output",
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -90.575, 178.842 } },
+					UserControls = ordered() { Switch = { CBC_TriState = false, INP_Integer = false, LINKID_DataType = "Number", ICS_ControlPage = "Controls", INPID_InputControl = "CheckboxControl", LINKS_Name = "Switch", } }
+				},
+				ChannelBooleans2 = ChannelBoolean {
+					CtrlWShown = false,
+					Inputs = {
+						Operation = Input { Value = 6, },
+						Background = Input {
+							SourceOp = "Instance_Dissolve1_2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Instance_Dissolve1_3",
+							Source = "Output",
+						},
+						Border = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 102.758, 178.842 } },
+					UserControls = ordered() { Border = { INP_Integer = false, LBLC_DropDownButton = true, LINKID_DataType = "Number", LBLC_NumInputs = 2, INP_External = false, INPID_InputControl = "LabelControl", LINKS_Name = "Border", } }
+				},
+				Background4 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						GlobalOut = Input { Value = 23, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -465.623, 226.114 } },
+					UserControls = ordered() { CustomPosition = { INP_Integer = false, LBLC_DropDownButton = false, LINKID_DataType = "Number", LBLC_NumInputs = 2, INP_External = false, INPID_InputControl = "LabelControl", LINKS_Name = "Custom Position", } }
+				},
+				Instance_Dissolve1_3 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve",
+						"DFTLumaRamp"
+					},
+					CtrlWShown = false,
+					SourceOp = "Dissolve1",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						Background = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						Map = Input {
+							SourceOp = "ChannelBooleans3",
+							Source = "Output",
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						},
+						["DFTLumaRamp.Softness"] = Input {
+							Value = 0,
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -91.747, 109.698 } },
+					UserControls = ordered() { Switch = { CBC_TriState = false, INP_Integer = false, LINKID_DataType = "Number", ICS_ControlPage = "Controls", INPID_InputControl = "CheckboxControl", LINKS_Name = "Switch", } }
+				},
+				PipeRouter1 = PipeRouter {
+					CtrlWShown = false,
+					Inputs = {
+						Input = Input {
+							SourceOp = "Background4",
+							Source = "Output",
+						}
+					},
+					ViewInfo = PipeRouterInfo { Pos = { -346.804, 109.698 } },
+				},
+				FastNoise1 = FastNoise {
+					CtrlWShown = false,
+					Inputs = {
+						GlobalOut = Input { Value = 23, },
+						Width = Input { Value = 1080, },
+						Height = Input { Value = 1080, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Detail = Input { Value = 0, },
+						Type = Input { Value = 1, },
+						GradientType = Input { Value = 1, },
+						Start = Input { Value = { 0, 1 }, },
+						End = Input { Value = { 1, 0 }, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -455.416, 8.05067 } },
+				},
+				Transform2 = Transform {
+					CtrlWShown = false,
+					Inputs = {
+						Size = Input { Value = 0.1, },
+						Edges = Input { Value = 1, },
+						FilterMethod = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "FastNoise1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -313.914, 8.05067 } },
+				},
+				Transform1 = Transform {
+					Inputs = {
+						Edges = Input { Value = 2, },
+						Input = Input {
+							SourceOp = "FastNoise1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -297.647, 81.2121 } },
+				},
+				FastNoise1_1 = FastNoise {
+					CtrlWShown = false,
+					Inputs = {
+						GlobalOut = Input { Value = 23, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Detail = Input { Value = 0, },
+						Type = Input { Value = 1, },
+						GradientType = Input { Value = 1, },
+						Start = Input { Value = { 0, 1 }, },
+						End = Input { Value = { 1, 0 }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.059, 0.059, 0.059, 1 },
+									[1] = { 1, 1, 1, 1 }
+								}
+							},
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -455.335, 81.2121 } },
+				},
+				Instance_Transform1 = Transform {
+					SourceOp = "Transform1",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						TransformNest = Input {
+						},
+						Edges = Input {
+							Value = 1,
+						},
+						ReferenceSize = Input {
+						},
+						Input = Input {
+							SourceOp = "Merge2",
+							Source = "Output",
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -91.747, 8.05067 } },
+				},
+				ChannelBooleans3 = ChannelBoolean {
+					CtrlWShown = false,
+					Inputs = {
+						Operation = Input { Value = 6, },
+						ToAlpha = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "Instance_Transform1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Transform1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -91.747, 81.2121 } },
+				},
+				Background1 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						GlobalOut = Input { Value = 23, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftAlpha = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -294.991, 45.2904 } },
+				},
+				Merge2 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Background1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Transform2",
+							Source = "Output",
+						},
+						Edges = Input { Value = 1, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -198.842, 8.05067 } },
+				}
+			},
+		}
+	}
+}

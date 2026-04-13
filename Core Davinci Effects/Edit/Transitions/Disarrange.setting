@@ -1,0 +1,1420 @@
+{
+	Tools = ordered() {
+		Disarrange = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter1",
+					Source = "Input",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "PipeRouter2",
+					Source = "Input",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Dissolve1",
+					Source = "TextureOn_Off",
+					Page = "Controls",
+					Default = 1,
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Dissolve3",
+					Source = "Mix",
+					Name = "Rectangle / Ellipse",
+					Default = 0,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "BrightnessContrast1",
+					Source = "Gain",
+					Name = "Displace Scale",
+					Default = 3,
+				},
+				Input32 = InstanceInput {
+					SourceOp = "Renderer3D1",
+					Source = "Blank5",
+				},
+				Input31 = InstanceInput {
+					SourceOp = "Renderer3D1",
+					Source = "CameraSelector",
+				},
+				Input4 = InstanceInput {
+					SourceOp = "AnimCurves9",
+					Source = "Scale",
+					Name = "X Offset",
+					Default = 0,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "AnimCurves10",
+					Source = "Scale",
+					Name = "Y Offset",
+					Default = 0,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "AnimCurves11",
+					Source = "Scale",
+					Name = "Z Offset",
+					Default = 0,
+				},
+				BG = InstanceInput {
+					SourceOp = "Background1",
+					Source = "BG",
+					Page = "Controls",
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "Type",
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "TopLeftRed",
+					Name = "Color",
+					ControlGroup = 10,
+					Default = 0,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "TopLeftGreen",
+					ControlGroup = 10,
+					Default = 0,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "TopLeftBlue",
+					ControlGroup = 10,
+					Default = 0,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "TopLeftAlpha",
+					ControlGroup = 10,
+					Default = 1,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "TopRightSep",
+				},
+				Input13 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "TopRightRed",
+					Name = "Top Right",
+					ControlGroup = 12,
+					Default = 0,
+				},
+				Input14 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "TopRightGreen",
+					ControlGroup = 12,
+					Default = 0,
+				},
+				Input15 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "TopRightBlue",
+					ControlGroup = 12,
+					Default = 0,
+				},
+				Input16 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "TopRightAlpha",
+					ControlGroup = 12,
+					Default = 1,
+				},
+				Input17 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "BottomLeftSep",
+				},
+				Input18 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "BottomLeftRed",
+					Name = "Bottom Left",
+					ControlGroup = 14,
+					Default = 0,
+				},
+				Input19 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "BottomLeftGreen",
+					ControlGroup = 14,
+					Default = 0,
+				},
+				Input20 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "BottomLeftBlue",
+					ControlGroup = 14,
+					Default = 0,
+				},
+				Input21 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "BottomLeftAlpha",
+					ControlGroup = 14,
+					Default = 1,
+				},
+				Input22 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "BottomRightSep",
+				},
+				Input23 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "BottomRightRed",
+					Name = "Bottom Right",
+					ControlGroup = 16,
+					Default = 0,
+				},
+				Input24 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "BottomRightGreen",
+					ControlGroup = 16,
+					Default = 0,
+				},
+				Input25 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "BottomRightBlue",
+					ControlGroup = 16,
+					Default = 0,
+				},
+				Input26 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "BottomRightAlpha",
+					ControlGroup = 16,
+					Default = 1,
+				},
+				Input27 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "GradientType",
+				},
+				Input28 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "Start",
+					DefaultX = 0,
+					DefaultY = 0.5,
+				},
+				Input29 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "End",
+					DefaultX = 1,
+					DefaultY = 0.5,
+				},
+				Input30 = InstanceInput {
+					SourceOp = "Background3",
+					Source = "Gradient",
+				},
+				Glow_Control = InstanceInput {
+					SourceOp = "Glow1",
+					Source = "Glow_Control",
+					Page = "Controls",
+				},
+				Input41 = InstanceInput {
+					SourceOp = "Glow1",
+					Source = "BlendClone",
+					Name = "Glow Blend",
+					Default = 0.2,
+				},
+				Input42 = InstanceInput {
+					SourceOp = "AnimCurves8",
+					Source = "Scale",
+					Name = "Glow Scale",
+					Default = 10,
+				},
+				Input43 = InstanceInput {
+					SourceOp = "AnimCurves7",
+					Source = "Scale",
+					Name = "Glow Intensity",
+					Default = 0.75,
+				},
+				Input38 = InstanceInput {
+					SourceOp = "AnimCurves4",
+					Source = "Curve",
+					Name = "Transition Curve",
+				},
+				Input200 = InstanceInput {
+					SourceOp = "AnimCurves4",
+					Source = "Lookup",
+					ControlGroup = 4,
+				},
+				Input39 = InstanceInput {
+					SourceOp = "AnimCurves4",
+					Source = "EaseIn",
+					Width = 0.5,
+				},
+				Input40 = InstanceInput {
+					SourceOp = "AnimCurves4",
+					Source = "EaseOut",
+					Width = 0.5,
+				},
+				Input33 = InstanceInput {
+					SourceOp = "Renderer3D1",
+					Source = "MotionBlur",
+					Default = 0,
+				},
+				Input34 = InstanceInput {
+					SourceOp = "Renderer3D1",
+					Source = "Quality",
+					Default = 6,
+				},
+				Input35 = InstanceInput {
+					SourceOp = "Renderer3D1",
+					Source = "ShutterAngle",
+					Default = 180,
+				},
+				Input36 = InstanceInput {
+					SourceOp = "Renderer3D1",
+					Source = "CenterBias",
+					Default = 0,
+				},
+				Input37 = InstanceInput {
+					SourceOp = "Renderer3D1",
+					Source = "SampleSpread",
+					Default = 1,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Glow1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 880, 148.5 } },
+			Tools = ordered() {
+				PipeRouter1 = PipeRouter {
+					CtrlWShown = false,
+					ViewInfo = PipeRouterInfo { Pos = { -1169, 49.5 } },
+				},
+				PipeRouter2 = PipeRouter {
+					CtrlWShown = false,
+					ViewInfo = PipeRouterInfo { Pos = { -1224, 247.5 } },
+				},
+				Ellipse1 = EllipseMask {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						BorderWidth = Input {
+							SourceOp = "AnimCurves5",
+							Source = "Value",
+						},
+						OutputSize = Input { Value = FuID { "Custom" }, },
+						MaskWidth = Input { Value = 10, },
+						MaskHeight = Input { Value = 10, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -1087, 107.758 } },
+				},
+				AnimCurves5 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves5Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Invert = Input { Value = 1, }
+					},
+				},
+				AnimCurves5Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Dissolve3 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0, },
+						Background = Input {
+							SourceOp = "Rectangle1",
+							Source = "Mask",
+						},
+						Foreground = Input {
+							SourceOp = "Ellipse1",
+							Source = "Mask",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -977, 140.758 } },
+				},
+				Rectangle1 = RectangleMask {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						BorderWidth = Input {
+							SourceOp = "AnimCurves1",
+							Source = "Value",
+						},
+						OutputSize = Input { Value = FuID { "Custom" }, },
+						MaskWidth = Input { Value = 10, },
+						MaskHeight = Input { Value = 10, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Width = Input { Value = 0.25, },
+						Height = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -1087, 140.758 } },
+				},
+				AnimCurves1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves1Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Invert = Input { Value = 1, }
+					},
+				},
+				AnimCurves1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Instance_Background1 = Background {
+					CtrlWShown = false,
+					SourceOp = "Background1",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						ImageNest = Input {
+						},
+						Height = Input {
+							Expression = "Width"
+						},
+						["Gamut.ColorSpaceNest"] = Input {
+						},
+						["Gamut.GammaSpaceNest"] = Input {
+						},
+						BackgroundNest = Input {
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -812, 107.758 } },
+				},
+				Background1 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Dissolve3",
+							Source = "Output",
+						},
+						GlobalOut = Input { Value = 191, },
+						Width = Input { Value = 10, },
+						Height = Input {
+							Value = 10,
+							Expression = "Width",
+						},
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						BG = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -812, 140.758 } },
+					UserControls = ordered() {
+						BG = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 24,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Background",
+						}
+					}
+				},
+				Dissolve1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Expression = "TextureOn_Off", },
+						Background = Input {
+							SourceOp = "Instance_Background1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Background1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -702, 140.758 } },
+					UserControls = ordered() { TextureOn_Off = { INP_MaxAllowed = 1, INP_Integer = true, INPID_InputControl = "CheckboxControl", INP_MaxScale = 1, INP_Default = 1, INP_MinScale = 0, INP_MinAllowed = 0, LINKID_DataType = "Number", ICS_ControlPage = "Controls", CBC_TriState = false, LINKS_Name = "Texture On / Off" } }
+				},
+				Background2 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						GlobalOut = Input { Value = 191, },
+						Width = Input { Value = 1080, },
+						Height = Input { Value = 1920, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftAlpha = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -647, 173.758 } },
+				},
+				Merge1_5 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Background2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Dissolve1",
+							Source = "Output",
+						},
+						Edges = Input { Value = 1, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -537, 173.758 } },
+				},
+				BrightnessContrast1 = BrightnessContrast {
+					CtrlWShown = false,
+					Inputs = {
+						Gain = Input { Value = 3, },
+						Input = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -317, 140.758 } },
+				},
+				Merge2_8 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Merge1_5",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+						Operator = Input { Value = FuID { "In" }, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -317, 206.758 } },
+				},
+				Instance_BrightnessContrast1 = BrightnessContrast {
+					CtrlWShown = false,
+					SourceOp = "BrightnessContrast1",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -317, 272.758 } },
+				},
+				Merge2_9 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Merge1_5",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						Operator = Input { Value = FuID { "In" }, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -344, 74.7573 } },
+				},
+				Instance_Displace3D1 = Displace3D {
+					CtrlWShown = false,
+					SourceOp = "Displace3D1",
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "Instance_Cam_Img_Plane",
+							Source = "Output",
+						},
+						CameraDisplacement = Input {
+						},
+						Input = Input {
+							SourceOp = "Instance_BrightnessContrast1",
+							Source = "Output",
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 13, 206.758 } },
+				},
+				AnimCurves2 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves2Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, }
+					},
+				},
+				AnimCurves2Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Displace3D1 = Displace3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "Cam_Img_Plane",
+							Source = "Output",
+						},
+						Scale = Input {
+							SourceOp = "AnimCurves2",
+							Source = "Value",
+						},
+						Input = Input {
+							SourceOp = "BrightnessContrast1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 13, 74.7573 } },
+				},
+				Instance_Transform3D1 = Transform3D {
+					CtrlWShown = false,
+					SourceOp = "Transform3D1",
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "Instance_Displace3D1",
+							Source = "Output",
+						},
+						["Transform3DOp.Translation"] = Input {
+						},
+						["Transform3DOp.Rotation"] = Input {
+						},
+						["Transform3DOp.PivotNest"] = Input {
+						},
+						["Transform3DOp.ScaleNest"] = Input {
+						},
+						["Transform3DOp.TargetNest"] = Input {
+						},
+						["Transform3DOp.Import"] = Input {
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 123, 206.758 } },
+				},
+				AnimCurves9 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves9Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Scale = Input { Value = 0, }
+					},
+				},
+				AnimCurves9Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				AnimCurves10 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves10Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Scale = Input { Value = 0, }
+					},
+				},
+				AnimCurves10Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				AnimCurves11 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves11Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Scale = Input { Value = 0, }
+					},
+				},
+				AnimCurves11Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Transform3D1 = Transform3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput = Input {
+							SourceOp = "Displace3D1",
+							Source = "Output",
+						},
+						["Transform3DOp.Translate.X"] = Input {
+							SourceOp = "AnimCurves9",
+							Source = "Value",
+						},
+						["Transform3DOp.Translate.Y"] = Input {
+							SourceOp = "AnimCurves10",
+							Source = "Value",
+						},
+						["Transform3DOp.Translate.Z"] = Input {
+							SourceOp = "AnimCurves11",
+							Source = "Value",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 123, 74.7573 } },
+				},
+				Merge3D1 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput1 = Input {
+							SourceOp = "Transform3D1",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "Vertical",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 288, 74.7573 } },
+				},
+				Vertical = Camera3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Transform3DOp.Translate.Z"] = Input {
+							SourceOp = "AnimCurves12",
+							Source = "Value",
+						},
+						["Transform3DOp.Rotate.X"] = Input {
+							SourceOp = "AnimCurves6",
+							Source = "Value",
+						},
+						["Transform3DOp.PivotNest"] = Input { Value = 1, },
+						["Transform3DOp.Pivot.Z"] = Input {
+							SourceOp = "AnimCurves14",
+							Source = "Value",
+						},
+						AoV = Input { Value = 19.26427, },
+						FLength = Input { Value = 34.9999968656308, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K6x9" }, },
+						ApertureW = Input { Value = 0.831496062992126, },
+						ApertureH = Input { Value = 0.467716535433071, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 4, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 4, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 288, 16.5 } },
+				},
+				AnimCurves12 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves12Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Scale = Input { Value = 1.5, },
+						Offset = Input { Value = 4.882, }
+					},
+				},
+				AnimCurves12Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				AnimCurves6 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves6Lookup_5",
+							Source = "Value",
+						},
+						Scale = Input { Value = 360, }
+					},
+				},
+				AnimCurves6Lookup_5 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				AnimCurves14 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves14Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Scale = Input { Value = 0.5, },
+						Offset = Input { Value = -4.882, }
+					},
+				},
+				AnimCurves14Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Merge3D2 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput1 = Input {
+							SourceOp = "Instance_Transform3D1",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "Vertical",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 288, 206.758 } },
+				},
+				Merge3D3 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput1 = Input {
+							SourceOp = "Merge3D1",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "Horizontal",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 453, 74.7573 } },
+				},
+				Horizontal = Camera3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Transform3DOp.Translate.Z"] = Input {
+							SourceOp = "AnimCurves13",
+							Source = "Value",
+						},
+						["Transform3DOp.Rotate.Y"] = Input {
+							SourceOp = "AnimCurves3",
+							Source = "Value",
+						},
+						["Transform3DOp.PivotNest"] = Input { Value = 1, },
+						["Transform3DOp.Pivot.Z"] = Input { Value = -4.882, },
+						AoV = Input { Value = 19.26427, },
+						FLength = Input { Value = 34.9999968656308, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K6x9" }, },
+						ApertureW = Input { Value = 0.831496062992126, },
+						ApertureH = Input { Value = 0.467716535433071, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 2, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 2, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 453, 8.75716 } },
+				},
+				AnimCurves13 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves13Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Scale = Input { Value = 1.5, },
+						Offset = Input { Value = 4.882, }
+					},
+				},
+				AnimCurves13Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				AnimCurves3 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves3Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 360, }
+					},
+				},
+				AnimCurves3Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Merge3D4 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput1 = Input {
+							SourceOp = "Merge3D2",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "Horizontal",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 453, 206.758 } },
+				},
+				Merge3D5 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput1 = Input {
+							SourceOp = "Merge3D3",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "Static",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 618, 74.7573 } },
+				},
+				Static = Camera3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Transform3DOp.Translate.Z"] = Input { Value = 4.882, },
+						["Transform3DOp.PivotNest"] = Input { Value = 1, },
+						["Transform3DOp.Pivot.Z"] = Input { Value = -4.882, },
+						AoV = Input { Value = 19.26427, },
+						FLength = Input { Value = 34.9999968656308, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K6x9" }, },
+						ApertureW = Input { Value = 0.831496062992126, },
+						ApertureH = Input { Value = 0.467716535433071, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 3, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 3, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 618, 8.75716 } },
+				},
+				Merge3D6 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput1 = Input {
+							SourceOp = "Static",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "Merge3D4",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 618, 206.758 } },
+				},
+				Instance_Background3 = Background {
+					CtrlWShown = false,
+					SourceOp = "Background3",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						ImageNest = Input {
+						},
+						["Gamut.ColorSpaceNest"] = Input {
+						},
+						["Gamut.GammaSpaceNest"] = Input {
+						},
+						BackgroundNest = Input {
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 728, 239.758 } },
+				},
+				Background3 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						GlobalOut = Input { Value = 191, },
+						Width = Input { Value = 1080, },
+						Height = Input { Value = 1920, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 728, 107.758 } },
+				},
+				Renderer3D1 = Renderer3D {
+					CtrlWShown = false,
+					CustomData = { ToolVersion = 2 },
+					Inputs = {
+						Quality = Input { Value = 6, },
+						GlobalOut = Input { Value = 191, },
+						Width = Input { Value = 1080, },
+						Height = Input { Value = 1920, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						SceneInput = Input {
+							SourceOp = "Merge3D5",
+							Source = "Output",
+						},
+						CameraSelector = Input { Value = FuID { "Horizontal" }, },
+						RendererType = Input { Value = FuID { "RendererOpenGL" }, },
+						["RendererOpenGL.AntiAliasing.Nest"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.HighQuality.Enable"] = Input { Value = 0, },
+						["RendererOpenGL.AntiAliasing.Presets.Nest"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.Rate"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.HighQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.Rate"] = Input { Value = 3, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.HighQuality.SampleCount"] = Input { Value = 3, },
+						["RendererOpenGL.AccumQuality"] = Input { Value = 32, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 728, 74.7573 } },
+					SubInputsData = {
+						RendererOpenGL = {
+							Version = 1
+						}
+					}
+				},
+				Instance_Renderer3D1 = Renderer3D {
+					CtrlWShown = false,
+					CustomData = { ToolVersion = 2 },
+					SourceOp = "Renderer3D1",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						ImageNest = Input {
+						},
+						["Gamut.ColorSpaceNest"] = Input {
+						},
+						["Gamut.GammaSpaceNest"] = Input {
+						},
+						SceneInput = Input {
+							SourceOp = "Merge3D6",
+							Source = "Output",
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						},
+						["RendererSoftware.Nest"] = Input {
+						},
+						["RendererSoftware.Channels.Nest"] = Input {
+						},
+						["RendererSoftware.Channels.RGBA"] = Input {
+						},
+						["RendererSoftware.Channels.Z"] = Input {
+						},
+						["RendererSoftware.Channels.Coverage"] = Input {
+						},
+						["RendererSoftware.Channels.BgColor"] = Input {
+						},
+						["RendererSoftware.Channels.Normal"] = Input {
+						},
+						["RendererSoftware.Channels.TexCoord0"] = Input {
+						},
+						["RendererSoftware.Channels.ObjectID"] = Input {
+						},
+						["RendererSoftware.Channels.MaterialID"] = Input {
+						},
+						["RendererSoftware.Channels.WorldCoord"] = Input {
+						},
+						["RendererSoftware.Channels.Vector"] = Input {
+						},
+						["RendererSoftware.Channels.BackVector"] = Input {
+						},
+						["RendererSoftware.Lighting"] = Input {
+						},
+						["RendererSoftware.LightingEnabled"] = Input {
+						},
+						["RendererSoftware.ShadowsEnabled"] = Input {
+						},
+						["RendererOpenGL.Channels.Nest"] = Input {
+						},
+						["RendererOpenGL.AntiAliasing.Nest"] = Input {
+							Value = 1,
+						},
+						["RendererOpenGL.AntiAliasing.Channels.Nest"] = Input {
+						},
+						["RendererOpenGL.AntiAliasing.Presets.Nest"] = Input {
+							Value = 1,
+						},
+						["RendererOpenGL.AccumulationEffects"] = Input {
+						},
+						["RendererOpenGL.Lighting"] = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 728, 206.758 } },
+					SubInputsData = {
+						RendererOpenGL = {
+							Version = 1
+						}
+					}
+				},
+				Merge4 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Instance_Background3",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Instance_Renderer3D1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 893, 239.758 } },
+				},
+				Merge3 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Background3",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Renderer3D1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1058, 107.758 } },
+				},
+				Merge5 = Merge {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					Inputs = {
+						Blend = Input {
+							SourceOp = "AnimCurves4",
+							Source = "Value",
+						},
+						Background = Input {
+							SourceOp = "Merge4",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Merge3",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1058, 239.758 } },
+				},
+				AnimCurves4 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurvesonMerge5Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = -1, },
+						Offset = Input { Value = 1, }
+					},
+				},
+				AnimCurvesonMerge5Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.0833333333333333, 0 }, Flags = { Linear = true } },
+							[0.25] = { 0, LH = { 0.166666666666667, 0 }, RH = { 0.506144160658469, -0.00752491760636399 }, Flags = { Linear = true } },
+							[0.75] = { 1, LH = { 0.497746889925189, 0.99831086713235 }, RH = { 0.833333333333333, 1 } },
+							[1] = { 1, LH = { 0.916666666666667, 1 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+				Glow1 = Glow {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					Inputs = {
+						Blend = Input { Value = 0.2, },
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						XGlowSize = Input {
+							SourceOp = "AnimCurves8",
+							Source = "Value",
+						},
+						Glow = Input {
+							SourceOp = "AnimCurves7",
+							Source = "Value",
+						},
+						ColorScale = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "Merge5",
+							Source = "Output",
+						},
+						Glow_Control = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1223, 239.758 } },
+					UserControls = ordered() {
+						Glow_Control = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 3,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Glow",
+						}
+					}
+				},
+				AnimCurves8 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Lookup = Input {
+							SourceOp = "AnimCurves8Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Scale = Input { Value = 10, }
+					},
+				},
+				AnimCurves8Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				AnimCurves7 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Value = FuID { "Sine" }, },
+						EaseOut = Input { Value = FuID { "Sine" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves7Lookup",
+							Source = "Value",
+						},
+						Mirror = Input { Value = 1, },
+						Scale = Input { Value = 0.75, },
+						ClipLow = Input { Value = 1, },
+						ClipHigh = Input { Value = 1, }
+					},
+				},
+				AnimCurves7Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Cam_Img_Plane = Camera3D {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Transform3DOp.Translate.Z"] = Input { Value = 4.882, },
+						AoV = Input { Value = 19.2642683071402, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" }, },
+						ApertureW = Input { Value = 0.831496062992126, },
+						ApertureH = Input { Value = 0.467716535433071, },
+						IDepth = Input { Value = 4.882, },
+						["SurfacePlaneInputs.SubdivisionWidth"] = Input { Value = 150, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 5, },
+						ImageInput = Input {
+							SourceOp = "Merge2_9",
+							Source = "Output",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 5, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -124, 74.7573 } },
+				},
+				Instance_Cam_Img_Plane = Camera3D {
+					CtrlWShown = false,
+					NameSet = true,
+					SourceOp = "Cam_Img_Plane",
+					Inputs = {
+						SceneInput = Input {
+						},
+						["Transform3DOp.Translation"] = Input {
+						},
+						["Transform3DOp.Rotation"] = Input {
+						},
+						["Transform3DOp.PivotNest"] = Input {
+						},
+						["Transform3DOp.ScaleNest"] = Input {
+						},
+						["Transform3DOp.TargetNest"] = Input {
+						},
+						["Transform3DOp.Import"] = Input {
+						},
+						["Stereo.Nest"] = Input {
+						},
+						["Stereo.RightCamera"] = Input {
+						},
+						FilmBack = Input {
+						},
+						ControlVis = Input {
+						},
+						Import = Input {
+						},
+						["SurfacePlaneInputs.Visibility.Nest"] = Input {
+						},
+						["SurfacePlaneInputs.Lighting.Nest"] = Input {
+						},
+						["SurfacePlaneInputs.Matte.Nest"] = Input {
+						},
+						["SurfacePlaneInputs.BlendMode.Nest"] = Input {
+						},
+						["SurfacePlaneInputs.Controls.Nest"] = Input {
+						},
+						["SurfacePlaneInputs.ObjectID.Nest"] = Input {
+						},
+						ImageInput = Input {
+							SourceOp = "Merge2_8",
+							Source = "Output",
+						},
+						["MtlStdInputs.Diffuse.Nest"] = Input {
+						},
+						["MtlStdInputs.Specular.Nest"] = Input {
+						},
+						["MtlStdInputs.Transmittance.Nest"] = Input {
+						},
+						["MtlStdInputs.MaterialIDNest"] = Input {
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -124, 206.758 } },
+				}
+			},
+		}
+	}
+}

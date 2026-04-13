@@ -1,0 +1,41 @@
+{
+	Tools = ordered() {
+		Template = TextPlus {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				GlobalOut = Input { Value = 549, },
+				Width = Input { Value = 1920, },
+				Height = Input { Value = 1080, },
+				UseFrameFormatSettings = Input { Value = 1, },
+				Depth = Input { Value = 1, },
+				["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+				LayoutRotation = Input { Value = 1, },
+				TransformRotation = Input { Value = 1, },
+				SelectElement = Input { Value = 1, },
+				Select = Input { Value = 1, },
+				Name2 = Input { Value = "Black Outline", },
+				Enabled2 = Input { Value = 1, },
+				Name4 = Input { Value = "Black Border", },
+				Enabled4 = Input { Value = 1, },
+				Softness1 = Input { Value = 1, },
+				StyledText = Input { Value = "SAMPLE", },
+				Font = Input { Value = "Open Sans", },
+				Style = Input { Value = "Bold", },
+				VerticalJustificationNew = Input { Value = 3, },
+				HorizontalJustificationNew = Input { Value = 3, },
+				Thickness2 = Input { Value = 0.0528, },
+				OutsideOnly2 = Input { Value = 1, },
+				JoinStyle2 = Input { Value = 0, },
+				Red2 = Input { Value = 0, },
+				Softness2 = Input { Value = 1, },
+				ElementShape4 = Input { Value = 1, },
+				Thickness4 = Input { Value = 0.1528, },
+				Blue4 = Input { Value = 0, },
+				Softness4 = Input { Value = 1, },
+				Offset4 = Input { Value = { -0.033, -0.052 }, }
+			},
+			ViewInfo = OperatorInfo { Pos = { -896.149, 62.4313 } },
+		}
+	}
+}

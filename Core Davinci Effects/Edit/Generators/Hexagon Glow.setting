@@ -1,0 +1,508 @@
+{
+	Tools = ordered() {
+		HexagonGlow = GroupOperator {
+			Inputs = ordered() {
+				Light1 = InstanceInput {
+					SourceOp = "PointLight1_1_1",
+					Source = "Light1",
+					Page = "Controls",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "PointLight1_1_1",
+					Source = "Red",
+					Name = "Color",
+					ControlGroup = 1,
+					Default = 0,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "PointLight1_1_1",
+					Source = "Green",
+					ControlGroup = 1,
+					Default = 0.685,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "PointLight1_1_1",
+					Source = "Blue",
+					ControlGroup = 1,
+					Default = 0.913152,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "PointLight1_1_1",
+					Source = "Intensity",
+					Default = 0.205,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "PointLight1_1_1",
+					Source = "DecayRate",
+					Default = 0.2999,
+				},
+				Light2 = InstanceInput {
+					SourceOp = "PointLight1_1_1",
+					Source = "Light2",
+					Page = "Controls",
+				},
+				Input6 = InstanceInput {
+					SourceOp = "PointLight1_1",
+					Source = "Red",
+					Name = "Color",
+					ControlGroup = 4,
+					Default = 0,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "PointLight1_1",
+					Source = "Green",
+					ControlGroup = 4,
+					Default = 0.685,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "PointLight1_1",
+					Source = "Blue",
+					ControlGroup = 4,
+					Default = 0.913152,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "PointLight1_1",
+					Source = "Intensity",
+					Default = 0.205,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "PointLight1_1",
+					Source = "DecayRate",
+					Default = 0.4258,
+				},
+				Light3 = InstanceInput {
+					SourceOp = "PointLight1_1_1",
+					Source = "Light3",
+					Page = "Controls",
+				},
+				Input12 = InstanceInput {
+					SourceOp = "PointLight1",
+					Source = "Red",
+					Name = "Color",
+					ControlGroup = 8,
+					Default = 0,
+				},
+				Input13 = InstanceInput {
+					SourceOp = "PointLight1",
+					Source = "Green",
+					ControlGroup = 8,
+					Default = 0.984,
+				},
+				Input14 = InstanceInput {
+					SourceOp = "PointLight1",
+					Source = "Blue",
+					ControlGroup = 8,
+					Default = 0.913152,
+				},
+				Input15 = InstanceInput {
+					SourceOp = "PointLight1",
+					Source = "Intensity",
+					Default = 0.205,
+				},
+				Input16 = InstanceInput {
+					SourceOp = "PointLight1",
+					Source = "DecayRate",
+					Default = 0.4258,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "Scale",
+					Name = "Animation Speed",
+					Default = 180,
+				},
+				Input17 = InstanceInput {
+					SourceOp = "FastNoise1",
+					Source = "SeetheRate",
+					Default = 0.118,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "SoftGlow1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 80.6669, 49.5 },
+				Flags = {
+					AllowPan = false,
+					ConnectedSnap = true,
+					AutoSnap = true,
+					RemoveRouters = true
+				},
+				Size = { 1161.93, 310.995, 580.963, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				PointLight1_1_1 = LightPoint {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input { Value = 0.174, },
+						["Transform3DOp.Translate.Y"] = Input { Value = 1.217, },
+						["Transform3DOp.Translate.Z"] = Input { Value = -8.84, },
+						Red = Input { Value = 0, },
+						Green = Input { Value = 0.685, },
+						Blue = Input { Value = 0.913152, },
+						Intensity = Input { Value = 0.205, },
+						DecayType = Input { Value = 1, },
+						DecayRate = Input { Value = 0.2999, },
+						["ShadowLightInputs3D.ShadowsEnabled"] = Input { Value = 1, },
+						["ShadowLightInputs3D.ShadowMapSize"] = Input { Value = 2048, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 86.3701, 253.073 } },
+					UserControls = ordered() {
+						Light1 = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 5,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Light 1",
+						},
+						Light2 = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 5,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Light 2",
+						},
+						Light3 = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 5,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Light 3",
+						}
+					}
+				},
+				PointLight1_1 = LightPoint {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input { Value = -0.841, },
+						["Transform3DOp.Translate.Z"] = Input { Value = -8.84, },
+						Red = Input { Value = 0, },
+						Green = Input { Value = 0.685, },
+						Blue = Input { Value = 0.913152, },
+						Intensity = Input { Value = 0.205, },
+						DecayType = Input { Value = 1, },
+						DecayRate = Input { Value = 0.4258, },
+						["ShadowLightInputs3D.ShadowsEnabled"] = Input { Value = 1, },
+						["ShadowLightInputs3D.ShadowMapSize"] = Input { Value = 2048, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 86.3701, 220.073 } },
+				},
+				Merge3D2 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Rotate.Z"] = Input {
+							SourceOp = "AnimCurves1",
+							Source = "Value",
+						},
+						PassThroughLights = Input { Value = 1, },
+						SceneInput1 = Input {
+							SourceOp = "PointLight1",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "PointLight1_1",
+							Source = "Output",
+						},
+						SceneInput3 = Input {
+							SourceOp = "PointLight1_1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 226.748, 189.28 } },
+				},
+				AnimCurves1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves1Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 180, }
+					},
+				},
+				AnimCurves1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				PointLight1 = LightPoint {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input { Value = 1.90694, },
+						["Transform3DOp.Translate.Z"] = Input { Value = -8.84, },
+						Red = Input { Value = 0, },
+						Green = Input { Value = 0.984, },
+						Blue = Input { Value = 0.913152, },
+						Intensity = Input { Value = 0.205, },
+						DecayType = Input { Value = 1, },
+						DecayRate = Input { Value = 0.4258, },
+						["ShadowLightInputs3D.ShadowsEnabled"] = Input { Value = 1, },
+						["ShadowLightInputs3D.ShadowMapSize"] = Input { Value = 2048, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 87.6381, 189.28 } },
+				},
+				sNGon1 = sNGon {
+					CtrlWShown = false,
+					Inputs = {
+						BorderWidth = Input { Value = -0.0172, },
+						JoinStyle = Input { Value = 2, },
+						Width = Input { Value = 0.25, },
+						Height = Input { Value = 0.25, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -518.926, 42.9542 } },
+				},
+				Extrude3D1 = Extrude3D {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Scale.X"] = Input { Value = 1.33, },
+						ShapeInput = Input {
+							SourceOp = "sNGon1",
+							Source = "Output",
+						},
+						ExtrusionProfile = Input {
+							SourceOp = "Extrude3D1ExtrusionProfile",
+							Source = "Value",
+						},
+						ExtrusionDepth = Input { Value = 0.0441, },
+						["MtlStdInputs.MaterialID"] = Input { Value = 2, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -225.809, 42.9542 } },
+				},
+				Extrude3D1ExtrusionProfile = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Extrude3D1_1 = Extrude3D {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Scale.X"] = Input { Value = 1.33, },
+						ShapeInput = Input {
+							SourceOp = "sTransform1",
+							Source = "Output",
+						},
+						ExtrusionProfile = Input {
+							SourceOp = "Extrude3D1ExtrusionProfile_1",
+							Source = "Value",
+						},
+						ExtrusionDepth = Input { Value = 0.0441, },
+						BevelDepth = Input { Expression = "Extrude3D1.BevelDepth", },
+						BevelWidth = Input { Expression = "Extrude3D1.BevelWidth", },
+						["MtlStdInputs.MaterialID"] = Input { Value = 2, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -231.106, 116.887 } },
+				},
+				Extrude3D1ExtrusionProfile_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				sTransform1 = sTransform {
+					CtrlWShown = false,
+					Inputs = {
+						XOffset = Input { Value = 0.1878393051031, },
+						YOffset = Input { Value = 0.1080347448426, },
+						Input = Input {
+							SourceOp = "sNGon1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -366.547, 116.887 } },
+				},
+				FastNoise1 = FastNoise {
+					CtrlWShown = false,
+					Inputs = {
+						GlobalOut = Input { Value = 119, },
+						Width = Input { Value = 1080, },
+						Height = Input { Value = 1920, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Detail = Input { Value = 1.18, },
+						Contrast = Input { Value = 3.1, },
+						XScale = Input { Value = 7.87, },
+						SeetheRate = Input { Value = 0.118, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -281.696, 178.371 } },
+				},
+				ImagePlane3D1 = ImagePlane3D {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Translate.Z"] = Input { Value = -9.465647, },
+						["Transform3DOp.Scale.X"] = Input { Value = 6.2, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 1, },
+						MaterialInput = Input {
+							SourceOp = "FastNoise1",
+							Source = "Output",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -136.362, 178.371 } },
+				},
+				Background1 = Background {
+					Inputs = {
+						GlobalOut = Input { Value = 119, },
+						Width = Input { Value = 3840, },
+						Height = Input { Value = 2160, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftAlpha = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 226.748, 8.44173 } },
+				},
+				Replicate3D1 = Replicate3D {
+					CtrlWShown = false,
+					Inputs = {
+						Destination = Input {
+							SourceOp = "Camera3D1",
+							Source = "Output",
+						},
+						Input1 = Input {
+							SourceOp = "Extrude3D1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -3.32294, 42.9542 } },
+				},
+				Camera3D1 = Camera3D {
+					CtrlWShown = false,
+					Inputs = {
+						AoV = Input { Value = 19.26427, },
+						FLength = Input { Value = 34.9999968656308, },
+						["Stereo.Mode"] = Input { Value = FuID { "OffAxis" }, },
+						FilmGate = Input { Value = FuID { "BMD_URSA_4K_16x9" }, },
+						ApertureW = Input { Value = 0.831496062992126, },
+						ApertureH = Input { Value = 0.467716535433071, },
+						IDepth = Input { Value = 8.26, },
+						["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 2, },
+						ImageInput = Input {
+							SourceOp = "Background1",
+							Source = "Output",
+						},
+						["MtlStdInputs.MaterialID"] = Input { Value = 3, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 226.748, 42.9542 } },
+				},
+				Replicate3D1_1 = Replicate3D {
+					CtrlWShown = false,
+					Inputs = {
+						ScaleNest = Input { Value = 1, },
+						JitterScaleLock = Input { Value = 0, },
+						Destination = Input {
+							SourceOp = "Camera3D1",
+							Source = "Output",
+						},
+						Input1 = Input {
+							SourceOp = "Extrude3D1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -5.08896, 116.887 } },
+				},
+				Merge3D1 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput1 = Input {
+							SourceOp = "Merge3D2",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "Camera3D1",
+							Source = "Output",
+						},
+						SceneInput3 = Input {
+							SourceOp = "Replicate3D1_1",
+							Source = "Data3D",
+						},
+						SceneInput5 = Input {
+							SourceOp = "Replicate3D1",
+							Source = "Data3D",
+						},
+						SceneInput4 = Input {
+							SourceOp = "ImagePlane3D1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 226.748, 116.887 } },
+				},
+				Renderer3D1 = Renderer3D {
+					CtrlWShown = false,
+					CustomData = {
+						ToolVersion = 2,
+					},
+					Inputs = {
+						GlobalOut = Input { Value = 119, },
+						Width = Input { Value = 1080, },
+						Height = Input { Value = 1920, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						SceneInput = Input {
+							SourceOp = "Merge3D1",
+							Source = "Output",
+						},
+						CameraSelector = Input { Value = FuID { "Camera3D1" }, },
+						OutputType = Input { Disabled = true, },
+						RendererType = Input { Value = FuID { "RendererOpenGL" }, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.HighQuality.Enable"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Nest"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.Rate"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.HighQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.Rate"] = Input { Value = 3, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.HighQuality.SampleCount"] = Input { Value = 3, },
+						["RendererOpenGL.AccumulationEffects"] = Input { Value = 1, },
+						["RendererOpenGL.AccumQuality"] = Input { Value = 32, },
+						["RendererOpenGL.LightingEnabled"] = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 373.666, 116.887 } },
+					SubInputsData = {
+						RendererOpenGL = {
+							Version = 1
+						}
+					}
+				},
+				SoftGlow1 = SoftGlow {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						Input = Input {
+							SourceOp = "Renderer3D1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 517, 116.887 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "HexagonGlow"
+}

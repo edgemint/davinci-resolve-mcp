@@ -107,6 +107,24 @@ For luma-ramp transitions (`Operation = FuID { "DFTLumaRamp" }`), `Dissolve.Map`
 
 `Fuse.Wireless` exists to host `UserControls` entries (buttons, labels, etc.) that don't belong to any real node. It has no pixel output. Don't try to use it in the render graph. Think of it as a "control panel node."
 
-## 18. `.alut3` Files Are LUTs, Not Compositions
+## 18. Files Loose in `Templates/Edit/` Silently Fall Through to the Fusion Library
+
+The Edit-page Effects Library only indexes `.setting` files that live inside a **category subfolder**: `Templates/Edit/Effects/`, `Templates/Edit/Transitions/`, `Templates/Edit/Titles/`, `Templates/Edit/Generators/`. A file dumped directly into `Templates/Edit/` (no category subfolder) is invisible to the Edit page — but the Fusion-page library is laxer and picks it up anyway, so the effect *appears to install successfully*, just in the wrong UI.
+
+Symptom: "I wrote an Edit effect, restarted Resolve, and it's showing up under the Fusion page's Effects Library instead of on the Edit page." Cause: you skipped the `<category>` folder. Always write to the full path including the subfolder:
+
+```
+%APPDATA%\Blackmagic Design\DaVinci Resolve\Support\Fusion\Templates\Edit\Effects\MyBlur.setting
+```
+
+not
+
+```
+%APPDATA%\Blackmagic Design\DaVinci Resolve\Support\Fusion\Templates\Edit\MyBlur.setting
+```
+
+Same rule for Fusion macros: they need a category subfolder too (`Fusion/Tools/`, `Fusion/Backgrounds/`, etc.), not loose in `Fusion/`.
+
+## 19. `.alut3` Files Are LUTs, Not Compositions
 
 `Fusion/Looks/*.alut3` live in the same `Core Davinci Effects` folder structure but they're **plain-text 3D LUTs**, not `.setting` files. Header: `F5LT3\nSize: 33\nType: float32\n\n` followed by R G B triples. They install to the LUT folder and apply from the Color page. Do not try to edit them as Fusion comps.

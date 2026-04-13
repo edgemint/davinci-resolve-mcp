@@ -1,0 +1,164 @@
+{
+	Tools = ordered() {
+		OuterStroke = GroupOperator {
+			Inputs = ordered() {
+				Border = InstanceInput {
+					SourceOp = "ErodeDilate1",
+					Source = "Border",
+					Page = "Controls",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "ErodeDilate1",
+					Source = "XAmount",
+					Name = "Border Width",
+					MinScale = 0,
+					Default = 0.0051,
+				},
+				Input1 = InstanceInput {
+					SourceOp = "ErodeDilate1",
+					Source = "Filter",
+					Name = "Border Edge",
+					Default = 0,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Background1",
+					Source = "TopLeftRed",
+					Name = "Color",
+					ControlGroup = 3,
+					Default = 1,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Background1",
+					Source = "TopLeftGreen",
+					ControlGroup = 3,
+					Default = 1,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Background1",
+					Source = "TopLeftBlue",
+					ControlGroup = 3,
+					Default = 1,
+				},
+				Colour = InstanceInput {
+					SourceOp = "Background1",
+					Source = "Colour",
+					Page = "Controls",
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Shadow1",
+					Source = "ShadowOffset",
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Shadow1",
+					Source = "Softness",
+					Default = 0.02441,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Shadow1",
+					Source = "LightDistance",
+					Default = 0.946,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "Shadow1",
+					Source = "Blend",
+					Default = 0.75,
+				},
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter1",
+					Source = "Input",
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				ErodeDilate1 = ErodeDilate {
+					Inputs = {
+						XAmount = Input { Value = 0.0051, },
+						Input = Input {
+							SourceOp = "Background1",
+							Source = "Output",
+						},
+						Border = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1931.66, 283.61 } },
+					UserControls = ordered() {
+						Border = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 5,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Border",
+						}
+					}
+				},
+				Background1 = Background {
+					CtrlWZoom = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftRed = Input { Value = 1, },
+						TopLeftGreen = Input { Value = 1, },
+						TopLeftBlue = Input { Value = 1, },
+						Colour = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1812.28, 283.61 } },
+					UserControls = ordered() {
+						Colour = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 4,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Shadow",
+						}
+					}
+				},
+				Shadow1 = Shadow {
+					Inputs = {
+						Blend = Input { Value = 0.75, },
+						Softness = Input { Value = 0.02441, },
+						LightPosition = Input { Value = { 0.223, 1 }, },
+						LightDistance = Input { Value = 0.946, },
+						Input = Input {
+							SourceOp = "ErodeDilate1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1931.66, 333.689 } },
+				},
+				Merge1 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Shadow1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1931.66, 390.269 } },
+				},
+				PipeRouter1 = PipeRouter {
+					ViewInfo = PipeRouterInfo { Pos = { 1721.23, 390.269 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "OuterStroke"
+}

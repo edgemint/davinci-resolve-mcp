@@ -1,0 +1,651 @@
+{
+	Tools = ordered() {
+		Rotating3DText = GroupOperator {
+			CtrlWZoom = false,
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "StyledText",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "Font",
+					ControlGroup = 2,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "Style",
+					ControlGroup = 2,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "Red1Clone",
+					Name = "Color",
+					ControlGroup = 3,
+					Default = 1,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "Green1Clone",
+					ControlGroup = 3,
+					Default = 1,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "Blue1Clone",
+					ControlGroup = 3,
+					Default = 1,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "Alpha1Clone",
+					ControlGroup = 3,
+					Default = 1,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "Size",
+					Default = 0.5,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "CharacterSpacingClone",
+					Name = "Tracking",
+					Default = 1,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "LineSpacingClone",
+					Default = 1,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "VerticalJustificationTop",
+					Name = "V Anchor",
+					ControlGroup = 7,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "VerticalJustificationCenter",
+					ControlGroup = 7,
+				},
+				Input13 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "VerticalJustificationBottom",
+					ControlGroup = 7,
+				},
+				Input14 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "VerticalTopCenterBottom",
+					Default = 0,
+				},
+				Input15 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "CenterOnBaseOfFirstLine",
+					Default = 0,
+				},
+				Input16 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "VerticallyJustified",
+					Default = 0,
+				},
+				Input17 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "HorizontalJustificationLeft",
+					Name = "H Anchor",
+					ControlGroup = 11,
+				},
+				Input18 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "HorizontalJustificationCenter",
+					ControlGroup = 11,
+				},
+				Input19 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "HorizontalJustificationRight",
+					ControlGroup = 11,
+				},
+				Input20 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "HorizontalLeftCenterRight",
+					Default = 0,
+				},
+				Input21 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "HorizontallyJustified",
+					Default = 0,
+				},
+				Bevel = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "Bevel",
+					Page = "Controls",
+				},
+				Input22 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "ExtrusionStyle",
+					Default = 0,
+				},
+				Input23 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "ExtrusionProfile",
+				},
+				Input24 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "ExtrusionDepth",
+					Default = 0.0709,
+				},
+				Input25 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "ExtrusionSubdivisions",
+					Default = 0,
+				},
+				Input26 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "BevelDepth",
+					Default = 0.0073,
+				},
+				Input27 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "BevelWidth",
+					Default = 0.0096,
+				},
+				Input28 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "CustomExtrusionSubdivisions",
+					Default = 40,
+				},
+				Input29 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "SmoothingAngle",
+					Default = 10,
+				},
+				Input30 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "FrontBevel",
+					Name = "Front",
+					Width = 0.5,
+					Default = 1,
+				},
+				Input31 = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "BackBevel",
+					Name = "Back",
+					Width = 0.5,
+					Default = 1,
+				},
+				TextAnimation = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "TextAnimation",
+					Page = "Controls",
+				},
+				Input33 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "EaseIn",
+					Width = 0.5,
+				},
+				Input34 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "EaseOut",
+					Width = 0.5,
+				},
+				Input32 = InstanceInput {
+					SourceOp = "AnimCurves2",
+					Source = "Scale",
+					Name = "X Rotation",
+					Default = 0,
+				},
+				Input35 = InstanceInput {
+					SourceOp = "AnimCurves1",
+					Source = "Scale",
+					Name = "Y Rotation",
+					Default = 20,
+				},
+				Input36 = InstanceInput {
+					SourceOp = "AnimCurves3",
+					Source = "Scale",
+					Name = "Z Rotation",
+					Default = 0,
+				},
+				Lights = InstanceInput {
+					SourceOp = "Text3D1",
+					Source = "Lights",
+					Page = "Controls",
+				},
+				Input53 = InstanceInput {
+					SourceOp = "AnimCurves4",
+					Source = "Scale",
+					Name = "Animated Light Rotation",
+					Default = 0,
+				},
+				Input52 = InstanceInput {
+					SourceOp = "AnimCurves4",
+					Source = "Invert",
+					Name = "Invert Animation",
+					Width = 1,
+					Default = 0,
+				},
+				Input56 = InstanceInput {
+					SourceOp = "Renderer3D1",
+					Source = "Blank5",
+				},
+				Input37 = InstanceInput {
+					SourceOp = "BackLight",
+					Source = "Enabled",
+					Default = 1,
+				},
+				Input38 = InstanceInput {
+					SourceOp = "BackLight",
+					Source = "Red",
+					Name = "Back Color",
+					ControlGroup = 30,
+					Default = 1,
+				},
+				Input39 = InstanceInput {
+					SourceOp = "BackLight",
+					Source = "Green",
+					ControlGroup = 30,
+					Default = 1,
+				},
+				Input40 = InstanceInput {
+					SourceOp = "BackLight",
+					Source = "Blue",
+					ControlGroup = 30,
+					Default = 1,
+				},
+				Input41 = InstanceInput {
+					SourceOp = "BackLight",
+					Source = "Intensity",
+					Default = 1,
+				},
+				Input54 = InstanceInput {
+					SourceOp = "Renderer3D1",
+					Source = "Blank5",
+				},
+				Input42 = InstanceInput {
+					SourceOp = "KeyLight",
+					Source = "Enabled",
+					Default = 1,
+				},
+				Input43 = InstanceInput {
+					SourceOp = "KeyLight",
+					Source = "Red",
+					Name = "Key Color",
+					ControlGroup = 33,
+					Default = 1,
+				},
+				Input44 = InstanceInput {
+					SourceOp = "KeyLight",
+					Source = "Green",
+					ControlGroup = 33,
+					Default = 1,
+				},
+				Input45 = InstanceInput {
+					SourceOp = "KeyLight",
+					Source = "Blue",
+					ControlGroup = 33,
+					Default = 1,
+				},
+				Input46 = InstanceInput {
+					SourceOp = "KeyLight",
+					Source = "Intensity",
+					Default = 1,
+				},
+				Input55 = InstanceInput {
+					SourceOp = "Renderer3D1",
+					Source = "Blank5",
+				},
+				Input47 = InstanceInput {
+					SourceOp = "FillLight",
+					Source = "Enabled",
+					Default = 1,
+				},
+				Input48 = InstanceInput {
+					SourceOp = "FillLight",
+					Source = "Red",
+					Name = "Fill Color",
+					ControlGroup = 36,
+					Default = 1,
+				},
+				Input49 = InstanceInput {
+					SourceOp = "FillLight",
+					Source = "Green",
+					ControlGroup = 36,
+					Default = 1,
+				},
+				Input50 = InstanceInput {
+					SourceOp = "FillLight",
+					Source = "Blue",
+					ControlGroup = 36,
+					Default = 1,
+				},
+				Input51 = InstanceInput {
+					SourceOp = "FillLight",
+					Source = "Intensity",
+					Default = 0.307,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Renderer3D1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { -453.578, 44.1937 },
+				Flags = {
+					AllowPan = false,
+					ConnectedSnap = true,
+					AutoSnap = true,
+					RemoveRouters = true
+				},
+				Size = { 553.333, 224.152, 276.667, 24.2424 },
+				Direction = "Horizontal",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				Text3D1 = Text3D {
+					CtrlWShown = false,
+					Inputs = {
+						LayoutRotation = Input { Value = 1, },
+						TransformRotation = Input { Value = 1, },
+						StyledText = Input { Value = "SAMPLE", },
+						Font = Input { Value = "Open Sans", },
+						Style = Input { Value = "Semibold", },
+						Size = Input { Value = 0.5, },
+						VerticalJustification = Input { Value = 3, },
+						VerticalJustificationNew = Input { Value = 3, },
+						HorizontalJustificationNew = Input { Value = 3, },
+						Extrusion = Input { Value = 1, },
+						ExtrusionProfile = Input {
+							SourceOp = "Text3D1ExtrusionProfile",
+							Source = "Value",
+						},
+						ExtrusionDepth = Input { Value = 0.0709, },
+						BevelDepth = Input { Value = 0.0073, },
+						BevelWidth = Input { Value = 0.0096, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -214.333, 8.86347 } },
+					UserControls = ordered() {
+						Bevel = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 10,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Extrusion",
+						},
+						Lights = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 20,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "3D Lights",
+						},
+						TextAnimation = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 5,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Text Animation",
+						}
+					}
+				},
+				Text3D1ExtrusionProfile = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.0666666666666667, 0.333333333333333 }, Flags = { Linear = true } },
+							[0.2] = { 1, LH = { 0.133333333333333, 0.666666666666667 }, RH = { 0.4, 1 }, Flags = { Linear = true } },
+							[0.8] = { 1, LH = { 0.6, 1 }, RH = { 0.866666666666667, 0.666666666666667 }, Flags = { Linear = true } },
+							[1] = { 0, LH = { 0.933333333333333, 0.333333333333333 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Merge3D2 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Rotate.X"] = Input {
+							SourceOp = "AnimCurves2",
+							Source = "Value",
+						},
+						["Transform3DOp.Rotate.Y"] = Input {
+							SourceOp = "AnimCurves1",
+							Source = "Value",
+						},
+						["Transform3DOp.Rotate.Z"] = Input {
+							SourceOp = "AnimCurves3",
+							Source = "Value",
+						},
+						SceneInput1 = Input {
+							SourceOp = "Text3D1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -214.333, 60.0453 } },
+				},
+				AnimCurves2 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Expression = "AnimCurves1.EaseIn", },
+						EaseOut = Input { Expression = "AnimCurves1.EaseOut", },
+						Lookup = Input {
+							SourceOp = "AnimCurves2Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 0, },
+						Offset = Input { Expression = "Scale/-2", }
+					},
+				},
+				AnimCurves2Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				AnimCurves1 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Easing" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves1Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 20, },
+						Offset = Input {
+							Value = -10,
+							Expression = "Scale/-2",
+						}
+					},
+				},
+				AnimCurves1Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				AnimCurves3 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Curve = Input { Value = FuID { "Easing" }, },
+						EaseIn = Input { Expression = "AnimCurves1.EaseIn", },
+						EaseOut = Input { Expression = "AnimCurves1.EaseOut", },
+						Lookup = Input {
+							SourceOp = "AnimCurves3Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 0, },
+						Offset = Input { Expression = "Scale/-2", }
+					},
+				},
+				AnimCurves3Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				BackLight = LightSpot {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input { Value = -3.290751, },
+						["Transform3DOp.Translate.Y"] = Input { Value = 3.394552, },
+						["Transform3DOp.Translate.Z"] = Input { Value = -6.400318, },
+						["Transform3DOp.Rotate.X"] = Input { Value = -26.8, },
+						["Transform3DOp.Rotate.Y"] = Input { Value = 203.3, },
+						["ShadowLightInputs3D.ShadowsEnabled"] = Input { Value = 1, },
+						["ShadowLightInputs3D.ShadowMapSize"] = Input { Value = 2048, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -83.667, 133.046 } },
+				},
+				KeyLight = LightSpot {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input { Value = -4.255795, },
+						["Transform3DOp.Translate.Y"] = Input { Value = 3.060473, },
+						["Transform3DOp.Translate.Z"] = Input { Value = 5.53878, },
+						["Transform3DOp.Rotate.X"] = Input { Value = -24, },
+						["Transform3DOp.Rotate.Y"] = Input { Value = -35.6, },
+						["ShadowLightInputs3D.ShadowsEnabled"] = Input { Value = 1, },
+						["ShadowLightInputs3D.ShadowMapSize"] = Input { Value = 2048, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -85, 99.4397 } },
+				},
+				FillLight = LightSpot {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						["Transform3DOp.Translate.X"] = Input { Value = 6.980567, },
+						["Transform3DOp.Translate.Y"] = Input { Value = 3.376881, },
+						["Transform3DOp.Translate.Z"] = Input { Value = 3.596738, },
+						["Transform3DOp.Rotate.X"] = Input { Value = -22.4, },
+						["Transform3DOp.Rotate.Y"] = Input { Value = 420.4, },
+						Intensity = Input { Value = 0.307, },
+						["ShadowLightInputs3D.ShadowsEnabled"] = Input { Value = 1, },
+						["ShadowLightInputs3D.ShadowMapSize"] = Input { Value = 2048, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -84.333, 166.652 } },
+				},
+				Merge3D3 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						["Transform3DOp.Rotate.Y"] = Input {
+							SourceOp = "AnimCurves4",
+							Source = "Value",
+						},
+						PassThroughLights = Input { Value = 1, },
+						SceneInput1 = Input {
+							SourceOp = "KeyLight",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "BackLight",
+							Source = "Output",
+						},
+						SceneInput3 = Input {
+							SourceOp = "FillLight",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 57, 133.046 } },
+				},
+				AnimCurves4 = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Source = Input { Value = FuID { "Duration" }, },
+						Lookup = Input {
+							SourceOp = "AnimCurves4Lookup",
+							Source = "Value",
+						},
+						Scale = Input { Value = 0, },
+						Offset = Input { Expression = "Scale/-2", }
+					},
+				},
+				AnimCurves4Lookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				Merge3D1 = Merge3D {
+					CtrlWShown = false,
+					Inputs = {
+						SceneInput1 = Input {
+							SourceOp = "Merge3D2",
+							Source = "Output",
+						},
+						SceneInput2 = Input {
+							SourceOp = "Merge3D3",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 57, 60.0453 } },
+				},
+				Renderer3D1 = Renderer3D {
+					CustomData = {
+						ToolVersion = 2,
+					},
+					Inputs = {
+						GlobalOut = Input { Value = 549, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						SceneInput = Input {
+							SourceOp = "Merge3D1",
+							Source = "Output",
+						},
+						RendererType = Input { Value = FuID { "RendererOpenGL" }, },
+						["RendererOpenGL.AntiAliasing.Nest"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Channels.RGBA.HighQuality.Enable"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Nest"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Supersampling.HighQuality.Rate"] = Input { Value = 1, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Color.Multisampling.HighQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Supersampling.HighQuality.Rate"] = Input { Value = 3, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.LowQuality.SampleCount"] = Input { Value = 2, },
+						["RendererOpenGL.AntiAliasing.Presets.Aux.Multisampling.HighQuality.SampleCount"] = Input { Value = 3, },
+						["RendererOpenGL.AccumulationEffects"] = Input { Value = 1, },
+						["RendererOpenGL.AccumQuality"] = Input { Value = 32, },
+						["RendererOpenGL.LightingEnabled"] = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 213, 60.0453 } },
+					SubInputsData = {
+						RendererOpenGL = {
+							Version = 1
+						}
+					}
+				}
+			},
+		}
+	}
+}

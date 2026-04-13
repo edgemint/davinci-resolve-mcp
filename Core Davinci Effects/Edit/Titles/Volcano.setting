@@ -1,0 +1,61 @@
+{
+	Tools = ordered() {
+		Template = TextPlus {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				GlobalOut = Input { Value = 101, },
+				Width = Input { Value = 3840, },
+				Height = Input { Value = 2160, },
+				UseFrameFormatSettings = Input { Value = 1, },
+				["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+				LayoutRotation = Input { Value = 1, },
+				TransformRotation = Input { Value = 1, },
+				SelectElement = Input { Value = 3, },
+				Select = Input { Value = 3, },
+				Name1 = Input { Value = "Gradient", },
+				Name2 = Input { Value = "Yellow", },
+				Enabled2 = Input { Value = 1, },
+				Name4 = Input { Value = "Edge", },
+				Enabled4 = Input { Value = 1, },
+				Type1 = Input { Value = 2, },
+				ShadingGradient1 = Input {
+					Value = Gradient {
+						Colors = {
+							[0] = { 0.244, 0.244, 0.244, 1 },
+							[1] = { 1, 1, 1, 1 }
+						}
+					},
+				},
+				Softness1 = Input { Value = 1, },
+				StyledText = Input { Value = "SAMPLE", },
+				Font = Input { Value = "Open Sans", },
+				Style = Input { Value = "Extrabold", },
+				VerticalJustificationNew = Input { Value = 3, },
+				HorizontalJustificationNew = Input { Value = 3, },
+				ElementShape2 = Input { Value = 0, },
+				Thickness2 = Input { Value = 0.0535, },
+				JoinStyle2 = Input { Value = 3, },
+				Type2 = Input { Value = 2, },
+				ShadingGradient2 = Input {
+					Value = Gradient {
+						Colors = {
+							[0] = { 1, 0, 0, 1 },
+							[1] = { 1, 1, 0, 1 }
+						}
+					},
+				},
+				Softness2 = Input { Value = 1, },
+				Offset2 = Input { Value = { 0.02, -0.02 }, },
+				Softness3 = Input { Value = 1, },
+				ElementShape4 = Input { Value = 1, },
+				Thickness4 = Input { Value = 0.0022, },
+				Red4 = Input { Value = 1, },
+				Green4 = Input { Value = 1, },
+				Softness4 = Input { Value = 1, },
+				PriorityBack4 = Input { Value = 8.07, }
+			},
+			ViewInfo = OperatorInfo { Pos = { 391.272, -98.4674 } },
+		}
+	}
+}

@@ -1,0 +1,68 @@
+{
+	Tools = ordered() {
+		Template = TextPlus {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				Width = Input { Value = 1920, },
+				Height = Input { Value = 1080, },
+				UseFrameFormatSettings = Input { Value = 1, },
+				["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+				Background = Input { Value = 0, },
+				TransformRotation = Input { Value = 1, },
+				Enabled7 = Input { Value = 1, },
+				Enabled8 = Input { Value = 1, },
+				ElementShape1 = Input { Value = 1, },
+				Thickness1 = Input { Value = 0.0134, },
+				JoinStyle1 = Input { Value = 0, },
+				Red1 = Input { Value = 0.701, },
+				Green1 = Input { Value = 0.701, },
+				Blue1 = Input { Value = 0.701, },
+				Softness1 = Input { Value = 1, },
+				StyledText = Input { Value = "Sample", },
+				Font = Input { Value = "Open Sans", },
+				Style = Input { Value = "Bold", },
+				VerticalJustificationNew = Input { Value = 3, },
+				HorizontalJustificationNew = Input { Value = 3, },
+				ElementShape8 = Input { Value = 1, },
+				Thickness8 = Input { Value = 0.005, },
+				Red8 = Input {
+					Value = 0.701,
+					Expression = "Red1",
+				},
+				Green8 = Input {
+					Value = 0.701,
+					Expression = "Green1",
+				},
+				Blue8 = Input {
+					Value = 0.701,
+					Expression = "Blue1",
+				},
+				Softness8 = Input { Value = 1, },
+				SoftnessY8 = Input { Value = 26.5, },
+				SoftnessGlow8 = Input {
+					Value = 0.465,
+					Expression = "SoftnessGlow7",
+				},
+				ElementShape7 = Input { Value = 1, },
+				Thickness7 = Input { Value = 0.005, },
+				Red7 = Input {
+					Value = 0.701,
+					Expression = "Red1",
+				},
+				Green7 = Input {
+					Value = 0.701,
+					Expression = "Green1",
+				},
+				Blue7 = Input {
+					Value = 0.701,
+					Expression = "Blue1",
+				},
+				Softness7 = Input { Value = 1, },
+				SoftnessX7 = Input { Value = 59.2, },
+				SoftnessGlow7 = Input { Value = 0.465, }
+			},
+			ViewInfo = OperatorInfo { Pos = { 820.667, 64.3333 } },
+		}
+	}
+}

@@ -1,0 +1,37 @@
+{
+	Tools = ordered() {
+		Template = TextPlus {
+			CtrlWZoom = false,
+			Inputs = {
+				GlobalOut = Input { Value = 119, },
+				Width = Input { Value = 1920, },
+				Height = Input { Value = 1080, },
+				UseFrameFormatSettings = Input { Value = 1, },
+				["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+				LayoutRotation = Input { Value = 1, },
+				AngleZ = Input { Value = 10, },
+				TransformRotation = Input { Value = 1, },
+				TransformShear = Input { Value = 1, },
+				CharacterShearX = Input { Value = -0.2, },
+				Enabled2 = Input { Value = 1, },
+				Softness1 = Input { Value = 1, },
+				StyledText = Input { Value = "SAMPLE", },
+				Font = Input { Value = "Open Sans", },
+				Style = Input { Value = "Bold", },
+				VerticalJustificationNew = Input { Value = 3, },
+				HorizontalJustificationNew = Input { Value = 3, },
+				ElementShape2 = Input { Value = 3, },
+				Thickness2 = Input { Value = 0.0323, },
+				LineStyle2 = Input { Value = 1, },
+				Level2 = Input { Value = 0, },
+				Green2 = Input { Value = 1, },
+				Blue2 = Input { Value = 1, },
+				Shear2 = Input { Value = 1, },
+				ShearX2 = Input { Value = -0.2, },
+				ElementShape4 = Input { Value = 3, },
+				Level4 = Input { Value = 0, }
+			},
+			ViewInfo = OperatorInfo { Pos = { -284.99, 49.5 } },
+		}
+	}
+}
