@@ -13,11 +13,11 @@ Built new skill `skills/davinci-custom-effects/` for authoring DaVinci Resolve `
 ### 2. Templates are valid and produce working effects
 These are the most important things to test — templates that don't load wreck user trust in the skill:
 
-- [ ] **effect.setting**: copy to `%APPDATA%\Blackmagic Design\DaVinci Resolve\Support\Fusion\Templates\Edit\Effects\TestBlur.setting`, restart Resolve, apply to a clip. Expected: "Minimal Effect" shows up in Effects Library → Effects; dragging it onto a clip adds a blur with a "Strength" slider (0–100, default 5) and a "Lock X/Y" toggle.
-- [ ] **transition.setting**: copy to `...\Templates\Edit\Transitions\TestWipe.setting`, restart Resolve. Expected: shows up in Video Transitions. Apply between two clips; the transition animates smoothly from clip A to clip B with a cubic ease. Softness slider affects the ramp width.
-- [ ] **title.setting**: copy to `...\Templates\Edit\Titles\TestTitle.setting`, restart Resolve. Expected: shows up in Titles. Drop onto timeline; "SAMPLE TITLE" renders with Font / Size / Position / Color controls exposed. Animation (if any was on the KeyStretcher range) should stretch to the clip length.
-- [ ] **generator.setting**: copy to `...\Templates\Edit\Generators\TestNoise.setting`, restart Resolve. Expected: shows up in Generators. Drop onto timeline; FastNoise generator renders with Detail, Contrast, Scale, Animation Speed, and Gradient controls.
-- [ ] **fusion-macro.setting**: copy to `...\Templates\Fusion\Tools\TestGlow.setting`, restart Resolve. Expected: on the Fusion page, right-click in the node view → Add Tool → Templates → Tools → Minimal Fusion Macro. Adds a SoftGlow wrapped as a group with the three exposed inputs.
+- [ ] **MCP Test Blur.setting**: copy to `%APPDATA%\Blackmagic Design\DaVinci Resolve\Support\Fusion\Templates\Edit\Effects\`, restart Resolve, apply to a clip. Expected: "MCP Test Blur" shows up in Effects Library → Effects; dragging it onto a clip adds a blur with a "Strength" slider (0–100, default 5) and a "Lock X/Y" toggle.
+- [ ] **MCP Test Wipe.setting**: copy to `...\Templates\Edit\Transitions\`, restart Resolve. Expected: "MCP Test Wipe" shows up in Video Transitions. Apply between two clips; the transition animates smoothly from clip A to clip B with a cubic ease. Softness slider affects the ramp width.
+- [ ] **MCP Test Title.setting**: copy to `...\Templates\Edit\Titles\`, restart Resolve. Expected: "MCP Test Title" shows up in Titles. Drop onto timeline; "SAMPLE TITLE" renders with Font / Size / Position / Color controls exposed. Animation (if any was on the KeyStretcher range) should stretch to the clip length.
+- [ ] **MCP Test Noise.setting**: copy to `...\Templates\Edit\Generators\`, restart Resolve. Expected: "MCP Test Noise" shows up in Generators. Drop onto timeline; FastNoise generator renders with Detail, Contrast, Scale, Animation Speed, and Gradient controls.
+- [ ] **MCP Test Glow.setting**: copy to `...\Templates\Fusion\Tools\`, restart Resolve. Expected: on the Fusion page, right-click in the node view → Add Tool → Templates → Tools → MCP Test Glow. Adds a SoftGlow wrapped as a group with the three exposed inputs.
 
 ### 3. Gotchas checklist
 - [ ] Confirm `ordered()` usage is preserved when Resolve re-saves a template you edit through its UI (don't lose ordering on round-trip).

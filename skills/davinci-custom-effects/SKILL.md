@@ -132,10 +132,10 @@ Templates for each category live in `templates/`. Copy one and modify.
 | `references/category-patterns.md` | Side-by-side minimal skeletons for Effect vs Transition vs Title vs Generator vs Fusion macro — shows what's different about each |
 | `references/thumbnails.md` | Exact filename grid, dimensions, which files are required vs optional per category |
 | `references/gotchas.md` | Hard-won rules: transition progress curves, `KeyStretcher` on titles, what breaks when you rename `ActiveTool`, SourceOp name collisions, the difference between `Inputs = {}` (unordered) and `Inputs = ordered() {}` |
-| `templates/effect.setting` | Minimal runnable clip-filter effect — one Blur exposed as "Strength" |
-| `templates/transition.setting` | Minimal dissolve transition with an easing curve |
-| `templates/title.setting` | Minimal TextPlus title with Color/Size/Position controls |
-| `templates/generator.setting` | Minimal FastNoise generator |
-| `templates/fusion-macro.setting` | Minimal Fusion-page tool with MainInput + one control |
+| `templates/MCP Test Blur.setting` | Minimal runnable clip-filter effect — one Blur exposed as "Strength" (Edit / Effects) |
+| `templates/MCP Test Wipe.setting` | Minimal dissolve transition with an easing curve (Edit / Transitions) |
+| `templates/MCP Test Title.setting` | Minimal TextPlus title with Color/Size/Position controls (Edit / Titles) |
+| `templates/MCP Test Noise.setting` | Minimal FastNoise generator (Edit / Generators) |
+| `templates/MCP Test Glow.setting` | Minimal Fusion-page tool with MainInput + one control (Fusion / Tools) |
 
-**Start from a template.** Copying `templates/effect.setting` and renaming it is ~10x faster than writing one from scratch and the result will always be well-formed.
+**Start from a template.** Copying `templates/MCP Test Blur.setting` and renaming it is ~10x faster than writing one from scratch and the result will always be well-formed. The filenames match what shows up in Resolve's Effects Library, so renaming the copy is all you need to do to change the display name.
