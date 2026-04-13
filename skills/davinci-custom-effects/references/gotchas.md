@@ -128,3 +128,41 @@ Same rule for Fusion macros: they need a category subfolder too (`Fusion/Tools/`
 ## 19. `.alut3` Files Are LUTs, Not Compositions
 
 `Fusion/Looks/*.alut3` live in the same `Core Davinci Effects` folder structure but they're **plain-text 3D LUTs**, not `.setting` files. Header: `F5LT3\nSize: 33\nType: float32\n\n` followed by R G B triples. They install to the LUT folder and apply from the Color page. Do not try to edit them as Fusion comps.
+
+## 20. `ControlGroup = N` Must Equal the Anchor Input's Number
+
+Fusion collapses controls into one inspector row when they share a `ControlGroup` integer. That integer must equal the `InputN` number of the preceding label/anchor Input in the list — not a free-choice group ID. In `CCTV.setting`, `Font` (Input2) and `Style` (Input3) both carry `ControlGroup = 2` because they share a row anchored to `Input2`. In `Background Reveal Lower Third.setting`, `VerticalJustificationTop`, `VerticalJustificationCenter`, and `VerticalJustificationBottom` (Input7/8/9) all carry `ControlGroup = 6`, grouping them under the `Input6` row anchor. If you pick sequential integers starting from 1, grouping silently breaks: controls render on separate rows and multi-button radios disappear.
+
+Rule: count from the top of your `Inputs = ordered() { ... }` block and use the anchor row's `InputN` number as the group ID for all siblings that share that row.
+
+## 21. `Width` on `InstanceInput` Is Inspector Column Width, Not Mask Size
+
+`Width` means two completely different things depending on context. On mask nodes (`EllipseMask`, `RectangleMask`) it is the physical mask size as a fraction of image width — e.g., `Ellipse1.Width = 0.5069` in `Binoculars.setting` is the mask diameter, not a UI hint. On an `InstanceInput`, `Width` is a fractional inspector column width (0.0–1.0): `DSLR.setting` exposes five timecode fields each with `Width = 0.5`, packing them two-per-row in the inspector. `Width = 1` (the default when omitted) gives the control its own full row.
+
+A related field, `ICD_Width`, serves the same purpose inside `UserControls` button definitions. Authors packing button grids who accidentally copy a mask-scale value like `0.5069` produce weirdly-wide or full-row controls.
+
+## 22. `GlobalOut` on Internal Generator Nodes — Set It, Keep It Consistent
+
+`GlobalOut` on a generator or text node caps its internal frame timeline. Every `TextPlus`, `Background`, and `FastNoise` inside an effect with baked animation must carry `GlobalOut = Input { Value = N }`, and all nodes in the same group must share the same `N`. In `CCTV.setting`, every generator node carries `GlobalOut = 716`. If you omit `GlobalOut`, the node's internal timeline is unbounded and Resolve may render garbage or refuse to stretch the effect to clip length. If siblings in the same group have different `GlobalOut` values, animation phases drift out of sync.
+
+## 23. Fusion Bare-Node Comps Don't Work as Edit Effects — Edit Requires `GroupOperator`
+
+All `Edit/Effects/`, `Edit/Transitions/`, `Edit/Titles/`, and `Edit/Generators/` stock files wrap their graph in a `GroupOperator` with `InstanceInput`s. Several Fusion categories — especially `Fusion/Styled Text/` — ship raw top-level node trees with no `GroupOperator` and no exposed `InstanceInput`s at all. In those cases, users customize by opening the node graph on the Fusion page. On the Edit page this model fails silently: the effect loads, appears in the Effects Library, but has a blank inspector.
+
+If you copy `Fusion/Styled Text/Alien.setting` (bare nodes, no GroupOperator) as a starting point for a new Edit effect, you get an unusable empty-inspector result. Always wrap Edit-page effects in a `GroupOperator`. `Edit/Effects/Binoculars.setting` is a clean example of the required structure.
+
+## 24. Transition Easing Uses `LUTLookup` + `LUTBezier`, Not `BezierSpline`
+
+For parameters that need to follow transition progress (0→1 over clip duration), the stock pattern is a `LUTLookup` node with its `Lookup` input connected to a sibling `LUTBezier`. `LUTBezier` uses `KeyColorSplines` with an outer `[0]` (single channel index) and inner float keys 0.0–1.0 (normalized position). This is completely different from `BezierSpline`, which uses `KeyFrames` with absolute frame numbers. Hand-authored effects that drive transition progress via a `BezierSpline` with frame keys play at wrong timing or freeze.
+
+A bare `LUTLookup {}` with no `Lookup` input (as in `Cross Dissolve.setting`) automatically consumes the built-in `Duration` source for a default linear 0→1 ramp — leaving `Lookup` disconnected is valid shorthand for "linear progress." `Box Wipe.setting` shows the full explicit form with a custom `LUTBezier` easing curve.
+
+## 25. `BTNCS_Execute` Lua References `InputN` Keys, Not Internal Node Parameter Names
+
+`Fuse.Wireless` buttons use `BTNCS_Execute` to call `tool:SetInput(...)`. The first argument must be the exposed `InstanceInput` key name (e.g., `'Input9'`), not the underlying node's parameter name (e.g., `'Start'`). In `Box Wipe.setting`, direction-preset buttons call `tool:SetInput('Input9', {x,y})` to write the wipe start position — `Input9` is the `InstanceInput` key that wraps `Background2.Start`. Writing `tool:SetInput('Start', ...)` silently does nothing because `Start` isn't a top-level `GroupOperator` input. Authors naturally reach for the internal param name since that's what they see in the node graph.
+
+## 26. OFX Nodes Require a Mandatory Boilerplate Input Block
+
+Every `ofx.com.blackmagicdesign.resolvefx.*` node in the stock files carries seven required OFX overlay parameters: `blendGroup`, `blendIn`, `blend`, `ignoreContentShape`, `legacyIsProcessRGBOnly`, `refreshTrigger`, and `resolvefxVersion`. Both `Binoculars.setting` and `Digital Glitch.setting` include this block on every OFX node. Omitting any one of these causes the node to fall back to defaults that may differ from your intent, or the effect fails to load entirely. `resolvefxVersion` should match the version the effect was authored against (e.g., `"2.2"`); mismatches can cause parameter layout changes in newer Resolve versions.
+
+Authors hand-writing OFX invocations rather than copying from a stock file invariably omit this block. Copy the seven-field block verbatim from any working stock OFX node.
