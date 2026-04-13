@@ -132,10 +132,18 @@ Templates for each category live in `templates/`. Copy one and modify.
 | `references/category-patterns.md` | Side-by-side minimal skeletons for Effect vs Transition vs Title vs Generator vs Fusion macro — shows what's different about each |
 | `references/thumbnails.md` | Exact filename grid, dimensions, which files are required vs optional per category |
 | `references/gotchas.md` | Hard-won rules: transition progress curves, `KeyStretcher` on titles, what breaks when you rename `ActiveTool`, SourceOp name collisions, the difference between `Inputs = {}` (unordered) and `Inputs = ordered() {}` |
-| `templates/MCP Test Blur.setting` | Minimal runnable clip-filter effect — one Blur exposed as "Strength" (Edit / Effects) |
-| `templates/MCP Test Wipe.setting` | Minimal dissolve transition with an easing curve (Edit / Transitions) |
+| `templates/MCP Test Blur.setting` | Minimal clip-filter effect — one Blur exposed as "Strength" (Edit / Effects) |
+| `templates/MCP Test Vignette.setting` | Ellipse-mask vignette darkening the edges — exercises mask-feeding + Merge.Blend (Edit / Effects) |
+| `templates/MCP Test Color Tint.setting` | Tint via colored Background → Merge, with `ControlGroup` collapsing R/G/B/A into a single color picker (Edit / Effects) |
+| `templates/MCP Test Wipe.setting` | Gradient-map luma wipe transition with an easing curve (Edit / Transitions) |
+| `templates/MCP Test Iris.setting` | Circular iris transition using an EllipseMask as the Dissolve.Map (Edit / Transitions) |
+| `templates/MCP Test Cross Dissolve.setting` | Dead-simplest transition — `DFTDissolve` with no Map, just a Mix ramp (Edit / Transitions) |
 | `templates/MCP Test Title.setting` | Minimal TextPlus title with Color/Size/Position controls (Edit / Titles) |
-| `templates/MCP Test Noise.setting` | Minimal FastNoise generator (Edit / Generators) |
+| `templates/MCP Test Lower Third.setting` | TextPlus + RectangleMask-bordered Background composite — exercises multi-node title composition (Edit / Titles) |
+| `templates/MCP Test Fade Title.setting` | TextPlus with animated alpha via a `BezierSpline`, stretched by `KeyStretcher` (Edit / Titles) |
+| `templates/MCP Test Noise.setting` | FastNoise generator with Detail/Contrast/Scale/Speed controls (Edit / Generators) |
+| `templates/MCP Test Solid Color.setting` | Solid-color Background with `ControlGroup` color picker (Edit / Generators) |
+| `templates/MCP Test Gradient.setting` | Linear gradient Background with exposed Start/End points and Gradient colors widget (Edit / Generators) |
 | `templates/MCP Test Glow.setting` | Minimal Fusion-page tool with MainInput + one control (Fusion / Tools) |
 
 **Start from a template.** Copying `templates/MCP Test Blur.setting` and renaming it is ~10x faster than writing one from scratch and the result will always be well-formed. The filenames match what shows up in Resolve's Effects Library, so renaming the copy is all you need to do to change the display name.
